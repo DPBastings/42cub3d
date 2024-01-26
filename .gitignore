@@ -1,0 +1,5 @@
+cub3d
+lib/libmlx42_build/
+object/*.o
+*.a
+*.d
