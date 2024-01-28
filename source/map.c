@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cbd_map.h                                          :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:36:02 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:36:02 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/27 14:35:14 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/27 14:35:15 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CBD_MAP_H
-# define CBD_MAP_H
+#include "cbd.h"
 
-# include "cbd.h"
-# include "types.h"
-
-# include <stddef.h>
-
-struct s_map
+void	map_read(t_map *map, int fd)
 {
-	size_t	x_max;
-	size_t	y_max;
-	char	**contents;
-}; // struct s_map
+	(void) map;
+	(void) fd;
+}
 
-void	map_read(t_map *map, t_fd fd);
-void	map_deinit(t_map *map);
-
-#endif // CBD_MAP_H
+void	map_deinit(t_map *map)
+{
+	(void) map;
+}

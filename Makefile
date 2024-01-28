@@ -1,17 +1,24 @@
 NAME 		:= cub3d
 
 SRC_FILES	:= main.c\
+			\
+			debug.c\
+			\
+			assets.c\
 			error.c\
+			game.c\
+			map.c\
 			texture.c\
-			cbd/load.c\
-			cbd/load_assets.c\
-			cbd/load_map.c\
-			parse/parse_asset.c\
+			parse/check.c\
+			parse/parse_assets.c\
 			parse/parse_map.c\
 			parse/parse_utils.c\
 			parse/parse_value.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
+			\
+			debug.h\
+			\
 			cbd_assets.h\
 			cbd_error.h\
 			cbd_game.h\
@@ -29,7 +36,8 @@ OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
 
 CC			:= gcc
-CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/
+CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/ -g -fsanitize=address
+
 LIBFLAGS	:= -lglfw -L/usr/lib -ldl -pthread -lm
 DEPFLAGS	:= -MMD $(@.o=.d) -MP
 DEP_FILES	:= $(patsubst %.o,%.d,$(addprefix $(OBJ_DIR), $(OBJ_FILES)))

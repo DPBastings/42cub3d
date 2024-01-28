@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_value.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/27 14:35:34 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/27 14:35:35 by dbasting         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cbd_parse.h"
 #include "cbd_error.h"
 
@@ -10,17 +22,17 @@ static inline t_channel	parse_channel(char const **str);
 t_rgba	parse_rgb(char const **str)
 {
 	t_channel	rgb[4];
-	
+
 	parse_skip_ws(str);
 	rgb[0] = parse_channel(str);
-	if (**(str++) != ',')
+	if (*(*str)++ != ',')
 		cbd_terminate(CBD_EASSINV);
 	rgb[1] = parse_channel(str);
-	if (**(str++) != ',')
+	if (*(*str)++ != ',')
 		cbd_terminate(CBD_EASSINV);
 	rgb[2] = parse_channel(str);
 	rgb[3] = 255;
-	return (*(t_rgba*)rgb);
+	return (*(t_rgba *)rgb);
 }
 
 static inline t_channel	parse_channel(char const **str)
@@ -29,8 +41,9 @@ static inline t_channel	parse_channel(char const **str)
 	size_t	i;
 
 	i = 0;
-	while (ft_isdigit(*str[i]) && i < 4) {
-		buf[i] = *str[i];
+	while (ft_isdigit((*str)[i]) && i < 3)
+	{
+		buf[i] = (*str)[i];
 		++i;
 	}
 	buf[i] = '\0';

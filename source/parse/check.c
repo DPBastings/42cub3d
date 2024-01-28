@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cbd_map.h                                          :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:36:02 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:36:02 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/27 16:49:28 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/27 16:49:29 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CBD_MAP_H
-# define CBD_MAP_H
+#include "cbd_parse.h"
 
-# include "cbd.h"
-# include "types.h"
+#include "ft_string.h"
 
-# include <stddef.h>
-
-struct s_map
+void	check_init(t_check *check)
 {
-	size_t	x_max;
-	size_t	y_max;
-	char	**contents;
-}; // struct s_map
+	ft_memset(&check, 0, sizeof(t_check));
+}
 
-void	map_read(t_map *map, t_fd fd);
-void	map_deinit(t_map *map);
+bool	check_done(t_check *check)
+{
+	size_t	i;
 
-#endif // CBD_MAP_H
+	i = 0;
+	while (i < N_ASSET)
+		if (check->flags[i++] == false)
+			return (false);
+	return (true);
+}

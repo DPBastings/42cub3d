@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cbd_map.h                                          :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:36:02 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:36:02 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/27 14:35:34 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/27 14:35:35 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CBD_MAP_H
-# define CBD_MAP_H
+#ifndef DEBUG_H
+# define DEBUG_H
 
 # include "cbd.h"
-# include "types.h"
 
-# include <stddef.h>
+# include <stdbool.h>
 
-struct s_map
-{
-	size_t	x_max;
-	size_t	y_max;
-	char	**contents;
-}; // struct s_map
+void	game_print(t_game *game);
+void	assets_print(t_assets *game, bool loaded);
+void	map_print(t_map *map);
 
-void	map_read(t_map *map, t_fd fd);
-void	map_deinit(t_map *map);
-
-#endif // CBD_MAP_H
+#endif // DEBUG_H

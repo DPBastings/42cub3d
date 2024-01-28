@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/27 14:32:26 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/27 14:32:34 by dbasting         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cbd_error.h"
 
 #include "ft_stdio.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-static char const *g_cbd_errlist[N_ERRNO] = {
+static char const *const	g_cbd_errlist[N_ERRNO] = {
 	"Everything went better than expected.",
 	"Something went wrong",
 	"Usage: cub3d <map>.",
