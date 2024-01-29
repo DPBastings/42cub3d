@@ -57,9 +57,10 @@ void	check_init(t_check *check);
 bool	check_done(t_check *check);
 
 void	parse_assets(t_check *check, t_assets *assets, char const *str);
-void	parse_line(t_check *check, t_assets *assets, char const **str);
 t_rgba	parse_rgb(char const **str);
 char	*parse_path(char const **str);
+
+void	parse_map(t_map *map, char const **str);
 
 void	parse_skip_ws(char const **str);
 

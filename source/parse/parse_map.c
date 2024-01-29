@@ -9,3 +9,9 @@
 /*   Updated: 2024/01/27 14:35:25 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cbd_parse.h"
+
+void	parse_map(t_map *map, char const **str)
+{
+}
