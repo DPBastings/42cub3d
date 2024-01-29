@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   types.h                                            :+:    :+:            */
+/*   point.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/27 14:36:20 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 17:00:29 by dbasting      ########   odam.nl         */
+/*   Created: 2024/01/29 14:33:14 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 14:43:29 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#ifndef POINT_H
+# define POINT_H
 
-# include <stdint.h>
+# include <float.h>
 
-typedef int			t_fd;
-typedef uint32_t	t_rgba;
-typedef uint8_t		t_channel;
-typedef char        t_object;
+typedef struct s_point  t_point;
+typedef struct s_dpoint t_dpoint;
 
-#endif // TYPES_H
+struct s_point
+{
+    int x;
+    int y;
+};
+
+struct s_dpoint
+{
+    double  x;
+    double  y;
+};
+
+#endif // POINT_H

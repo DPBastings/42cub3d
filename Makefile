@@ -8,10 +8,12 @@ SRC_FILES	:= main.c\
 			error.c\
 			game.c\
 			map.c\
+			map_check.c\
+			map_method.c\
+			player.c\
 			texture.c\
 			parse/check.c\
 			parse/parse_assets.c\
-			parse/parse_map.c\
 			parse/parse_utils.c\
 			parse/parse_value.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
@@ -35,7 +37,7 @@ OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
 
-CC			:= gcc
+CC			:= cc
 CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/ -g -fsanitize=address
 
 LIBFLAGS	:= -lglfw -L/usr/lib -ldl -pthread -lm

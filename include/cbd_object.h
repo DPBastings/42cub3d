@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   types.h                                            :+:    :+:            */
+/*   cbd_object.h                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/27 14:36:20 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 17:00:29 by dbasting      ########   odam.nl         */
+/*   Created: 2024/01/29 16:58:07 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 17:03:21 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#ifndef CBD_OBJECT_H
+# define CBD_OBJECT_H
 
-# include <stdint.h>
+# define OBJ_WALL	'1'
+# define OBJ_EMPTY	'0'
+# define OBJ_VOID	' '
+//# define OBJ_DOOR	'D'
+//# define OBJ_COIN0	'X'
 
-typedef int			t_fd;
-typedef uint32_t	t_rgba;
-typedef uint8_t		t_channel;
-typedef char        t_object;
-
-#endif // TYPES_H
+#endif // CBD_OBJECT_H

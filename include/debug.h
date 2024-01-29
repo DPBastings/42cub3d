@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:35:34 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:35:35 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   debug.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:35:34 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 17:49:47 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 # include <stdbool.h>
 
-void	game_print(t_game *game);
-void	assets_print(t_assets *game, bool loaded);
-void	map_print(t_map *map);
+void	game_print(t_game const *game);
+void	assets_print(t_assets const *assets, bool loaded);
+void	map_print(t_map const *map);
 
 #endif // DEBUG_H

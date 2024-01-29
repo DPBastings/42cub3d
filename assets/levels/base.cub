@@ -1,7 +1,7 @@
 NO ./assets/textures/wall.png
-EA ./assets/textures/wall.png
+EA ./assets/textures/wall_light.png
 SO ./assets/textures/wall.png
-WE ./assets/textures/wall.png
+WE ./assets/textures/wall_light.png
 
 F 45,45,65
 C 65,65,75

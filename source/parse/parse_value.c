@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_value.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:35:34 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:35:35 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_value.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:35:34 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 18:16:17 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_rgba	parse_rgb(char const **str)
 {
 	t_channel	rgb[4];
 
-	parse_skip_ws(str);
 	rgb[0] = parse_channel(str);
 	if (*(*str)++ != ',')
 		cbd_terminate(CBD_EASSINV);
@@ -53,12 +52,11 @@ static inline t_channel	parse_channel(char const **str)
 
 char	*parse_path(char const **str)
 {
-	size_t	len;
-	char	*sstr;
+	size_t const	len = ft_wordlen(*str);
+	char *const		sstr = ft_substr(*str, 0, len);
 
-	parse_skip_ws(str);
-	len = ft_wordlen(*str);
-	sstr = ft_substr(*str, 0, len);
+	if (sstr == NULL)
+		cbd_terminate(CBD_EGENERIC);
 	*str += len;
 	return (sstr);
 }

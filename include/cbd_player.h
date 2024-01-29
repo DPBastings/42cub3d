@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   types.h                                            :+:    :+:            */
+/*   cbd_player.h                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/27 14:36:20 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 17:00:29 by dbasting      ########   odam.nl         */
+/*   Created: 2024/01/29 14:38:50 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 17:35:03 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#ifndef CBD_PLAYER_H
+# define CBD_PLAYER_H
 
-# include <stdint.h>
+# include "cbd.h"
+# include "point.h"
 
-typedef int			t_fd;
-typedef uint32_t	t_rgba;
-typedef uint8_t		t_channel;
-typedef char        t_object;
+struct s_player
+{
+	t_dpoint	pos;
+	double		view_x;
+	double		view_z;
+};
 
-#endif // TYPES_H
+void	player_init(t_player *player, t_point pt, t_startpos orientation);
+
+#endif // CBD_PLAYER_H

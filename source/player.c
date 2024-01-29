@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   types.h                                            :+:    :+:            */
+/*   player.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/27 14:36:20 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 17:00:29 by dbasting      ########   odam.nl         */
+/*   Created: 2024/01/29 17:28:55 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 17:54:23 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "cbd_player.h"
 
-# include <stdint.h>
-
-typedef int			t_fd;
-typedef uint32_t	t_rgba;
-typedef uint8_t		t_channel;
-typedef char        t_object;
-
-#endif // TYPES_H
+void	player_init(t_player *player, t_point pt, t_startpos orientation)
+{
+	player->pos.x = pt.x;
+	player->pos.y = pt.y;
+	(void) orientation;
+}

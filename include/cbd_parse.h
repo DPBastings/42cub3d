@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cbd_parse.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:36:06 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:36:07 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cbd_parse.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:36:06 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 17:37:45 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@
 # define HDR_WEST_WALL	"WE"
 # define HDR_DOOR		"DO"
 
-# define WALL	'1'
-# define EMPTY	'0'
-# define VOID	' '
-# define NORTH	'N'
-# define WEST	'W'
-# define SOUTH	'S'
-# define EAST	'E'
-# define DOOR	'D'
-# define COIN0	'X'
+# define CHAR_WALL	'1'
+# define CHAR_EMPTY	'0'
+# define CHAR_VOID	' '
+//# define CHAR_DOOR	'D'
+//# define CHAR_COIN0	'X'
 
-typedef enum e_assetno
+# define CHAR_NORTH	'N'
+# define CHAR_WEST	'W'
+# define CHAR_SOUTH	'S'
+# define CHAR_EAST	'E'
+
+typedef enum e_achkflag
 {
 	CEILING_RGB,
 	FLOOR_RGB,
@@ -45,22 +46,20 @@ typedef enum e_assetno
 	EAST_TXR,
 	SOUTH_TXR,
 	WEST_TXR,
-	N_ASSET,
-}	t_assetno;
+	N_ACHKFLAG,
+}	t_achkflag;
 
-typedef struct s_check
+typedef struct s_achk
 {
-	bool	flags[N_ASSET];
-}	t_check;
+	bool	flags[N_ACHKFLAG];
+}	t_achk;
 
-void	check_init(t_check *check);
-bool	check_done(t_check *check);
+void	achk_init(t_achk *check);
+bool	achk_done(t_achk *check);
 
-void	parse_assets(t_check *check, t_assets *assets, char const *str);
+void	parse_assets(t_achk *check, t_assets *assets, char const *str);
 t_rgba	parse_rgb(char const **str);
 char	*parse_path(char const **str);
-
-void	parse_map(t_map *map, char const **str);
 
 void	parse_skip_ws(char const **str);
 

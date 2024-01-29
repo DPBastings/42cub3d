@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_assets.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 16:43:04 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 16:43:05 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_assets.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 16:43:04 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 18:13:51 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "ft_string.h"
 #include "MLX42.h"
 
-static t_string const	g_headers[N_ASSET] = {
+static t_string const	g_headers[N_ACHKFLAG] = {
 {HDR_CEILING, 1},
 {HDR_FLOOR, 1},
 {HDR_NORTH_WALL, 2},
@@ -29,11 +29,11 @@ static t_string const	g_headers[N_ASSET] = {
 {HDR_WEST_WALL, 2},
 };
 
-static void			parse_asset(t_check *chk, t_assets *ats, char const **str);
-static t_assetno	parse_header(char const **str);
-static void			parse_value(t_assetno i, t_assets *assets, char const **s);
+static void			parse_asset(t_achk *chk, t_assets *ats, char const **str);
+static t_achkflag	parse_header(char const **str);
+static void			parse_value(t_achkflag i, t_assets *assets, char const **s);
 
-void	parse_assets(t_check *check, t_assets *assets, char const *str)
+void	parse_assets(t_achk *check, t_assets *assets, char const *str)
 {
 	while (*str)
 	{
@@ -42,9 +42,9 @@ void	parse_assets(t_check *check, t_assets *assets, char const *str)
 	}
 }
 
-static void	parse_asset(t_check *check, t_assets *assets, char const **str)
+static void	parse_asset(t_achk *check, t_assets *assets, char const **str)
 {
-	t_assetno	i;
+	t_achkflag	i;
 
 	while (**str)
 	{
@@ -57,13 +57,13 @@ static void	parse_asset(t_check *check, t_assets *assets, char const **str)
 	}
 }
 
-static t_assetno	parse_header(char const **str)
+static t_achkflag	parse_header(char const **str)
 {
-	t_assetno	i;
+	t_achkflag	i;
 
 	parse_skip_ws(str);
 	i = 0;
-	while (i < N_ASSET)
+	while (i < N_ACHKFLAG)
 	{
 		if (ft_strncmp(*str, g_headers[i].data, g_headers[i].len) == 0)
 		{
@@ -77,8 +77,9 @@ static t_assetno	parse_header(char const **str)
 }
 
 // O, how I long for the switch...
-static void	parse_value(t_assetno i, t_assets *assets, char const **str)
+static void	parse_value(t_achkflag i, t_assets *assets, char const **str)
 {
+	parse_skip_ws(str);
 	if (i == CEILING_RGB)
 		assets->ceiling_rgba = parse_rgb(str);
 	else if (i == FLOOR_RGB)

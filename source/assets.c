@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   assets.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:35:03 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:35:05 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   assets.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:35:03 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/01/29 18:19:29 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static void	load_textures(t_texture textures[N_TEXTURE]);
 
 void	assets_read(t_assets *assets, t_fd fd)
 {
-	t_check	check;
+	t_achk	check;
 	char	*ln;
 
-	check_init(&check);
-	while (!check_done(&check))
+	achk_init(&check);
+	while (!achk_done(&check))
 	{
 		ln = ft_getline(fd);
 		if (ln == NULL)
