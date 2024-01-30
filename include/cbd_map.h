@@ -25,13 +25,13 @@ struct s_map
 {
 	int			x_size;
 	int			y_size;
-	t_object	**contents;
+	t_object	**objects;
 	t_player	player;
 }; // struct s_map
 
-void		map_read(t_map *map, t_fd fd);
-void		map_check(t_map *map);
-void		map_deinit(t_map *map);
+void		map_read(t_map *self, t_fd fd);
+void		map_check(t_map *self);
+void		map_deinit(t_map *self);
 
 t_object	*map_access(t_map *self, t_point pt);
 t_object	map_caccess(t_map const *self, t_point pt);

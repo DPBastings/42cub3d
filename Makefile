@@ -10,11 +10,15 @@ SRC_FILES	:= main.c\
 			map.c\
 			map_check.c\
 			map_method.c\
+			object.c\
 			player.c\
 			texture.c\
 			parse/check.c\
+			parse/map_raw.c\
 			parse/parse_assets.c\
 			parse/parse_utils.c\
+			parse/parse_map.c\
+			parse/parse_object.c\
 			parse/parse_value.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\

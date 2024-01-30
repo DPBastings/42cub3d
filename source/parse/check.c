@@ -16,10 +16,10 @@
 
 void	achk_init(t_achk *check)
 {
-	ft_memset(&check, 0, sizeof(t_achk));
+	ft_memset(check, 0, sizeof(t_achk));
 }
 
-bool	achk_done(t_achk *check)
+bool	achk_done(t_achk const *check)
 {
 	size_t	i;
 
@@ -28,4 +28,14 @@ bool	achk_done(t_achk *check)
 		if (check->flags[i++] == false)
 			return (false);
 	return (true);
+}
+
+void	mchk_init(t_mchk *check)
+{
+	ft_memset(check, 0, sizeof(t_mchk));
+}
+
+bool	mchk_done(t_mchk const *check)
+{
+	return (check->has_player);
 }

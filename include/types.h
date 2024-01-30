@@ -18,6 +18,5 @@
 typedef int			t_fd;
 typedef uint32_t	t_rgba;
 typedef uint8_t		t_channel;
-typedef char        t_object;
 
 #endif // TYPES_H

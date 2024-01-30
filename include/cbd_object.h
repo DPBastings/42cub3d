@@ -13,10 +13,23 @@
 #ifndef CBD_OBJECT_H
 # define CBD_OBJECT_H
 
-# define OBJ_WALL	'1'
-# define OBJ_EMPTY	'0'
-# define OBJ_VOID	' '
-//# define OBJ_DOOR	'D'
-//# define OBJ_COIN0	'X'
+# include "cbd.h"
+
+typedef enum e_object_type
+{
+	OBJ_VOID = 0,
+	OBJ_EMPTY,
+	OBJ_WALL,
+	N_OBJECT_TYPE,
+}	t_object_type;
+
+struct s_object
+{
+	unsigned char	type;
+	void			*data;
+};
+
+void	object_init(t_object *self, t_object_type type);
+void	object_deinit(t_object *self);
 
 #endif // CBD_OBJECT_H

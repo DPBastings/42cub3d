@@ -23,8 +23,8 @@ struct s_game
 	t_map		map;
 }; // struct s_game
 
-void	game_init(t_game *game, char const *path);
-void	game_read(t_game *game, t_fd fd);
-void	game_deinit(t_game *game);
+void	game_init(t_game *self, char const *path);
+void	game_read(t_game *self, t_fd fd);
+void	game_deinit(t_game *self);
 
 #endif // CBD_GAME_H

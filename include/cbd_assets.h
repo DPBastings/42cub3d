@@ -58,7 +58,7 @@ struct s_assets
 	t_texture	textures[N_TEXTURE];
 }; // struct s_assets
 
-void	assets_read(t_assets *assets, t_fd fd);
-void	assets_deinit(t_assets *assets);
+void	assets_read(t_assets *self, t_fd fd);
+void	assets_deinit(t_assets *self);
 
 #endif // CBD_ASSETS_H

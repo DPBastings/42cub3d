@@ -12,7 +12,7 @@
 
 #include "cbd_player.h"
 
-void	player_init(t_player *player, t_point pt, t_startpos orientation)
+void	player_init(t_player *player, t_point pt, t_direction orientation)
 {
 	player->pos.x = pt.x;
 	player->pos.y = pt.y;

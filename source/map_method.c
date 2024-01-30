@@ -14,6 +14,7 @@
 #include "cbd_object.h"
 
 #include <stdbool.h>
+#include <stddef.h>
 
 static inline bool	is_oob(t_map const *self, t_point pt);
 
@@ -21,14 +22,14 @@ t_object	*map_access(t_map *self, t_point pt)
 {
 	if (is_oob(self, pt))
 		return (NULL);
-	return (&self->contents[pt.y][pt.x]);
+	return (&self->objects[pt.y][pt.x]);
 }
 
 t_object	map_caccess(t_map const *self, t_point pt)
 {
 	if (is_oob(self, pt))
-		return (OBJ_VOID);
-	return (self->contents[pt.y][pt.x]);
+		return ((t_object){OBJ_VOID, NULL});
+	return (self->objects[pt.y][pt.x]);
 }
 
 static inline bool	is_oob(t_map const *self, t_point pt)

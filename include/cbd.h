@@ -20,7 +20,6 @@ typedef struct s_game	t_game;
 typedef struct s_assets	t_assets;
 typedef struct s_map	t_map;
 typedef struct s_player t_player;
-typedef char			t_object;
-typedef t_object		t_startpos;
+typedef struct s_object	t_object;
 
 #endif // CBD_H

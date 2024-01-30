@@ -14,6 +14,7 @@
 # define CBD_PARSE_H
 
 # include "cbd.h"
+# include "point.h"
 # include "types.h"
 
 # include "MLX42.h"
@@ -55,11 +56,33 @@ typedef struct s_achk
 }	t_achk;
 
 void	achk_init(t_achk *check);
-bool	achk_done(t_achk *check);
+bool	achk_done(t_achk const *check);
+
+
+typedef struct s_mchk
+{
+	bool	has_player;
+}	t_mchk;
+
+void	mchk_init(t_mchk *check);
+bool	mchk_done(t_mchk const *check);
+
+typedef struct s_map_raw
+{
+	int		y_size;
+	char	**contents;
+}	t_map_raw;
+
+void	map_raw_read(t_map_raw *self, t_fd fd);
+void	map_raw_deinit(t_map_raw *self);
 
 void	parse_assets(t_achk *check, t_assets *assets, char const *str);
 t_rgba	parse_rgb(char const **str);
 char	*parse_path(char const **str);
+
+void	parse_map(t_mchk *check, t_map *map, t_map_raw const *rmap);
+int		parse_object(t_mchk *check, t_map *map, char const **rmap, t_point pt);
+int		parse_player(t_mchk *check, t_map *map, char const **rmap, t_point pt);
 
 void	parse_skip_ws(char const **str);
 

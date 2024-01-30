@@ -12,6 +12,7 @@
 
 #include "debug.h"
 #include "cbd_game.h"
+#include "cbd_object.h"
 
 #include <stdio.h>
 
@@ -36,6 +37,10 @@ void	map_print(t_map const *map)
 {
 	printf("player at x = %lf; y = %lf\n", map->player.pos.x, map->player.pos.y);
 	printf("map:\n");
-	for (int y = 0; y < map->y_size; ++y)
-		printf("%s", map->contents[y]);
+	for (int y = 0; y < map->y_size; ++y) {
+		for (int x = 0; x < map->x_size; ++x)
+			printf("%u", m
+			ap->objects[y][x].type);
+		printf("\n");
+	}
 }
