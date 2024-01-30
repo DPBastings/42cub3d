@@ -24,9 +24,9 @@ static char const *const	g_cbd_errlist[N_ERRNO] = {
 	"Invalid asset specification: unrecognized asset.",
 	"Invalid asset specification: multiple indication of asset(s).",
 	"Invalid map layout: unrecognized object.",
-	"Invalid map layout: it isn't enclosed in walls.",
-	"Invalid map layout: there's no start.",
-	"Invalid map layout: there's more than one start.",
+	"Invalid map layout: faulty wall enclosure.",
+	"Invalid map layout: missing start position indicator.",
+	"Invalid map layout: multiple start position indicators.",
 };
 
 void	cbd_strerror(t_errno errno)

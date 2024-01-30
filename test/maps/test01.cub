@@ -1,4 +1,4 @@
-NO ./assets/textures/wall.png
+NO ./assets/textures/null.png
 EA ./assets/textures/wall.png
 SO ./assets/textures/wall.png
 WE ./assets/textures/wall.png

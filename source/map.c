@@ -17,8 +17,6 @@
 
 #include <stdlib.h>
 
-#include "debug.h"
-
 void	map_read(t_map *self, t_fd fd)
 {
 	t_map_raw	rmap;
@@ -28,7 +26,8 @@ void	map_read(t_map *self, t_fd fd)
 	mchk_init(&check);
 	parse_map(&check, self, &rmap);
 	map_check(self);
-	map_print(self);
+	if (!mchk_done(&check))
+		cbd_terminate(CBD_EMAPMISSINGSTART);
 	map_raw_deinit(&rmap);
 }
 

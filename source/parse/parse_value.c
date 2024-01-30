@@ -38,6 +38,7 @@ static inline t_channel	parse_channel(char const **str)
 {
 	char	buf[4];
 	size_t	i;
+	int		result;
 
 	i = 0;
 	while (ft_isdigit((*str)[i]) && i < 3)
@@ -47,7 +48,10 @@ static inline t_channel	parse_channel(char const **str)
 	}
 	buf[i] = '\0';
 	*str += i;
-	return (ft_atoi(buf));
+	result = ft_atoi(buf);
+	if (result > 255)
+		cbd_terminate(CBD_EASSINV);
+	return ((t_channel)result);
 }
 
 char	*parse_path(char const **str)

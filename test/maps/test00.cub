@@ -3,7 +3,7 @@ EA ./assets/textures/wall.png
 SO ./assets/textures/wall.png
 WE ./assets/textures/wall.png
 
-F 45,45,65
+F 345,45,65
 C 65,65,75
 
 11111

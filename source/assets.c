@@ -19,8 +19,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "debug.h"
-
 static void	load_textures(t_texture textures[N_TEXTURE]);
 
 void	assets_read(t_assets *assets, t_fd fd)
@@ -37,9 +35,7 @@ void	assets_read(t_assets *assets, t_fd fd)
 		parse_assets(&check, assets, ln);
 		free(ln);
 	}
-	assets_print(assets, false);
 	load_textures(assets->textures);
-	assets_print(assets, true);
 }
 
 void	assets_deinit(t_assets *assets)

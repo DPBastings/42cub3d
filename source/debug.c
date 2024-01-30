@@ -39,8 +39,7 @@ void	map_print(t_map const *map)
 	printf("map:\n");
 	for (int y = 0; y < map->y_size; ++y) {
 		for (int x = 0; x < map->x_size; ++x)
-			printf("%u", m
-			ap->objects[y][x].type);
+			printf("%u", map->objects[y][x].type);
 		printf("\n");
 	}
 }
