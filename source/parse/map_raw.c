@@ -19,7 +19,7 @@
 
 #define REALLOC_SIZE	16
 
-static char	*ft_getline_skip_empty(t_fd);
+static char	*ft_getline_skip_empty(t_fd fd);
 static void	map_raw_realloc(t_map_raw *self, int *capacity);
 
 void	map_raw_read(t_map_raw *self, t_fd fd)
@@ -51,7 +51,6 @@ void	map_raw_deinit(t_map_raw *self)
 		free(self->contents[i++]);
 	free(self->contents);
 }
-
 
 static char	*ft_getline_skip_empty(t_fd fd)
 {

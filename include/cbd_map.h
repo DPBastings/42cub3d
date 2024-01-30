@@ -21,6 +21,14 @@
 
 # include <stddef.h>
 
+/**
+ * @brief	Map object.
+ * 			Contains all information pertaining to gameplay.
+ * @param x_size	The width of the map.
+ * @param y_size	The height of the map.
+ * @param objects	All objects that together comprise the level.
+ * @param player	Player object.
+ */
 struct s_map
 {
 	int			x_size;

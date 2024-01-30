@@ -20,7 +20,7 @@ static char const	g_object_tokens[N_OBJECT_TYPE] = {
 };
 
 static char const	g_player_tokens[N_DIRECTION] = {
-	CHAR_NORTH, CHAR_EAST, CHAR_SOUTH, CHAR_WEST,
+	CHAR_EAST, CHAR_NORTH, CHAR_WEST, CHAR_SOUTH,
 };
 
 int	parse_object(t_mchk *check, t_map *map, char const **rmap, t_point pt)

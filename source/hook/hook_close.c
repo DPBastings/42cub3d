@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hook_close.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:40 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:43 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/30 20:10:49 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/30 20:10:50 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd.h"
+#include "cbd_hook.h"
 #include "cbd_game.h"
-#include "cbd_error.h"
 
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
+void	hook_close(void *param)
 {
-	t_game	game;
+	t_game *const	game = param;
 
-	if (argc != 2)
-		cbd_terminate(CBD_EARGC);
-	game_init(&game, argv[1]);
-	game_run(&game);
-	game_deinit(&game);
-	return (CBD_SUCCESS);
+	mlx_close_window(game->mlx);
 }

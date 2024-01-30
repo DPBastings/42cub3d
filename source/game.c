@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cbd_game.h"
+#include "cbd_hook.h"
 #include "cbd_error.h"
 #include "types.h"
 
@@ -20,26 +21,40 @@
 
 static t_fd	_open(char const *path);
 
-void	game_init(t_game *game, char const *path)
+void	game_init(t_game *self, char const *path)
 {
 	t_fd const	fd = _open(path);
 
 	if (fd == -1)
 		cbd_terminate(CBD_EGENERIC);
-	game_read(game, fd);
+	game_read(self, fd);
 	close(fd);
+	self->mlx = mlx_init(VIEW_WIDTH_DFL, VIEW_HEIGHT_DFL, TITLE, false);
+	if (self->mlx == NULL)
+		cbd_terminate(CBD_EGENERIC);
+	hooks_init(self);
+	screen_init(&self->screen, self->mlx);
 }
 
-void	game_read(t_game *game, t_fd fd)
+void	game_read(t_game *self, t_fd fd)
 {
-	assets_read(&game->assets, fd);
-	map_read(&game->map, fd);
+	assets_read(&self->assets, fd);
+	map_read(&self->map, fd);
 }
 
-void	game_deinit(t_game *game)
+void	game_run(t_game *self)
 {
-	assets_deinit(&game->assets);
-	map_deinit(&game->map);
+	screen_draw(&self->screen, self->mlx);
+	mlx_loop(self->mlx);
+}
+
+void	game_deinit(t_game *self)
+{
+	mlx_close_window(self->mlx);
+	screen_deinit(&self->screen, self->mlx);
+	mlx_terminate(self->mlx);
+	map_deinit(&self->map);
+	assets_deinit(&self->assets);
 }
 
 static t_fd	_open(char const *path)

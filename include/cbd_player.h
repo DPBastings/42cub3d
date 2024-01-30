@@ -16,22 +16,48 @@
 # include "cbd.h"
 # include "point.h"
 
+# define PLAYER_STEP_SPEED	5
+# define PLAYER_TURN_SPEED	0.1
+
 typedef enum e_direction
 {
-	DIR_NORTH = 0,
-	DIR_EAST,
-	DIR_SOUTH,
+	DIR_EAST = 0,
+	DIR_NORTH,
 	DIR_WEST,
+	DIR_SOUTH,
 	N_DIRECTION,
 }	t_direction;
 
+/**
+ * @brief	Player object.
+ * @param pos		The player's position.
+ * @param view_x	The player's horizontal view angle, in radians.
+ * @param view_z	The player's vertical view angle, in radians.
+ * @param delta		The distance traveled on the X and Y axes when moving.
+ */
 struct s_player
 {
 	t_dpoint	pos;
 	double		view_x;
 	double		view_z;
+	t_dpoint	delta;
 }; // struct s_player
 
 void	player_init(t_player *self, t_point pt, t_direction direction);
+
+void	player_step_forward(t_player *self);
+void	player_step_backward(t_player *self);
+void	player_turn_left(t_player *self);
+void	player_turn_right(t_player *self);
+void	player_turn_up(t_player *self);
+void	player_turn_down(t_player *self);
+
+static inline t_dpoint	get_delta(double view_x)
+{
+	return ((t_dpoint){
+		cos(view_x) * PLAYER_STEP_SPEED,
+		sin(view_x) * PLAYER_STEP_SPEED
+	});
+}
 
 #endif // CBD_PLAYER_H

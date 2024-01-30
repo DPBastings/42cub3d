@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   screen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:40 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:43 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/30 16:01:21 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/30 16:01:22 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd.h"
-#include "cbd_game.h"
 #include "cbd_error.h"
+#include "cbd_screen.h"
 
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
+void	screen_init(t_screen *self, mlx_t *mlx)
 {
-	t_game	game;
+	self->view = mlx_new_image(mlx, VIEW_WIDTH_DFL, VIEW_HEIGHT_DFL);
+	if (self->view == NULL)
+		cbd_terminate(CBD_EGENERIC);
+}
 
-	if (argc != 2)
-		cbd_terminate(CBD_EARGC);
-	game_init(&game, argv[1]);
-	game_run(&game);
-	game_deinit(&game);
-	return (CBD_SUCCESS);
+void	screen_deinit(t_screen *self, mlx_t *mlx)
+{
+	mlx_delete_image(mlx, self->view);
+}
+
+void	screen_draw(t_screen *self, mlx_t *mlx)
+{
+	mlx_image_to_window(mlx, self->view, 0, 0);
 }

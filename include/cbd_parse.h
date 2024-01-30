@@ -58,7 +58,6 @@ typedef struct s_achk
 void	achk_init(t_achk *check);
 bool	achk_done(t_achk const *check);
 
-
 typedef struct s_mchk
 {
 	bool	has_player;

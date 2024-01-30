@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   player_step.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:40 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:43 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/30 16:52:05 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/30 16:52:07 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd.h"
-#include "cbd_game.h"
-#include "cbd_error.h"
+#include "cbd_player.h"
 
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
+void	player_step_forward(t_player *self)
 {
-	t_game	game;
+	self->pos.x += self->delta.x;
+	self->pos.y += self->delta.y;
+}
 
-	if (argc != 2)
-		cbd_terminate(CBD_EARGC);
-	game_init(&game, argv[1]);
-	game_run(&game);
-	game_deinit(&game);
-	return (CBD_SUCCESS);
+void	player_step_backward(t_player *self)
+{
+	self->pos.x -= self->delta.x;
+	self->pos.y += self->delta.y;
 }

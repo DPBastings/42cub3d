@@ -28,7 +28,7 @@ void	parse_map(t_mchk *check, t_map *map, t_map_raw const *rmap)
 	map->y_size = rmap->y_size;
 	map->x_size = get_x_size(rmap);
 	map_alloc(map);
-	parse_objects(check, map, (char const**)rmap->contents);
+	parse_objects(check, map, (char const **)rmap->contents);
 }
 
 static void	add_trailing_voids(t_map *map, t_point from)
@@ -65,7 +65,8 @@ static void	map_alloc(t_map *self)
 	if (self->objects == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	y = 0;
-	while (y < self->y_size) {
+	while (y < self->y_size)
+	{
 		self->objects[y] = malloc(self->x_size * sizeof(t_object));
 		if (self->objects[y] == NULL)
 			cbd_terminate(CBD_EGENERIC);
@@ -76,7 +77,7 @@ static void	map_alloc(t_map *self)
 static void	parse_objects(t_mchk *check, t_map *map, char const **rmap)
 {
 	t_point	pt;
-	
+
 	pt.y = 0;
 	while (pt.y < map->y_size)
 	{

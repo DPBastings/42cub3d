@@ -12,7 +12,12 @@ SRC_FILES	:= main.c\
 			map_method.c\
 			object.c\
 			player.c\
+			player_step.c\
+			player_turn.c\
+			screen.c\
 			texture.c\
+			hook/hooks_init.c\
+			hook/hook_close.c\
 			parse/check.c\
 			parse/map_raw.c\
 			parse/parse_assets.c\
@@ -28,15 +33,20 @@ HDR_FILES	:= cbd.h\
 			cbd_assets.h\
 			cbd_error.h\
 			cbd_game.h\
+			cbd_hook.h\
 			cbd_map.h\
+			cbd_object.h\
 			cbd_parse.h\
+			cbd_player.h\
+			cbd_screen.h\
+			point.h\
 			raycaster.h\
 			types.h
 LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= cbd parse
+SRC_SUBDIRS	:= hook parse
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/

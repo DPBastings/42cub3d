@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cbd_hook.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:40 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:43 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/30 19:03:07 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/30 19:03:08 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd.h"
-#include "cbd_game.h"
-#include "cbd_error.h"
+#ifndef CBD_HOOK_H
+# define CBD_HOOK_H
 
-#include <stdlib.h>
+# include "cbd.h"
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
+typedef void	*(*t_hookf)(void *);
 
-	if (argc != 2)
-		cbd_terminate(CBD_EARGC);
-	game_init(&game, argv[1]);
-	game_run(&game);
-	game_deinit(&game);
-	return (CBD_SUCCESS);
-}
+void	hooks_init(t_game *game);
+
+void	hook_close(void *param);
+
+#endif // CBD_HOOK_H

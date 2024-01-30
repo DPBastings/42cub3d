@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   player_turn.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:40 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:43 by dbasting         ###   ########.fr       */
+/*   Created: 2024/01/30 16:52:09 by dbasting          #+#    #+#             */
+/*   Updated: 2024/01/30 16:52:10 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd.h"
-#include "cbd_game.h"
-#include "cbd_error.h"
+#include "cbd_player.h"
 
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
+void	player_turn_left(t_player *self)
 {
-	t_game	game;
+	self->view_x -= PLAYER_TURN_SPEED;
+	if (self->view_x < 0)
+		self->view_x = M_PI * 2;
+	self->delta = get_delta(self->view_x);
+}
 
-	if (argc != 2)
-		cbd_terminate(CBD_EARGC);
-	game_init(&game, argv[1]);
-	game_run(&game);
-	game_deinit(&game);
-	return (CBD_SUCCESS);
+void	player_turn_right(t_player *self)
+{
+	self->view_x += PLAYER_TURN_SPEED;
+	if (self->view_x > M_PI * 2)
+		self->view_x = 0;
+	self->delta = get_delta(self->view_x);
 }

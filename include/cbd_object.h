@@ -23,6 +23,16 @@ typedef enum e_object_type
 	N_OBJECT_TYPE,
 }	t_object_type;
 
+/**
+ * @brief	Object object.
+ * 			Describes an object that is placed in the game level.
+ * @param	type	An enumerator denoting the object's type. Note that its
+ * 					value is always taken from t_object_type: it is declared as
+ * 					an unsigned char to conserve memory.
+ * @param	data	Pointer to optional additional data associated with a
+ * 					particular object type. Who said polymorphism can't be done
+ * 					in C too?
+ */
 struct s_object
 {
 	unsigned char	type;

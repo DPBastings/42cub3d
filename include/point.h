@@ -13,21 +13,21 @@
 #ifndef POINT_H
 # define POINT_H
 
-# include <float.h>
+# include <math.h>
 
-typedef struct s_point  t_point;
-typedef struct s_dpoint t_dpoint;
+typedef struct s_point	t_point;
+typedef struct s_dpoint	t_dpoint;
 
 struct s_point
 {
-    int x;
-    int y;
+	int	x;
+	int	y;
 };
 
 struct s_dpoint
 {
-    double  x;
-    double  y;
+	double	x;
+	double	y;
 };
 
 #endif // POINT_H
