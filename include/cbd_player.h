@@ -52,16 +52,19 @@ struct s_player
 	t_dpoint	delta;
 }; // struct s_player
 
-void	player_init(t_player *self, t_point pt, t_compass_direction compassdir);
+typedef void	(*player_method_t)(t_player *);
 
-void	player_step_forward(t_player *self);
-void	player_step_backward(t_player *self);
-void	player_step_left(t_player *self);
-void	player_step_right(t_player *self);
-void	player_turn_left(t_player *self);
-void	player_turn_right(t_player *self);
-void	player_turn_up(t_player *self);
-void	player_turn_down(t_player *self);
+void		player_init(t_player *self, t_point pt, t_compass_direction cmps);
+
+t_object	*player_collide(t_player const *self, t_map *map, t_direction dir);
+void		player_step_forward(t_player *self);
+void		player_step_backward(t_player *self);
+void		player_step_left(t_player *self);
+void		player_step_right(t_player *self);
+void		player_turn_left(t_player *self);
+void		player_turn_right(t_player *self);
+void		player_turn_up(t_player *self);
+void		player_turn_down(t_player *self);
 
 static inline t_dpoint	get_delta(double view_x)
 {

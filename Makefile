@@ -12,11 +12,13 @@ SRC_FILES	:= main.c\
 			map_method.c\
 			object.c\
 			player.c\
+			player_method.c\
 			player_step.c\
 			player_turn.c\
 			screen.c\
 			texture.c\
 			hook/hooks_init.c\
+			hook/hook_controls.c\
 			hook/hook_close.c\
 			parse/check.c\
 			parse/map_raw.c\
