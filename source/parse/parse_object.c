@@ -43,21 +43,21 @@ int	parse_object(t_mchk *check, t_map *map, char const **rmap, t_point pt)
 
 int	parse_player(t_mchk *check, t_map *map, char const **rmap, t_point pt)
 {
-	t_direction	dir;
+	t_compass_direction	orientation;
 
-	dir = 0;
-	while (dir < N_DIRECTION)
+	orientation = 0;
+	while (orientation < N_COMPASS)
 	{
-		if (rmap[pt.y][pt.x] == g_player_tokens[dir])
+		if (rmap[pt.y][pt.x] == g_player_tokens[orientation])
 		{
 			if (check->has_player)
 				cbd_terminate(CBD_EMAPDOUBLESTART);
 			check->has_player = true;
-			player_init(&map->player, pt, dir);
+			player_init(&map->player, pt, orientation);
 			object_init(&map->objects[pt.y][pt.x], OBJ_EMPTY);
 			return (0);
 		}
-		++dir;
+		++orientation;
 	}
 	return (1);
 }

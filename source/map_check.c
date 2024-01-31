@@ -16,15 +16,15 @@
 #include "cbd_parse.h"
 #include "point.h"
 
-static void	check_objects(t_map const *self);
-static void	check_enclosure(t_map const *self, t_point pt);
+static void	check_objects(t_map *self);
+static void	check_enclosure(t_map *self, t_point pt);
 
 void	map_check(t_map *self)
 {
 	check_objects(self);
 }
 
-static void	check_objects(t_map const *self)
+static void	check_objects(t_map *self)
 {
 	t_point	pt;
 
@@ -41,14 +41,14 @@ static void	check_objects(t_map const *self)
 	}
 }
 
-static void	check_enclosure(t_map const *self, t_point pt)
+static void	check_enclosure(t_map *self, t_point pt)
 {
-	if (map_caccess(self, pt).type == OBJ_EMPTY)
+	if (map_access(self, pt)->type == OBJ_EMPTY)
 	{
-		if (map_caccess(self, (t_point){pt.x - 1, pt.y}).type == OBJ_VOID
-			|| map_caccess(self, (t_point){pt.x + 1, pt.y}).type == OBJ_VOID
-			|| map_caccess(self, (t_point){pt.x, pt.y - 1}).type == OBJ_VOID
-			|| map_caccess(self, (t_point){pt.x, pt.y + 1}).type == OBJ_VOID)
+		if (map_access(self, (t_point){pt.x - 1, pt.y})->type == OBJ_VOID
+			|| map_access(self, (t_point){pt.x + 1, pt.y})->type == OBJ_VOID
+			|| map_access(self, (t_point){pt.x, pt.y - 1})->type == OBJ_VOID
+			|| map_access(self, (t_point){pt.x, pt.y + 1})->type == OBJ_VOID)
 			cbd_terminate(CBD_EMAPWALL);
 	}
 }

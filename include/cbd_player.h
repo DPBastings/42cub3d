@@ -19,12 +19,21 @@
 # define PLAYER_STEP_SPEED	5
 # define PLAYER_TURN_SPEED	0.1
 
-typedef enum e_direction
+typedef enum e_compass_direction
 {
 	DIR_EAST = 0,
 	DIR_NORTH,
 	DIR_WEST,
 	DIR_SOUTH,
+	N_COMPASS,
+}	t_compass_direction;
+
+typedef enum e_direction
+{
+	DIR_FORWARD = 0,
+	DIR_BACKWARD,
+	DIR_LEFT,
+	DIR_RIGHT,
 	N_DIRECTION,
 }	t_direction;
 
@@ -43,10 +52,12 @@ struct s_player
 	t_dpoint	delta;
 }; // struct s_player
 
-void	player_init(t_player *self, t_point pt, t_direction direction);
+void	player_init(t_player *self, t_point pt, t_compass_direction compassdir);
 
 void	player_step_forward(t_player *self);
 void	player_step_backward(t_player *self);
+void	player_step_left(t_player *self);
+void	player_step_right(t_player *self);
 void	player_turn_left(t_player *self);
 void	player_turn_right(t_player *self);
 void	player_turn_up(t_player *self);

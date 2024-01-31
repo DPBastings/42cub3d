@@ -18,16 +18,36 @@
 typedef struct s_point	t_point;
 typedef struct s_dpoint	t_dpoint;
 
+/**
+ * @brief	Integer point.
+ * @param x	X coordinate.
+ * @param y	Y coordinate.
+ */
 struct s_point
 {
 	int	x;
 	int	y;
 };
 
+/**
+ * @brief	Double point.
+ * @param x	X coordinate.
+ * @param y	Y coordinate.
+ */
 struct s_dpoint
 {
 	double	x;
 	double	y;
 };
+
+static inline t_dpoint	dpoint_from_point(t_point pt)
+{
+	return ((t_dpoint){pt.x, pt.y});
+}
+
+static inline t_point	point_from_dpoint(t_dpoint dpt)
+{
+	return ((t_point){dpt.x, dpt.y});
+}
 
 #endif // POINT_H

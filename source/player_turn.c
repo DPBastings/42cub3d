@@ -23,7 +23,19 @@ void	player_turn_left(t_player *self)
 void	player_turn_right(t_player *self)
 {
 	self->view_x += PLAYER_TURN_SPEED;
-	if (self->view_x > M_PI * 2)
+	if (self->view_x >= M_PI * 2)
 		self->view_x = 0;
 	self->delta = get_delta(self->view_x);
+}
+
+void	player_turn_up(t_player *self)
+{
+	if (self->view_z < M_PI_2)
+		self->view_z += PLAYER_TURN_SPEED;
+}
+
+void	player_turn_down(t_player *self)
+{
+	if (self->view_z >= M_PI + M_PI_2)
+		self->view_z -= PLAYER_TURN_SPEED;
 }

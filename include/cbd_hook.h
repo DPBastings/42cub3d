@@ -15,10 +15,13 @@
 
 # include "cbd.h"
 
-typedef void	*(*t_hookf)(void *);
+# include "MLX42.h"
+
+typedef void	(*t_hookf)(void *);
 
 void	hooks_init(t_game *game);
 
+void	hook_keys(void *param);
 void	hook_close(void *param);
 
 #endif // CBD_HOOK_H

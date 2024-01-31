@@ -22,6 +22,7 @@ void	map_read(t_map *self, t_fd fd)
 	t_map_raw	rmap;
 	t_mchk		check;
 
+	self->void_ = (t_object){OBJ_VOID, NULL};
 	map_raw_read(&rmap, fd);
 	mchk_init(&check);
 	parse_map(&check, self, &rmap);

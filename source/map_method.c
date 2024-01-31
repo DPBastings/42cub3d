@@ -21,15 +21,15 @@ static inline bool	is_oob(t_map const *self, t_point pt);
 t_object	*map_access(t_map *self, t_point pt)
 {
 	if (is_oob(self, pt))
-		return (NULL);
+		return (&self->void_);
 	return (&self->objects[pt.y][pt.x]);
 }
 
-t_object	map_caccess(t_map const *self, t_point pt)
+t_object	*map_accessd(t_map *self, t_dpoint dpt)
 {
-	if (is_oob(self, pt))
-		return ((t_object){OBJ_VOID, NULL});
-	return (self->objects[pt.y][pt.x]);
+	t_point const	pt = point_from_dpoint(dpt);
+
+	return (map_access(self, pt));
 }
 
 static inline bool	is_oob(t_map const *self, t_point pt)

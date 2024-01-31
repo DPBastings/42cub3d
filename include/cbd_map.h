@@ -16,6 +16,7 @@
 # include "cbd.h"
 # include "cbd_error.h"
 # include "cbd_player.h"
+# include "cbd_object.h"
 # include "point.h"
 # include "types.h"
 
@@ -27,6 +28,7 @@
  * @param x_size	The width of the map.
  * @param y_size	The height of the map.
  * @param objects	All objects that together comprise the level.
+ * @param void_		A dummy object representing the space outside the map.
  * @param player	Player object.
  */
 struct s_map
@@ -34,6 +36,7 @@ struct s_map
 	int			x_size;
 	int			y_size;
 	t_object	**objects;
+	t_object	void_;
 	t_player	player;
 }; // struct s_map
 
@@ -42,6 +45,6 @@ void		map_check(t_map *self);
 void		map_deinit(t_map *self);
 
 t_object	*map_access(t_map *self, t_point pt);
-t_object	map_caccess(t_map const *self, t_point pt);
+t_object	*map_accessd(t_map *self, t_dpoint dpt);
 
 #endif // CBD_MAP_H

@@ -21,5 +21,17 @@ void	player_step_forward(t_player *self)
 void	player_step_backward(t_player *self)
 {
 	self->pos.x -= self->delta.x;
+	self->pos.y -= self->delta.y;
+}
+
+void	player_step_left(t_player *self)
+{
+	self->pos.x -= self->delta.x;
 	self->pos.y += self->delta.y;
+}
+
+void	player_step_right(t_player *self)
+{
+	self->pos.x += self->delta.x;
+	self->pos.y -= self->delta.y;
 }
