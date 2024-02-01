@@ -29,8 +29,8 @@ static inline t_dpoint	get_dest(t_player const *p, t_direction dir)
 	else if (dir == DIR_BACKWARD)
 		return ((t_dpoint){p->pos.x - p->delta.x, p->pos.y - p->delta.y});
 	else if (dir == DIR_LEFT)
-		return ((t_dpoint){p->pos.x + p->delta.x, p->pos.y + p->delta.y});
+		return ((t_dpoint){p->pos.x - p->delta.x, p->pos.y + p->delta.y});
 	else if (dir == DIR_RIGHT)
-		return ((t_dpoint){p->pos.x + p->delta.x, p->pos.y + p->delta.y});
+		return ((t_dpoint){p->pos.x + p->delta.x, p->pos.y - p->delta.y});
 	return (p->pos);
 }

@@ -16,7 +16,7 @@
 
 void	screen_init(t_screen *self, mlx_t *mlx)
 {
-	self->view = mlx_new_image(mlx, VIEW_WIDTH_DFL, VIEW_HEIGHT_DFL);
+	self->view = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_VIEW_HEIGHT_DFL);
 	if (self->view == NULL)
 		cbd_terminate(CBD_EGENERIC);
 }

@@ -29,7 +29,7 @@ void	game_init(t_game *self, char const *path)
 		cbd_terminate(CBD_EGENERIC);
 	game_read(self, fd);
 	close(fd);
-	self->mlx = mlx_init(VIEW_WIDTH_DFL, VIEW_HEIGHT_DFL, TITLE, false);
+	self->mlx = mlx_init(SCREEN_WIDTH_DFL, SCREEN_HEIGHT_DFL, TITLE, false);
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
