@@ -16,7 +16,7 @@
 # include "cbd.h"
 # include "point.h"
 
-# define PLAYER_STEP_SPEED	5
+# define PLAYER_STEP_SPEED	0.2
 # define PLAYER_TURN_SPEED	0.1
 
 typedef enum e_compass_direction

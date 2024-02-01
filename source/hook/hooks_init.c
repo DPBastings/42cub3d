@@ -13,7 +13,9 @@
 #include "cbd_hook.h"
 #include "cbd_game.h"
 
+#include "cbd_player.h"
+
 void	hooks_init(t_game *game)
 {
-	(void) game;
+	mlx_loop_hook(game->mlx, hook_controls, game);
 }

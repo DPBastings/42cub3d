@@ -16,6 +16,8 @@
 
 #include "MLX42.h"
 
+#include "debug.h"
+
 static int	keys_change_view(t_map *map, mlx_t *mlx);
 static int	keys_move(t_map *map, mlx_t *mlx);
 
@@ -25,17 +27,35 @@ void	hook_controls(void *param)
 
 	keys_change_view(&game->map, game->mlx);
 	keys_move(&game->map, game->mlx);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_F3))
+		player_print(&game->map.player);
 }
 
-/*static const keys_t	g_keys_view[4] = {
+static const keys_t	g_keys_view[4] = {
 	MLX_KEY_LEFT, MLX_KEY_RIGHT, MLX_KEY_UP, MLX_KEY_DOWN,
-};*/
+};
+
+static const player_method_t	g_turnfs[4] = {
+	player_turn_left, player_turn_right, player_turn_up, player_turn_down,
+};
 
 static int	keys_change_view(t_map *map, mlx_t *mlx)
 {
-	(void) map;
-	(void) mlx;
-	return (0);
+	int		has_moved;
+	size_t	dir;
+
+	has_moved = 0;
+	dir = 0;
+	while (dir < 4)
+	{
+		if (mlx_is_key_down(mlx, g_keys_view[dir]))
+		{
+			g_turnfs[dir](&map->player);
+			has_moved = 1;
+		}
+		++dir;
+	}
+	return (has_moved);
 }
 
 static const keys_t	g_keys_move[N_DIRECTION] = {
@@ -49,8 +69,8 @@ static const player_method_t	g_stepfs[N_DIRECTION] = {
 
 static int	keys_move(t_map *map, mlx_t *mlx)
 {
-	t_direction	dir;
 	int			has_moved;
+	t_direction	dir;
 
 	dir = 0;
 	has_moved = 0;

@@ -33,9 +33,22 @@ void	assets_print(t_assets const *assets, bool loaded)
 			printf("texture: %s\n", assets->textures[i].path);
 }
 
+void	player_print(t_player const *player)
+{
+	printf("player:\n"
+		"x = %lf\n"
+		"y = %lf\n"
+		"dx = %lf\n"
+		"dy = %lf\n"
+		"xangle = %lf\n"
+		"zangle = %lf\n",
+		player->pos.x, player->pos.y, player->delta.x, player->delta.y,
+		player->view_x, player->view_z);
+}
+
 void	map_print(t_map const *map)
 {
-	printf("player at x = %lf; y = %lf\n", map->player.pos.x, map->player.pos.y);
+
 	printf("map:\n");
 	for (int y = 0; y < map->y_size; ++y) {
 		for (int x = 0; x < map->x_size; ++x)

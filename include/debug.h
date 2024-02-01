@@ -19,6 +19,7 @@
 
 void	game_print(t_game const *game);
 void	assets_print(t_assets const *assets, bool loaded);
+void	player_print(t_player const *player);
 void	map_print(t_map const *map);
 
 #endif // DEBUG_H

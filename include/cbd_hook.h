@@ -21,7 +21,7 @@ typedef void	(*t_hookf)(void *);
 
 void	hooks_init(t_game *game);
 
-void	hook_keys(void *param);
+void	hook_controls(void *param);
 void	hook_close(void *param);
 
 #endif // CBD_HOOK_H
