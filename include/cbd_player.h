@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/29 14:38:50 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 17:15:27 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/02 17:25:55 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "cbd.h"
 # include "point.h"
 
-# define PLAYER_STEP_SPEED	0.25
+# define PLAYER_STEP_SPEED	0.125
 # define PLAYER_TURN_SPEED	0.125
-# define PLAYER_HITBOX_SIZE	0.25
+# define PLAYER_HITBOX_SIZE	0.250
 
 typedef enum e_compass_direction
 {

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/01 23:45:11 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 16:49:20 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/02 17:28:21 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define CBD_MINIMAP_HEIGHT		1200
 # define CBD_MINIMAP_WIDTH		800
-# define CBD_MINIMAP_GRIDSIZE	16
+# define CBD_MINIMAP_GRIDSIZE	24
 # define CBD_MINIMAP_PLAYERSIZE	9
 # define CBD_MINIMAP_ARROWSIZE	5
 
