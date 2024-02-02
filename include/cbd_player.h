@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/29 14:38:50 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 17:35:03 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/02 17:15:27 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@
 # include "cbd.h"
 # include "point.h"
 
-# define PLAYER_STEP_SPEED	0.2
-# define PLAYER_TURN_SPEED	0.1
+# define PLAYER_STEP_SPEED	0.25
+# define PLAYER_TURN_SPEED	0.125
+# define PLAYER_HITBOX_SIZE	0.25
 
 typedef enum e_compass_direction
 {
 	DIR_EAST = 0,
-	DIR_NORTH,
-	DIR_WEST,
 	DIR_SOUTH,
+	DIR_WEST,
+	DIR_NORTH,
 	N_COMPASS,
 }	t_compass_direction;
 
@@ -52,7 +53,7 @@ struct s_player
 	t_dpoint	delta;
 }; // struct s_player
 
-typedef void	(*player_method_t)(t_player *);
+typedef void	(*t_player_method)(t_player *);
 
 void		player_init(t_player *self, t_point pt, t_compass_direction cmps);
 

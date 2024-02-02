@@ -20,6 +20,9 @@ SRC_FILES	:= main.c\
 			hook/hooks_init.c\
 			hook/hook_controls.c\
 			hook/hook_close.c\
+			hook/hook_render.c\
+			minimap.c\
+			minimap_update.c\
 			parse/check.c\
 			parse/map_raw.c\
 			parse/parse_assets.c\

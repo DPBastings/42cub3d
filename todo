@@ -1,1 +1,3 @@
-
+cache the previous player position for quicker rendering?
+strafing movement is skewed
+fix getting stuck inside walls

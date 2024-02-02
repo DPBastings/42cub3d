@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   hooks_init.c                                       :+:    :+:            */
+/*   hook_render.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/30 18:53:44 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 16:19:44 by dbasting      ########   odam.nl         */
+/*   Created: 2024/02/02 15:35:15 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/02/02 16:08:28 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_hook.h"
 #include "cbd_game.h"
 
-#include "cbd_player.h"
-
-void	hooks_init(t_game *game)
+void	hook_render(void *param)
 {
-	mlx_loop_hook(game->mlx, hook_controls, game);
-	mlx_loop_hook(game->mlx, hook_render, game);
+	t_game *const	game = param;
+
+	minimap_update(&game->screen.minimap, &game->map);
 }

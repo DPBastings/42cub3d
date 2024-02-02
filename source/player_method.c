@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   player_method.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 23:42:42 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/31 23:42:43 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   player_method.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/31 23:42:42 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/02/02 17:13:27 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static inline t_dpoint	get_dest(t_player const *p, t_direction dir)
 	else if (dir == DIR_BACKWARD)
 		return ((t_dpoint){p->pos.x - p->delta.x, p->pos.y - p->delta.y});
 	else if (dir == DIR_LEFT)
-		return ((t_dpoint){p->pos.x - p->delta.x, p->pos.y + p->delta.y});
+		return ((t_dpoint){p->pos.x - p->delta.y, p->pos.y - p->delta.x});
 	else if (dir == DIR_RIGHT)
-		return ((t_dpoint){p->pos.x + p->delta.x, p->pos.y - p->delta.y});
+		return ((t_dpoint){p->pos.x + p->delta.y, p->pos.y + p->delta.x});
 	return (p->pos);
 }

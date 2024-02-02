@@ -19,6 +19,7 @@ void	screen_init(t_screen *self, mlx_t *mlx)
 	self->view = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_VIEW_HEIGHT_DFL);
 	if (self->view == NULL)
 		cbd_terminate(CBD_EGENERIC);
+	minimap_init(&self->minimap, mlx);
 }
 
 void	screen_deinit(t_screen *self, mlx_t *mlx)
@@ -29,4 +30,6 @@ void	screen_deinit(t_screen *self, mlx_t *mlx)
 void	screen_draw(t_screen *self, mlx_t *mlx)
 {
 	mlx_image_to_window(mlx, self->view, 0, 0);
+	minimap_draw(&self->minimap,
+		(t_point){CBD_MINIMAP_HOFFSET, CBD_MINIMAP_VOFFSET}, mlx);
 }
