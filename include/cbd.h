@@ -27,5 +27,6 @@ typedef struct s_minimap	t_minimap;
 typedef struct s_map		t_map;
 typedef struct s_player		t_player;
 typedef struct s_object		t_object;
+typedef struct s_rc			t_rc;
 
 #endif // CBD_H

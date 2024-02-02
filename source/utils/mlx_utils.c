@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.h                                        :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:36:11 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:36:12 by dbasting         ###   ########.fr       */
+/*   Created: 2024/02/02 23:02:07 by dbasting          #+#    #+#             */
+/*   Updated: 2024/02/02 23:02:08 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_UTILS_H
-# define MLX_UTILS_H
+#include "mlx_utils.h"
 
-# include "MLX42.h"
+void	mlx_image_fill(mlx_image_t *img, uint32_t colour)
+{
+	size_t	x;
+	size_t	y;
 
-void	mlx_image_fill(mlx_image_t *img, uint32_t colour);
-
-#endif // MLX_UTILS_H
+	x = 0;
+	while (x < img->width)
+	{
+		y = 0;
+		while (y < img->height)
+		{
+			mlx_put_pixel(img, x, y, colour);
+			++y;
+		}
+		++x;
+	}
+}

@@ -17,6 +17,7 @@
 # include "cbd_assets.h"
 # include "cbd_map.h"
 # include "cbd_screen.h"
+# include "cbd_rc.h"
 
 # include "MLX42.h"
 
@@ -33,6 +34,7 @@ struct s_game
 	t_assets	assets;
 	t_map		map;
 	t_screen	screen;
+	t_rc		rc;
 	mlx_t		*mlx;
 }; // struct s_game
 

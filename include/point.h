@@ -16,6 +16,7 @@
 # include <math.h>
 
 typedef struct s_point	t_point;
+typedef struct s_upoint	t_upoint;
 typedef struct s_dpoint	t_dpoint;
 
 /**
@@ -27,6 +28,17 @@ struct s_point
 {
 	int	x;
 	int	y;
+};
+
+/**
+ * @brief	Unsigned point.
+ * @param x	X coordinate.
+ * @param y	Y coordinate.
+ */
+struct s_upoint
+{
+	unsigned	x;
+	unsigned	y;
 };
 
 /**

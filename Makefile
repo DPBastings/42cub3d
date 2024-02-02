@@ -29,7 +29,8 @@ SRC_FILES	:= main.c\
 			parse/parse_utils.c\
 			parse/parse_map.c\
 			parse/parse_object.c\
-			parse/parse_value.c
+			parse/parse_value.c\
+			utils/mlx_utils.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
 			\
@@ -51,7 +52,7 @@ LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook parse
+SRC_SUBDIRS	:= hook parse rc utils
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/

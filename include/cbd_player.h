@@ -16,7 +16,7 @@
 # include "cbd.h"
 # include "point.h"
 
-# define PLAYER_STEP_SPEED	0.125
+# define PLAYER_STEP_SPEED	0.0625
 # define PLAYER_TURN_SPEED	0.125
 # define PLAYER_HITBOX_SIZE	0.250
 
