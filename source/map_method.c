@@ -32,6 +32,20 @@ t_object	*map_accessd(t_map *self, t_dpoint dpt)
 	return (map_access(self, pt));
 }
 
+t_object const	*map_caccess(t_map const *self, t_point pt)
+{
+	if (is_oob(self, pt))
+		return (&self->void_);
+	return (&self->objects[pt.y][pt.x]);
+}
+
+t_object const	*map_caccessd(t_map const *self, t_dpoint dpt)
+{
+	t_point const	pt = point_from_dpoint(dpt);
+
+	return (map_caccess(self, pt));
+}
+
 static inline bool	is_oob(t_map const *self, t_point pt)
 {
 	return (pt.x < 0 || pt.x >= self->x_size

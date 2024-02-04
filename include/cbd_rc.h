@@ -16,6 +16,8 @@
 # include "cbd.h"
 
 # include "point.h"
+# include "types.h"
+# include <stddef.h>
 # include <math.h>
 
 # define CBD_RC_FOV_WIDTH	2.0944 // 120 degrees
@@ -34,12 +36,13 @@ void	rc_cast(double angle, t_map const *map);
 
 struct s_ray
 {
-	t_dpoint		delta;
-	double			distance;
-	t_object const	*object;
+	t_dpoint			delta;
+	double				distance;
+	t_object const		*object;
+	t_compass_direction	side;
 };
 
 void	ray_init(t_ray *self, t_dpoint delta);
-void	ray_travel(t_ray *self, t_map const *map)
+void	ray_travel(t_ray *self, t_map const *map);
 
 #endif // CBD_RC_H

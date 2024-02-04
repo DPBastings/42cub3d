@@ -21,8 +21,11 @@ SRC_FILES	:= main.c\
 			hook/hook_controls.c\
 			hook/hook_close.c\
 			hook/hook_render.c\
-			minimap.c\
-			minimap_update.c\
+			minimap/minimap.c\
+			minimap/minimap_method.c\
+			minimap/minimap_render_entities.c\
+			minimap/minimap_render_objects.c\
+			minimap/minimap_update_viewport.c\
 			parse/check.c\
 			parse/map_raw.c\
 			parse/parse_assets.c\
@@ -52,7 +55,7 @@ LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook parse rc utils
+SRC_SUBDIRS	:= hook minimap parse rc utils
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/

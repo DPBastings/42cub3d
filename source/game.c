@@ -33,7 +33,7 @@ void	game_init(t_game *self, char const *path)
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
-	screen_init(&self->screen, self->mlx);
+	screen_init(&self->screen, &self->map, self->mlx);
 }
 
 void	game_read(t_game *self, t_fd fd)

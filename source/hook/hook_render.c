@@ -17,5 +17,5 @@ void	hook_render(void *param)
 {
 	t_game *const	game = param;
 
-	minimap_update(&game->screen.minimap, &game->map);
+	minimap_render(&game->screen.minimap, &game->map);
 }

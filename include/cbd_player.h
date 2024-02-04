@@ -15,19 +15,11 @@
 
 # include "cbd.h"
 # include "point.h"
+# include "types.h"
 
 # define PLAYER_STEP_SPEED	0.0625
 # define PLAYER_TURN_SPEED	0.125
-# define PLAYER_HITBOX_SIZE	0.250
-
-typedef enum e_compass_direction
-{
-	DIR_EAST = 0,
-	DIR_SOUTH,
-	DIR_WEST,
-	DIR_NORTH,
-	N_COMPASS,
-}	t_compass_direction;
+# define PLAYER_HITBOX_SIZE	0.125
 
 typedef enum e_direction
 {

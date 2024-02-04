@@ -14,12 +14,12 @@
 #include "cbd_error.h"
 #include "cbd_screen.h"
 
-void	screen_init(t_screen *self, mlx_t *mlx)
+void	screen_init(t_screen *self, t_map const *map, mlx_t *mlx)
 {
 	self->view = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_VIEW_HEIGHT_DFL);
 	if (self->view == NULL)
 		cbd_terminate(CBD_EGENERIC);
-	minimap_init(&self->minimap, mlx);
+	minimap_init(&self->minimap, map, mlx);
 }
 
 void	screen_deinit(t_screen *self, mlx_t *mlx)

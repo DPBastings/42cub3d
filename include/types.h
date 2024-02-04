@@ -19,4 +19,13 @@ typedef int			t_fd;
 typedef uint32_t	t_rgba;
 typedef uint8_t		t_channel;
 
+typedef enum e_compass_direction
+{
+	DIR_EAST = 0,
+	DIR_SOUTH,
+	DIR_WEST,
+	DIR_NORTH,
+	N_COMPASS,
+}	t_compass_direction;
+
 #endif // TYPES_H

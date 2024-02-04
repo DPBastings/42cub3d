@@ -35,9 +35,9 @@ struct s_screen
 	t_minimap	minimap;
 };
 
-void	screen_init(t_screen *self, mlx_t *mlx);
+void	screen_init(t_screen *self, t_map const *map, mlx_t *mlx);
 void	screen_draw(t_screen *self, mlx_t *mlx);
-void	screen_update(t_screen *self, mlx_t *mlx);
+void	screen_update(t_screen *self, t_map const *map, mlx_t *mlx);
 void	screen_deinit(t_screen *self, mlx_t *mlx);
 
 #endif // CBD_SCREEN_H
