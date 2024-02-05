@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 17:26:47 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 18:10:37 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ typedef struct s_map		t_map;
 typedef struct s_player		t_player;
 typedef struct s_object		t_object;
 typedef struct s_rc			t_rc;
+typedef struct s_view		t_view;
 
 #endif // CBD_H

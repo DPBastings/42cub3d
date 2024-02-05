@@ -12,7 +12,6 @@ SRC_FILES	:= main.c\
 			player_method.c\
 			player_step.c\
 			player_turn.c\
-			screen.c\
 			texture.c\
 			hook/hooks_init.c\
 			hook/hook_controls.c\
@@ -35,8 +34,9 @@ SRC_FILES	:= main.c\
 			parse/parse_value.c\
 			rc/rc.c\
 			rc/rc_cast.c\
-			screen.c\
-			screen_render.c\
+			screen/screen.c\
+			screen/view.c\
+			screen/view_render.c\
 			utils/mlx_utils.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
@@ -52,14 +52,14 @@ HDR_FILES	:= cbd.h\
 			cbd_parse.h\
 			cbd_player.h\
 			cbd_screen.h\
+			cbd_view.h\
 			point.h\
-			raycaster.h\
 			types.h
 LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook map minimap parse rc utils
+SRC_SUBDIRS	:= hook map minimap parse rc screen utils
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
@@ -91,7 +91,7 @@ lib/libmlx42_build/libmlx42.a:
 	@git submodule init
 	@git submodule update
 	@cmake -S ./lib/libmlx42/ -B $(dir $@)
-	@cmake  --build $(dir $@)
+	@cmake --build $(dir $@)
 	
 clean:
 	$(MAKE) --directory=./lib/libft/ clean

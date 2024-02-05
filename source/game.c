@@ -6,14 +6,15 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 16:37:01 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 18:03:25 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_game.h"
-#include "cbd_hook.h"
 #include "cbd_error.h"
+#include "cbd_hook.h"
 #include "cbd_rc.h"
+#include "cbd_screen.h"
 #include "types.h"
 
 #include "ft_string.h"
@@ -34,7 +35,8 @@ void	game_init(t_game *self, char const *path)
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
-	screen_init(&self->screen, &self->map, self->mlx);
+	screen_init(&self->screen, (struct s_screen_data){
+		&self->assets, &self->rc, &self->map}, self->mlx);
 	rc_init(&self->rc, CBD_RC_FOV_WIDTH_DEG);
 }
 

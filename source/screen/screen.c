@@ -14,23 +14,27 @@
 #include "cbd_error.h"
 #include "cbd_screen.h"
 
-void	screen_init(t_screen *self, t_map const *map, mlx_t *mlx)
+void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
 {
-	self->view = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_VIEW_HEIGHT_DFL);
-	if (self->view == NULL)
-		cbd_terminate(CBD_EGENERIC);
-	minimap_init(&self->minimap, map, mlx);
+	view_init(&self->view, data.assets, mlx);
+	minimap_init(&self->minimap, data.map, mlx);
 }
 
 void	screen_deinit(t_screen *self, mlx_t *mlx)
 {
-	mlx_delete_image(mlx, self->view);
+	minimap_deinit(&self->minimap, mlx);
+	view_deinit(&self->view, mlx);
 }
 
 void	screen_draw(t_screen *self, mlx_t *mlx)
 {
-	mlx_image_to_window(mlx, self->view, 0, 0);
-	mlx_set_instance_depth(&self->view->instances[0], 0);
+	view_draw(&self->view, (t_point){0, 0}, mlx);
 	minimap_draw(&self->minimap,
 		(t_point){CBD_MINIMAP_HOFFSET, CBD_MINIMAP_VOFFSET}, mlx);
+}
+
+void	screen_render(t_screen *self, struct s_screen_data data)
+{
+	view_render(&self->view, data);
+	minimap_render(&self->minimap, data.map, data.rc);
 }
