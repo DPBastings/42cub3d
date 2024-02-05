@@ -1,2 +1,2 @@
 cache the previous player position for quicker rendering?
-fix getting stuck inside walls
+make it so that diagonal movement against a wall is possible

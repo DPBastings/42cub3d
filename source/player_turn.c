@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   player_turn.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 16:52:09 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/30 16:52:10 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   player_turn.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/30 16:52:09 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/02/05 13:05:21 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_player.h"
+
+#include <math.h>
 
 void	player_turn_left(t_player *self)
 {

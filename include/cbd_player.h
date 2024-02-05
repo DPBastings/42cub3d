@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/29 14:38:50 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 17:25:55 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 13:52:09 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 # define PLAYER_STEP_SPEED	0.0625
 # define PLAYER_TURN_SPEED	0.125
-# define PLAYER_HITBOX_SIZE	0.125
+# define PLAYER_HITBOX_SIZE	0.8333333
 
 typedef enum e_direction
 {
 	DIR_FORWARD = 0,
-	DIR_BACKWARD,
 	DIR_LEFT,
+	DIR_BACKWARD,
 	DIR_RIGHT,
 	N_DIRECTION,
 }	t_direction;

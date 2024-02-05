@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/31 18:44:42 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 16:10:31 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 13:51:51 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ static int	keys_change_view(t_map *map, mlx_t *mlx)
 }
 
 static const keys_t	g_keys_move[N_DIRECTION] = {
-	MLX_KEY_D, MLX_KEY_W, MLX_KEY_A, MLX_KEY_S,
+	MLX_KEY_W, MLX_KEY_A, MLX_KEY_S, MLX_KEY_D,
 };
 
 static const t_player_method	g_stepfs[N_DIRECTION] = {
-	player_step_right, player_step_forward,
-	player_step_left, player_step_backward,
+	player_step_forward, player_step_left,
+	player_step_backward, player_step_right,
 };
 
 static int	keys_move(t_map *map, mlx_t *mlx)

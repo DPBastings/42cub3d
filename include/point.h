@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/29 14:33:14 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 14:43:29 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 12:58:50 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ struct s_point
  */
 struct s_upoint
 {
-	unsigned	x;
-	unsigned	y;
+	unsigned int	x;
+	unsigned int	y;
 };
 
 /**
@@ -60,6 +60,11 @@ static inline t_dpoint	dpoint_from_point(t_point pt)
 static inline t_point	point_from_dpoint(t_dpoint dpt)
 {
 	return ((t_point){dpt.x, dpt.y});
+}
+
+static inline t_point	point_from_dpointr(t_dpoint dpt)
+{
+	return ((t_point){round(dpt.x), round(dpt.y)});
 }
 
 #endif // POINT_H

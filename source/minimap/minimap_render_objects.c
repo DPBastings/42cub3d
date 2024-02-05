@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 15:15:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 17:12:45 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 12:48:20 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static void	render_walls(t_minimap *self, t_map const *map)
 		while (cursor.x < CBD_MINIMAP_W_PX)
 		{
 			obj = map_caccessd(map, (t_dpoint){
-				self->viewport.x + (double)cursor.x / CBD_MINIMAP_PXPM,
-				self->viewport.y + (double)cursor.y / CBD_MINIMAP_PXPM});
+					self->viewport.x + (double)cursor.x / CBD_MINIMAP_PXPM,
+					self->viewport.y + (double)cursor.y / CBD_MINIMAP_PXPM});
 			if (obj->type == OBJ_WALL)
 				mlx_put_pixel(self->img, cursor.x, cursor.y, 0x000000FF);
 			else if (obj->type == OBJ_VOID)
-				mlx_put_pixel(self->img, cursor.x, cursor.y, 0x0A0A0AFF);
+				mlx_put_pixel(self->img, cursor.x, cursor.y, 0xCFCFCFFF);
 			++cursor.x;
 		}
 		++cursor.y;
