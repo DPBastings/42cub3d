@@ -10,4 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cbd_rc.h"
 
+void	rc_cast(t_rc *self, t_map const *map)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < self->size)
+	{
+		++i;
+	}
+}
