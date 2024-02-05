@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   cbd_view.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/27 14:32:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 15:14:19 by dbasting      ########   odam.nl         */
+/*   Created: 2024/02/05 17:32:02 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/02/05 17:33:00 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd.h"
-#include "cbd_game.h"
-#include "cbd_error.h"
+#ifndef CBD_VIEW_H
+# define CBD_VIEW_H
 
-#include <stdlib.h>
-
-#include "cbd_rc.h"
-
-int	main(int argc, char **argv)
+struct s_view
 {
-	t_game	game;
-
-	if (argc != 2)
-		cbd_terminate(CBD_EARGC);
-	game_init(&game, argv[1]);
-	rc_cast(&game.rc, &game.map);
-	game_run(&game);
-	game_deinit(&game);
-	return (CBD_SUCCESS);
+	mlx_image_t	*ceiling;
+	mlx_image_t	*floor;
+	mlx_image_t	*scene;
 }
+
+#endif // CBD_VIEW_H

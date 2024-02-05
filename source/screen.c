@@ -30,6 +30,7 @@ void	screen_deinit(t_screen *self, mlx_t *mlx)
 void	screen_draw(t_screen *self, mlx_t *mlx)
 {
 	mlx_image_to_window(mlx, self->view, 0, 0);
+	mlx_set_instance_depth(&self->view->instances[0], 0);
 	minimap_draw(&self->minimap,
 		(t_point){CBD_MINIMAP_HOFFSET, CBD_MINIMAP_VOFFSET}, mlx);
 }

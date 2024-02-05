@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 16:52:09 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 13:05:21 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 17:18:24 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	player_turn_up(t_player *self)
 
 void	player_turn_down(t_player *self)
 {
-	if (self->view_z >= M_PI + M_PI_2)
+	if (self->view_z >= -M_PI_2)
 		self->view_z -= PLAYER_TURN_SPEED;
 }

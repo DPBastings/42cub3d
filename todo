@@ -1,2 +1,5 @@
 cache the previous player position for quicker rendering?
 make it so that diagonal movement against a wall is possible
+make it so that the minimap rotates along with the player's view
+fix double-width walls at x = 0 || y = 0
+should radians be used to calculate vertical angle?

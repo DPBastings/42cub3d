@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 15:04:28 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 16:22:25 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/05 17:26:11 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	minimap_init(t_minimap *self, t_map const *map, mlx_t *mlx)
 void	minimap_draw(t_minimap *self, t_point pos, mlx_t *mlx)
 {
 	mlx_image_to_window(mlx, self->img, pos.x, pos.y);
+	mlx_set_instance_depth(&self->img->instances[0], 1);
 }
 
 void	minimap_deinit(t_minimap *self, mlx_t *mlx)

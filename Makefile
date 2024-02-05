@@ -7,9 +7,6 @@ SRC_FILES	:= main.c\
 			assets.c\
 			error.c\
 			game.c\
-			map.c\
-			map_check.c\
-			map_method.c\
 			object.c\
 			player.c\
 			player_method.c\
@@ -21,6 +18,9 @@ SRC_FILES	:= main.c\
 			hook/hook_controls.c\
 			hook/hook_close.c\
 			hook/hook_render.c\
+			map/map.c\
+			map/map_check.c\
+			map/map_method.c\
 			minimap/minimap.c\
 			minimap/minimap_method.c\
 			minimap/minimap_render_entities.c\
@@ -33,6 +33,10 @@ SRC_FILES	:= main.c\
 			parse/parse_map.c\
 			parse/parse_object.c\
 			parse/parse_value.c\
+			rc/rc.c\
+			rc/rc_cast.c\
+			screen.c\
+			screen_render.c\
 			utils/mlx_utils.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
@@ -55,7 +59,7 @@ LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook minimap parse rc utils
+SRC_SUBDIRS	:= hook map minimap parse rc utils
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
