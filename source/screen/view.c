@@ -12,7 +12,7 @@
 
 #include "cbd_assets.h"
 #include "cbd_screen.h"
-#include "mlx_utils.h"
+#include "MLX42_ext.h"
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx)
 {

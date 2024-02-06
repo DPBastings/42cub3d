@@ -14,7 +14,7 @@
 #include "cbd_player.h"
 #include "cbd_map.h"
 #include "cbd_object.h"
-#include "mlx_utils.h"
+#include "MLX42_ext.h"
 
 static void	render_player(t_minimap *self, t_player const *player);
 static void	render(t_minimap *self, t_point pt, uint32_t cl, uint32_t size);

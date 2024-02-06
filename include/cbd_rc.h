@@ -23,7 +23,16 @@
 # define CBD_RC_FOV_WIDTH_DEG	90
 # define CBD_RC_FOV_WIDTH_RAD	1.57
 
+typedef struct s_camera	t_camera;
 typedef struct s_ray	t_ray;
+
+struct s_camera
+{
+	t_vector	direction;
+	t_vector	plane;
+};
+
+void	camera_init(t_camera *self, t_vector direction, double zoom);
 
 /**
  * @brief	Raycaster object.
@@ -33,9 +42,10 @@ typedef struct s_ray	t_ray;
 */
 struct s_rc
 {
-	t_ray	*rays;
-	size_t	size;
-	double	radpr;
+	t_camera	camera;
+	t_ray		*rays;
+	size_t		size;
+	double		radpr;
 };
 
 void	rc_init(t_rc *self, size_t size);

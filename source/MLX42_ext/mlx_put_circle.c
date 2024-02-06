@@ -1,21 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.h                                        :+:      :+:    :+:   */
+/*   mlx_put_circle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:36:11 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:36:12 by dbasting         ###   ########.fr       */
+/*   Created: 2024/02/06 09:42:41 by dbasting          #+#    #+#             */
+/*   Updated: 2024/02/06 09:42:42 by dbasting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_UTILS_H
-# define MLX_UTILS_H
 
-# include "MLX42.h"
-
-void	mlx_image_fill(mlx_image_t *img, uint32_t colour);
-void	mlx_put_pixel_safe(mlx_image_t* img, int32_t x, int32_t y, uint32_t cl);
-
-#endif // MLX_UTILS_H

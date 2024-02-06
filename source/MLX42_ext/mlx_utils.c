@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_utils.h"
+#include "MLX42_ext.h"
 
 void	mlx_image_fill(mlx_image_t *img, uint32_t cl)
 {

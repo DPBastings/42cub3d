@@ -12,7 +12,7 @@
 
 #include "cbd_minimap.h"
 #include "cbd_rc.h"
-#include "mlx_utils.h"
+#include "MLX42_ext.h"
 
 void	minimap_render_fov(t_minimap *self, t_rc const *rc);
 

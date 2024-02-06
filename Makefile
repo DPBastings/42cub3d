@@ -8,10 +8,6 @@ SRC_FILES	:= main.c\
 			error.c\
 			game.c\
 			object.c\
-			player.c\
-			player_method.c\
-			player_step.c\
-			player_turn.c\
 			texture.c\
 			hook/hooks_init.c\
 			hook/hook_controls.c\
@@ -32,12 +28,18 @@ SRC_FILES	:= main.c\
 			parse/parse_map.c\
 			parse/parse_object.c\
 			parse/parse_value.c\
+			player/player.c\
+			player/player_method.c\
+			player/player_step.c\
+			player/player_turn.c\
 			rc/rc.c\
 			rc/rc_cast.c\
 			screen/screen.c\
 			screen/view.c\
 			screen/view_render.c\
-			utils/mlx_utils.c
+			\
+			MLX42_ext/mlx_utils.c\
+			MLX42_ext/mlx_put_line.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
 			\
@@ -54,12 +56,13 @@ HDR_FILES	:= cbd.h\
 			cbd_screen.h\
 			cbd_view.h\
 			point.h\
-			types.h
+			types.h\
+			MLX42_ext.h
 LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook map minimap parse rc screen utils
+SRC_SUBDIRS	:= hook map minimap parse player rc screen MLX42_ext
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
