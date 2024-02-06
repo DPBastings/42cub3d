@@ -29,8 +29,8 @@ static void	render_player(t_minimap *self, t_player const *player)
 	render(self, (t_point){CBD_MINIMAP_CTR_X, CBD_MINIMAP_CTR_Y},
 		0x007799FF, CBD_MINIMAP_PLAYER_PX);
 	render(self, (t_point){
-		CBD_MINIMAP_CTR_X + 60 * player->delta.x,
-		CBD_MINIMAP_CTR_Y + 60 * player->delta.y},
+		CBD_MINIMAP_CTR_X + 60 * player->delta_m.x,
+		CBD_MINIMAP_CTR_Y + 60 * player->delta_m.y},
 		0x00BBBBFF, CBD_MINIMAP_ARROW_PX);
 }
 

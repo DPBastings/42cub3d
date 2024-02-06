@@ -14,24 +14,24 @@
 
 void	player_step_forward(t_player *self)
 {
-	self->pos.x += self->delta.x;
-	self->pos.y += self->delta.y;
+	self->pos.x += self->delta_m.x;
+	self->pos.y += self->delta_m.y;
 }
 
 void	player_step_backward(t_player *self)
 {
-	self->pos.x -= self->delta.x;
-	self->pos.y -= self->delta.y;
+	self->pos.x -= self->delta_m.x;
+	self->pos.y -= self->delta_m.y;
 }
 
 void	player_step_left(t_player *self)
 {
-	self->pos.x += self->delta.y;
-	self->pos.y -= self->delta.x;
+	self->pos.x += self->delta_m.y;
+	self->pos.y -= self->delta_m.x;
 }
 
 void	player_step_right(t_player *self)
 {
-	self->pos.x -= self->delta.y;
-	self->pos.y += self->delta.x;
+	self->pos.x -= self->delta_m.y;
+	self->pos.y += self->delta_m.x;
 }

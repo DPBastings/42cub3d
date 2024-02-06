@@ -21,6 +21,8 @@
 # define PLAYER_TURN_SPEED	0.125
 # define PLAYER_HITBOX_SIZE	0.8333333
 
+# define PLAYER_VIEW_ZMAX	200
+
 typedef enum e_direction
 {
 	DIR_FORWARD = 0,
@@ -32,17 +34,17 @@ typedef enum e_direction
 
 /**
  * @brief	Player object.
- * @param pos		The player's position.
- * @param view_x	The player's horizontal view angle, in radians.
- * @param view_z	The player's vertical view angle, in radians.
- * @param delta		The distance traveled on the X and Y axes when moving.
+ * @param pos		Player's position.
+ * @param delta_o	Orientation vector.
+ * @param delta_m	Movement vector.
+ * @param view_z	Z axis tilt.
  */
 struct s_player
 {
 	t_dpoint	pos;
-	double		view_x;
-	double		view_z;
-	t_dpoint	delta;
+	t_dvector	delta_o;
+	t_dvector	delta_m;
+	int			view_z;
 }; // struct s_player
 
 typedef void	(*t_player_method)(t_player *);
@@ -59,12 +61,9 @@ void		player_turn_right(t_player *self);
 void		player_turn_up(t_player *self);
 void		player_turn_down(t_player *self);
 
-static inline t_dpoint	get_delta(double view_x)
+static inline t_dvector	dvc_from_rad(double rad)
 {
-	return ((t_dpoint){
-		cos(view_x) * PLAYER_STEP_SPEED,
-		sin(view_x) * PLAYER_STEP_SPEED
-	});
+	return ((t_dvector){cos(rad), sin(rad)});
 }
 
 #endif // CBD_PLAYER_H

@@ -15,16 +15,15 @@
 
 #include <stdlib.h>
 
-void	rc_init(t_rc *self, size_t size)
+void	rc_init(t_rc *self, t_dvector direction)
 {
-	self->size = size;
-	self->rays = malloc(self->size * sizeof(t_ray));
-	if (self->rays == NULL)
+	camera_init(&self->camera, direction, 1.0);
+	self->data = malloc(CBD_RC_N_RAY_DFL * sizeof(t_rc_result));
+	if (self->data == NULL)
 		cbd_terminate(CBD_EGENERIC);
-	self->radpr = CBD_RC_FOV_WIDTH_RAD / size;
 }
 
 void	rc_deinit(t_rc *self)
 {
-	free(self->rays);
+	free(self->data);
 }

@@ -12,18 +12,19 @@
 
 #include "cbd_player.h"
 
-static double const	g_starting_angles[N_COMPASS] = {
-	0,
-	M_PI_2,
-	M_PI,
-	M_PI + M_PI_2,
+static t_dvector const	g_deltas[N_COMPASS] = {
+	(t_dvector){1.0, 0.0},
+	(t_dvector){0.0, 1.0},
+	(t_dvector){-1.0, 0.0},
+	(t_dvector){0.0, -1.0}
 };
 
 void	player_init(t_player *self, t_point pt, t_compass_direction orientation)
 {
-	self->pos.x = pt.x + 0.5;
-	self->pos.y = pt.y + 0.5;
-	self->view_x = g_starting_angles[orientation];
+	self->pos = (t_dpoint){pt.x + 0.5, pt.y + 0.5};
+	self->delta_o = g_deltas[orientation];
+	self->delta_m = (t_dvector){
+		g_deltas[orientation].x * PLAYER_STEP_SPEED,
+		g_deltas[orientation].y * PLAYER_STEP_SPEED};
 	self->view_z = 0;
-	self->delta = get_delta(self->view_x);
 }

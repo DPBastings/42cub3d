@@ -37,7 +37,7 @@ void	game_init(t_game *self, char const *path)
 	hooks_init(self);
 	screen_init(&self->screen, (struct s_screen_data){
 		&self->assets, &self->rc, &self->map}, self->mlx);
-	rc_init(&self->rc, CBD_RC_FOV_WIDTH_DEG);
+	rc_init(&self->rc, self->map.player.delta_o);
 }
 
 void	game_read(t_game *self, t_fd fd)

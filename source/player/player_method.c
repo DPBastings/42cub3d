@@ -26,19 +26,19 @@ static inline t_dpoint	get_dest(t_player const *self, t_direction dir)
 {
 	if (dir == DIR_FORWARD)
 		return ((t_dpoint){
-			self->pos.x + self->delta.x,
-			self->pos.y + self->delta.y});
+			self->pos.x + self->delta_m.x,
+			self->pos.y + self->delta_m.y});
 	else if (dir == DIR_BACKWARD)
 		return ((t_dpoint){
-			self->pos.x - self->delta.x,
-			self->pos.y - self->delta.y});
+			self->pos.x - self->delta_m.x,
+			self->pos.y - self->delta_m.y});
 	else if (dir == DIR_LEFT)
 		return ((t_dpoint){
-			self->pos.x + self->delta.y,
-			self->pos.y - self->delta.x});
+			self->pos.x + self->delta_m.y,
+			self->pos.y - self->delta_m.x});
 	else if (dir == DIR_RIGHT)
 		return ((t_dpoint){
-			self->pos.x - self->delta.y,
-			self->pos.y + self->delta.x});
+			self->pos.x - self->delta_m.y,
+			self->pos.y + self->delta_m.x});
 	return (self->pos);
 }

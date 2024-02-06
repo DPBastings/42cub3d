@@ -32,11 +32,14 @@ SRC_FILES	:= main.c\
 			player/player_method.c\
 			player/player_step.c\
 			player/player_turn.c\
+			rc/camera.c\
+			rc/ray.c\
 			rc/rc.c\
 			rc/rc_cast.c\
 			screen/screen.c\
 			screen/view.c\
 			screen/view_render.c\
+			screen/view_render_scene.c\
 			\
 			MLX42_ext/mlx_utils.c\
 			MLX42_ext/mlx_put_line.c

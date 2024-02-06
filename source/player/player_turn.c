@@ -16,28 +16,32 @@
 
 void	player_turn_left(t_player *self)
 {
-	self->view_x -= PLAYER_TURN_SPEED;
+	self->delta_o = dvc_rotate(self->delta_o, -PLAYER_TURN_SPEED);
+	self->delta_m = dvc_rotate(self->delta_m, -PLAYER_TURN_SPEED);
+	/*self->view_x -= PLAYER_TURN_SPEED;
 	if (self->view_x < 0)
 		self->view_x = M_PI * 2;
-	self->delta = get_delta(self->view_x);
+	self->delta = get_delta(self->view_x);*/
 }
 
 void	player_turn_right(t_player *self)
 {
-	self->view_x += PLAYER_TURN_SPEED;
+	self->delta_o = dvc_rotate(self->delta_o, PLAYER_TURN_SPEED);
+	self->delta_m = dvc_rotate(self->delta_m, PLAYER_TURN_SPEED);
+	/*self->view_x += PLAYER_TURN_SPEED;
 	if (self->view_x >= M_PI * 2)
 		self->view_x = 0;
-	self->delta = get_delta(self->view_x);
+	self->delta = get_delta(self->view_x);*/
 }
 
 void	player_turn_up(t_player *self)
 {
-	if (self->view_z < M_PI_2)
-		self->view_z += PLAYER_TURN_SPEED;
+	if (self->view_z < PLAYER_VIEW_ZMAX)
+		self->view_z += 10;
 }
 
 void	player_turn_down(t_player *self)
 {
-	if (self->view_z >= -M_PI_2)
-		self->view_z -= PLAYER_TURN_SPEED;
+	if (self->view_z >= -PLAYER_VIEW_ZMAX)
+		self->view_z -= 10;
 }

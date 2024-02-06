@@ -14,8 +14,10 @@
 
 void	camera_init(t_camera *self, t_dvector direction, double zoom)
 {
+	(void) zoom;
 	self->direction = direction;
-	camera_zoom(self, zoom);
+	self->plane = (t_dvector){1, 0};
+	//camera_zoom(self, zoom);
 }
 
 void	camera_rotate(t_camera *self, double rad)
@@ -26,9 +28,10 @@ void	camera_rotate(t_camera *self, double rad)
 
 void	camera_zoom(t_camera *self, double zoom)
 {
-	zoom = fabs(modf(zoom, NULL));
+	double	integral;
+
+	zoom = fabs(modf(zoom, &integral));
 	self->plane = dvc_rotate(
-		dvc_mult(self->direction, (t_dvector){zoom, zoom},
-		M_PI_2);
+			dvc_mult(self->direction, (t_dvector){zoom, zoom}),
+			M_PI_2);
 }
-	

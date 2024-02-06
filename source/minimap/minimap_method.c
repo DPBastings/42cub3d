@@ -31,9 +31,9 @@ void	minimap_render_fov(t_minimap *self, t_rc const *rc)
 	t_point	px;
 
 	i = 0;
-	while (i < rc->size)
+	while (i < CBD_RC_N_RAY_DFL)
 	{
-		px = minimap_pos_to_px(self, rc->rays[i].end);
+		px = minimap_pos_to_px(self, rc->data[i].end);
 		mlx_put_pixel_safe(self->img, px.x, px.y, 0xEE8800FF);
 		++i;
 	}

@@ -13,6 +13,7 @@
 #include "debug.h"
 #include "cbd_game.h"
 #include "cbd_object.h"
+#include "cbd_rc.h"
 
 #include <stdio.h>
 
@@ -35,22 +36,19 @@ void	assets_print(t_assets const *assets, bool loaded)
 
 void	player_print(t_player const *player)
 {
-	t_dpoint const	fwd = {.x = player->pos.x + player->delta.x, .y = player->pos.y + player->delta.y};
-	t_dpoint const	bwd = {.x = player->pos.x - player->delta.x, .y = player->pos.y - player->delta.y};
-	t_dpoint const	lft = {.x = player->pos.x + player->delta.y, .y = player->pos.y - player->delta.x};
-	t_dpoint const	rgt = {.x = player->pos.x - player->delta.y, .y = player->pos.y + player->delta.x};
+	t_dpoint const	fwd = {.x = player->pos.x + player->delta_m.x, .y = player->pos.y + player->delta_m.y};
+	t_dpoint const	bwd = {.x = player->pos.x - player->delta_m.x, .y = player->pos.y - player->delta_m.y};
+	t_dpoint const	lft = {.x = player->pos.x + player->delta_m.y, .y = player->pos.y - player->delta_m.x};
+	t_dpoint const	rgt = {.x = player->pos.x - player->delta_m.y, .y = player->pos.y + player->delta_m.x};
 	printf("player:\n"
 		"pos       = %lf;%lf\n"
-		"delta     = %lf;%lf\n"
-		"angle     = %lf / %lf\n"
+		"deltam    = %lf;%lf\n"
 		"forward   = %lf;%lf (%u;%u)\n"
 		"backward  = %lf;%lf (%u;%u)\n"
 		"left      = %lf;%lf (%u;%u)\n"
 		"right     = %lf;%lf (%u;%u)\n",
 		player->pos.x, player->pos.y,
-		player->delta.x, player->delta.y,
-		player->view_x,
-		player->view_z,
+		player->delta_m.x, player->delta_m.y,
 		fwd.x, fwd.y, point_from_dpoint(fwd).x, point_from_dpoint(fwd).y,
 		bwd.x, bwd.y, point_from_dpoint(bwd).x, point_from_dpoint(bwd).y,
 		lft.x, lft.y, point_from_dpoint(lft).x, point_from_dpoint(lft).y,
@@ -68,10 +66,21 @@ void	map_print(t_map const *map)
 	}
 }
 
+void	rc_print(t_rc const *rc)
+{
+	for (size_t i = 0; i < CBD_RC_N_RAY_DFL; ++i)
+		printf("%lf;%lf (dist %lf;%lf\n",
+			rc->data[i].end.x, rc->data[i].end.y,
+			rc->data[i].distance.x, rc->data[i].distance.y);
+}
+
 void	hook_debug(mlx_key_data_t keys, void *param)
 {
 	t_game *const	game = param;
 
 	if (keys.key == MLX_KEY_F3 && keys.action == MLX_RELEASE)
+	{
 		player_print(&game->map.player);
+		rc_print(&game->rc);
+	}
 }

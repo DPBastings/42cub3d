@@ -42,6 +42,7 @@ struct s_view
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);
 void	view_draw(t_view *self, t_point pt, mlx_t *mlx);
 void	view_render(t_view *self, struct s_screen_data data);
+void	view_render_scene(t_view *self, struct s_screen_data data);
 void	view_deinit(t_view *self, mlx_t *mlx);
 
 /**

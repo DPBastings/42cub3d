@@ -15,25 +15,19 @@
 #include "cbd_player.h"
 #include "cbd_screen.h"
 
+#define CEILING_OFFSET 600 // CBD_VIEW_HEIGHT_DFL / 2 + PLAYER_VIEW_ZMAX
+
 static void	render_background(t_view *self);
-static void	render_scene(mlx_image_t *scene, struct s_screen_data data);
 
 void	view_render(t_view *self, struct s_screen_data data)
 {
-	self->horizon = self->scene->height / 2 + data.map->player.view_z * 48;
+	self->horizon = CBD_VIEW_HEIGHT_DFL / 2 + data.map->player.view_z;
 	render_background(self);
-	render_scene(self->scene, data);
+	view_render_scene(self, data);
 }
 
 static void	render_background(t_view *self)
 {
-	self->ceiling->instances[0].y = self->horizon - CBD_VIEW_HEIGHT_DFL;
-	self->scene->instances[0].y = self->horizon - CBD_VIEW_HEIGHT_DFL;
+	self->ceiling->instances[0].y = self->horizon - CEILING_OFFSET;
 	self->floor->instances[0].y = self->horizon;
-}
-
-static void	render_scene(mlx_image_t *scene, struct s_screen_data data)
-{
-	(void) scene;
-	(void) data;
 }
