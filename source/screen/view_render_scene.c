@@ -20,10 +20,11 @@
 
 void	view_render_scene(t_view *self, struct s_screen_data data)
 {
-	size_t			i;
-	int				height;
-	int				y[2];
+	size_t	i;
+	int		height;
+	int		y[2];
 
+	mlx_image_fill(self->scene, 0x00000000);
 	i = 0;
 	while (i < CBD_RC_N_RAY_DFL)
 	{

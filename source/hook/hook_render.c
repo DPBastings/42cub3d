@@ -17,7 +17,8 @@ void	hook_render(void *param)
 {
 	t_game *const	game = param;
 
-	//rc_cast(&game->rc, &game->map);
+	camera_init(&game->rc.camera, game->map.player.delta_o, 1.0);
+	rc_cast(&game->rc, &game->map);
 	screen_render(&game->screen, (struct s_screen_data){
 		&game->assets, &game->rc, &game->map
 	});

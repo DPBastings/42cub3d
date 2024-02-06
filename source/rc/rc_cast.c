@@ -30,6 +30,16 @@ void	rc_cast(t_rc *self, t_map const *map)
 	}
 }
 
+/**
+ * @note	The algorithm can be broken down as follows:
+ * 			1. Check whether the ray would hit a wall when moving to the next
+ * 			grid slot:
+ * 			a. If a vertical edge (i.e. the X) would be closer than a
+ * 			horizontal edge (i.e. the Y side), add X to the distance traveled
+ * 			and move the grid cursor horizontally.
+ * 			b. Else, add Y to the distance and move the grid cursor vertically.
+ * 			...
+ */
 static t_rc_result	_cast_ray(t_camera *camera, t_map const *map, size_t i)
 {
 	t_ray 		ray;
@@ -38,39 +48,40 @@ static t_rc_result	_cast_ray(t_camera *camera, t_map const *map, size_t i)
 
 	ray_init(&ray, camera, map->player.pos, i);
 	result_init(&result, &ray);
-	while (map_caccess(map, ray.ipos)->type != OBJ_WALL)
+	while (map_caccess(map, ray.cursor)->type != OBJ_WALL)
 	{
-		if (result.distance.x < result.distance.y)
+		ray.pos = dvc_add(ray.pos, ray.delta_p);
+		if (ray.length.x < ray.length.y)
 		{
-			result.distance.x += ray.ddelta.x;
 			side = 0;
-			ray.dpos.x += ray.ddelta.x;
-			ray.ipos.x += ray.idelta.x;
+			ray.length.x += ray.delta_l.x;
+			ray.cursor.x += ray.delta_c.x;
 		}
 		else
 		{
-			result.distance.y += ray.ddelta.y;
 			side = 1;
-			ray.dpos.y += ray.ddelta.y;
-			ray.ipos.y += ray.idelta.y;
+			ray.length.y += ray.delta_l.y;
+			ray.cursor.y += ray.delta_c.y;
 		}
 	}
+	result.distance = ray.length;
+	result.end = ray.pos;
 	if (side == 0)
-		result.distanced = result.distance.x - ray.ddelta.x;
+		result.distanced = result.distance.x - ray.delta_l.x;
 	else
-		result.distanced = result.distance.y - ray.ddelta.y;
-	result.end = ray.dpos;
+		result.distanced = result.distance.y - ray.delta_l.y;
 	return (result);
 }
 
 static void	result_init(t_rc_result *self, t_ray const *ray)
 {
-	if (ray->direction.x < 0)
-		self->distance.x = (ray->dpos.x - ray->ipos.x) * ray->ddelta.x;
+	return;
+	if (ray->delta_p.x < 0)
+		self->distance.x = (ray->length.x - ray->cursor.x) * ray->delta_l.x;
 	else
-		self->distance.x = (ray->ipos.x + 1.0 - ray->dpos.x) * ray->ddelta.x;
-	if (ray->direction.y < 0)
-		self->distance.y = (ray->dpos.y - ray->ipos.y) * ray->ddelta.y;
+		self->distance.x = (ray->cursor.x + 1.0 - ray->length.x) * ray->delta_l.x;
+	if (ray->delta_p.y < 0)
+		self->distance.y = (ray->length.y - ray->cursor.y) * ray->delta_l.y;
 	else
-		self->distance.y = (ray->ipos.y + 1.0 - ray->dpos.y) * ray->ddelta.y;
+		self->distance.y = (ray->cursor.y + 1.0 - ray->length.y) * ray->delta_l.y;
 }
