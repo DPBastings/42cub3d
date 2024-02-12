@@ -37,10 +37,10 @@ static void	render_walls(t_minimap *self, t_map const *map)
 			obj = map_caccessd(map, minimap_px_to_pos(self, cursor));
 			if (obj->type == OBJ_WALL)
 				mlx_put_pixel(self->img, cursor.x, cursor.y,
-						CBD_MINIMAP_CLR_WALL);
+					CBD_MINIMAP_CLR_WALL);
 			else if (obj->type == OBJ_EMPTY)
 				mlx_put_pixel(self->img, cursor.x, cursor.y,
-						CBD_MINIMAP_CLR_EMPTY);
+					CBD_MINIMAP_CLR_EMPTY);
 			++cursor.x;
 		}
 		++cursor.y;

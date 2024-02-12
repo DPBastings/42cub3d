@@ -18,7 +18,7 @@
 void	rc_init(t_rc *self, t_dvector direction)
 {
 	camera_init(&self->camera, direction, 1.0);
-	self->data = malloc(CBD_RC_N_RAY_DFL * sizeof(t_rc_result));
+	self->data = malloc(CBD_RC_RES * sizeof(t_rc_result));
 	if (self->data == NULL)
 		cbd_terminate(CBD_EGENERIC);
 }

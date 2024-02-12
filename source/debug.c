@@ -68,10 +68,25 @@ void	map_print(t_map const *map)
 
 void	rc_print(t_rc const *rc)
 {
-	for (size_t i = 0; i < CBD_RC_N_RAY_DFL; ++i)
-		printf("%lf;%lf (dist %lf;%lf\n",
+	for (size_t i = 0; i < CBD_RC_RES; ++i)
+		printf("%lf;%lf (len: %lf)\n",
 			rc->data[i].end.x, rc->data[i].end.y,
-			rc->data[i].distance.x, rc->data[i].distance.y);
+			rc->data[i].length);
+}
+
+void	ray_print(t_ray const *ray)
+{
+	printf("pos:        %lf;%lf (%i;%i)\n"
+		   "ct:         %lf;%lf\n"
+		   "dir:        %lf;%lf\n"
+		   "delta_edge: %lf;%lf\n"
+		   "delta_grid: %i;%i\n",
+		   ray->pos.x, ray->pos.y,
+		   ray->pos_grid.x, ray->pos_grid.y,
+		   ray->ctr.x, ray->ctr.y,
+		   ray->direction.x, ray->direction.y,
+		   ray->delta_edge.x, ray->delta_edge.y,
+		   ray->delta_grid.x, ray->delta_grid.y);
 }
 
 void	hook_debug(mlx_key_data_t keys, void *param)

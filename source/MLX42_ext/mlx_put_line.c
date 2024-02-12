@@ -15,8 +15,6 @@
 static inline t_vector	_get_delta(t_point a, t_point b);
 static inline t_vector	_get_slope(t_point a, t_point b);
 
-#include <stdio.h>
-
 void	mlx_put_line(mlx_image_t *img, t_point a, t_point b, uint32_t colour)
 {
 	t_vector const	delta = _get_delta(a, b);

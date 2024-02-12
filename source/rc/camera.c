@@ -17,7 +17,6 @@ void	camera_init(t_camera *self, t_dvector direction, double zoom)
 	(void) zoom;
 	self->direction = direction;
 	self->plane = dvc_rotate(self->direction, M_PI_2);
-	//camera_zoom(self, zoom);
 }
 
 void	camera_rotate(t_camera *self, double rad)

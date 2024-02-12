@@ -12,69 +12,62 @@
 
 #include "cbd_rc.h"
 
-static inline t_dvector	_get_delta_l(t_dvector delta_p);
-static inline t_vector	_get_delta_c(t_ray const *ray);
-static inline t_dvector	_init_length(t_ray const *ray);
+#include <math.h>
+
+static inline void	_init_delta_edge(t_ray *ray);
+static inline void	_init_delta_grid(t_ray *ray);
+static inline void	_init_ctr(t_ray *ray);
 
 void	ray_init(t_ray *self, t_camera const *camera, t_dvector pos, size_t n)
 {
-	double const	start = (double)n / (double)CBD_RC_N_RAY_DFL * 2.0 - 1.0;
+	double const	start = 2 * n / (double)CBD_RC_RES - 1.0;
 
 	self->pos = pos;
-	self->cursor = (t_point){pos.x, pos.y};
-	self->delta_p = (t_dvector){
+	self->pos_grid = point_from_dpoint(pos);
+	self->direction = (t_dvector){
 		camera->direction.x + camera->plane.x * start,
 		camera->direction.y + camera->plane.y * start};
-	self->delta_l = _get_delta_l(self->delta_p);
-	self->delta_c = _get_delta_c(self);
-	self->length = _init_length(self);
+	_init_delta_edge(self);
+	_init_delta_grid(self);
+	_init_ctr(self);
 }
 
-static inline t_dvector	_get_delta_l(t_dvector delta_p)
+static inline void	_init_delta_edge(t_ray *self)
 {
-	t_dvector	delta;
-
-	if (delta_p.x == 0)
-		delta.x = HUGE_VAL;
+	if (self->direction.x == 0)
+		self->delta_edge.x = HUGE_VAL;
 	else
-		delta.x = fabs(1 / delta_p.x);
-	if (delta_p.y == 0)
-		delta.y = HUGE_VAL;
+		self->delta_edge.x = fabs(1 / self->direction.x);
+	if (self->direction.y == 0)
+		self->delta_edge.y = HUGE_VAL;
 	else
-		delta.y = fabs(1 / delta_p.y);
-	return (delta);
+		self->delta_edge.y = fabs(1 / self->direction.y);
 }
 
-static inline t_vector	_get_delta_c(t_ray const *ray)
+static inline void	_init_delta_grid(t_ray *self)
 {
-	t_vector	delta_c;
-
-	if (ray->delta_p.x < 0)
-		delta_c.x = -1;
-	else if (ray->delta_p.x == HUGE_VAL)
-		delta_c.x = 0;
+	if (self->direction.x < 0)
+		self->delta_grid.x = -1;
+	else if (self->direction.x == 0)
+		self->delta_grid.x = 0;
 	else
-		delta_c.x = 1;
-	if (ray->delta_p.y < 0)
-		delta_c.y = -1;
-	else if (ray->delta_p.y == HUGE_VAL)
-		delta_c.y = 0;
+		self->delta_grid.x = 1;
+	if (self->direction.y < 0)
+		self->delta_grid.y = -1;
+	else if (self->direction.y == 0)
+		self->delta_grid.y = 0;
 	else
-		delta_c.y = 1;
-	return (delta_c);
+		self->delta_grid.y = 1;
 }
 
-static inline t_dvector	_init_length(t_ray const *ray)
+static inline void	_init_ctr(t_ray *sf)
 {
-	t_dvector	length;
-
-	if (ray->delta_p.x < 0)
-		length.x = (0.0 - ray->cursor.x) * ray->delta_l.x;
+	if (sf->direction.x < 0)
+		sf->ctr.x = (sf->pos.x - sf->pos_grid.x) * sf->delta_edge.x;
 	else
-		length.x = (ray->cursor.x + 1.0 - 0.0) * ray->delta_l.x;
-	if (ray->delta_p.y < 0)
-		length.y = (0.0 - ray->cursor.y) * ray->delta_l.y;
+		sf->ctr.x = (sf->pos_grid.x + 1.0 - sf->pos.x) * sf->delta_edge.x;
+	if (sf->direction.y < 0)
+		sf->ctr.y = (sf->pos.y - sf->pos_grid.y) * sf->delta_edge.y;
 	else
-		length.y = (ray->cursor.y + 1.0 - 0.0) * ray->delta_l.y;
-	return (length);
+		sf->ctr.y = (sf->pos_grid.y + 1.0 - sf->pos.y) * sf->delta_edge.y;
 }

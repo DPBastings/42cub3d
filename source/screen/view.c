@@ -40,5 +40,5 @@ void	view_draw(t_view *self, t_point pt, mlx_t *mlx)
 	mlx_image_to_window(mlx, self->floor, pt.x, pt.y);
 	mlx_set_instance_depth(&self->floor->instances[0], 0);
 	mlx_image_to_window(mlx, self->scene, pt.x, pt.y);
-	mlx_set_instance_depth(&self->scene->instances[0], 3);
+	mlx_set_instance_depth(&self->scene->instances[0], 1);
 }
