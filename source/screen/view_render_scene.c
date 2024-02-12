@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cbd_assets.h"
 #include "cbd_screen.h"
 #include "cbd_rc.h"
 #include "point.h"
@@ -18,38 +19,69 @@
 
 #define CBD_BASE_HEIGHT	400
 
-static inline int	_get_height(double ray_length);
+#define TOP		0
+#define BOTTOM	1
+
+static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
+static int			_get_column(t_rc_result const *rc, t_texture const txr);
+static int			_get_height(double ray_length);
+static t_texture_id	_get_txr(t_rc_result *rc);
 
 void	view_render_scene(t_view *self, struct s_screen_data data)
 {
 	size_t	i;
-	int		height;
-	int		y[2];
 
 	mlx_image_fill(self->scene, 0x00000000);
 	i = 0;
 	while (i < CBD_RC_RES)
+		render_wall(self, i++, data);
+}
+
+static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
+{
+	t_texture_id	txr = _get_txr(&data.rc->data[i]);
+	int const		column = _get_column(&data.rc->data[i],
+								data.assets->textures[txr]);
+	int				height = _get_height(data.rc->data[i].length);
+	int				y;
+	double			txr_y;
+
+	y = 0;
+	txr_y = 0;
+	while (y < height)
 	{
-		height = _get_height(data.rc->data[i].length);
-		y[0] = self->horizon - height / 2;
-		y[1] = self->horizon + height / 2;
-		mlx_put_line(self->scene, (t_point){i, y[0]}, (t_point){i, y[1]},
-			0x300822FF);
-		++i;
+		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + y,
+			mlx_texture_read(data.assets->textures[txr].data, column, txr_y));
+		++y;
+		txr_y += data.assets->textures[txr].data->height / (double)height;
 	}
 }
 
-static inline int	ft_min(int a, int b)
+static int	_get_column(t_rc_result const *rc, t_texture const txr)
 {
-	if (a < b)
-		return (a);
-	return (b);
+	double	integral;
+
+	if (rc->isct == ISCT_V)
+		return (modf(rc->end.y, &integral) * txr.data->width);
+	return (modf(rc->end.x, &integral) * txr.data->width);
 }
 
-static inline int	_get_height(double ray_length)
+static int	_get_height(double ray_length)
 {
 	if (ray_length == 0)
 		return (CBD_VIEW_HEIGHT_DFL);
-	else
-		return (ft_min(CBD_VIEW_HEIGHT_DFL, CBD_BASE_HEIGHT / ray_length));
+	return (CBD_BASE_HEIGHT / ray_length);
+}
+
+static t_texture_id	_get_txr(t_rc_result *rc)
+{
+	if (rc->isct == ISCT_V)
+	{
+		if (rc->direction.x < 0)
+			return (EAST_WALL);
+		return (WEST_WALL);
+	}
+	if (rc->direction.y < 0)
+		return (SOUTH_WALL);
+	return (NORTH_WALL);
 }

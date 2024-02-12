@@ -23,14 +23,14 @@ t_rgba	parse_rgb(char const **str)
 {
 	t_channel	rgb[4];
 
-	rgb[0] = parse_channel(str);
-	if (*(*str)++ != ',')
-		cbd_terminate(CBD_EASSINV);
-	rgb[1] = parse_channel(str);
+	rgb[3] = parse_channel(str);
 	if (*(*str)++ != ',')
 		cbd_terminate(CBD_EASSINV);
 	rgb[2] = parse_channel(str);
-	rgb[3] = 255;
+	if (*(*str)++ != ',')
+		cbd_terminate(CBD_EASSINV);
+	rgb[1] = parse_channel(str);
+	rgb[0] = 255;
 	return (*(t_rgba *)rgb);
 }
 

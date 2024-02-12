@@ -20,20 +20,26 @@
 # include <stddef.h>
 # include <math.h>
 
-# define CBD_RC_N_RAY_DFL	1200 // Minimum value of 3
+# define CBD_RC_RES	1200
 
 typedef struct s_camera		t_camera;
 typedef struct s_ray		t_ray;
 typedef struct s_rc_result	t_rc_result;
 
+typedef enum e_isct
+{
+	ISCT_V,
+	ISCT_H,
+}	t_isct;
+
 /**
  * @brief	Camera object.
- * @param delta_p	Direction vector. Correlates with the player's movement
+ * @param direction	Direction vector. Correlates with the player's movement
  * 					angle, albeit that this vector's length will always be 1.
  * @param plane		Camera plane vector.
- * @note	The ratio between the delta_p vector and the camera plane is
+ * @note	The ratio between the direction vector and the camera plane is
  * 			equivalent to the camera's zoom level. To wit: the greater the
- * 			camera plane's length compared to the delta_p vector, the
+ * 			camera plane's length compared to the direction vector, the
  * 			farther the camera will be zoomed out.
  */
 struct s_camera
@@ -42,7 +48,7 @@ struct s_camera
 	t_dvector	plane;
 };
 
-void	camera_init(t_camera *self, t_dvector delta_p, double zoom);
+void	camera_init(t_camera *self, t_dvector direction, double zoom);
 void	camera_rotate(t_camera *self, double rad);
 void	camera_zoom(t_camera *self, double zoom);
 
@@ -57,46 +63,51 @@ struct s_rc
 	t_rc_result	*data;
 };
 
-void	rc_init(t_rc *self, t_dvector delta_p);
+void	rc_init(t_rc *self, t_dvector direction);
 void	rc_deinit(t_rc *self);
 void	rc_cast(t_rc *self, t_map const *map);
 
 /**
- * @brief	Raycaster data object.
- * 			Contains data pertaining to the casting of an individual ray.
- * @param distance	Distance traveled by this ray.
+ * @brief	Raycaster results object.
+ * 			Contains data resulting from the casting of an individual ray.
  * @param end		Endpoint of this ray.
+ * @param direction	The direction of the ray.
+ * @param length	Distance traveled by this ray.
+ * @param isct		The orientation of the edge (horizontal or vertical)
+ * 					intersected by this ray.
 */
 struct s_rc_result
 {
-	t_dvector	distance;
 	t_dpoint	end;
-	double		distanced;
+	t_dvector	direction;
+	double		length;
+	t_isct		isct;
 };
 
 /**
  * @brief	Ray object.
- * @param pos		Position of the ray.
- * @param delta_p	Base direction vector.
- * @param length	Distance travelled by the ray.
- * @param delta_l	Distance from the ray's position within the grid slot to
- * 					the slot's edges, along the projected trajectory.
- * @param cursor	Position of the ray, rounded down to an integer; the grid
- * 					slot that the ray is currently in.
- * @param delta_c	Grid shift vector: .x or .y should be added to cursor to
- * 					move into the next grid slot.
+ * @param pos			Position of the ray.
+ * @param pos_grid		Position of the ray, rounded down to an integer; the
+ * 						grid slot that the ray is currently in.
+ * @param direction		Base direction vector.
+ * @param ctr		Tracks the total x and y distance traveled so far.
+ * @param delta_edge	The number of steps that need to be taken in order to
+ * 						reach the next vertical/horizontal grid edge.
+ * @param delta_grid	Grid steps vector: add .x or .y to pos_grid to move into
+ * 						the next grid slot.
  */
 struct s_ray
 {
 	t_dpoint	pos;
-	t_dvector 	delta_p;
-	t_dvector	length;
-	t_dvector 	delta_l;
-	t_point		cursor;
-	t_vector	delta_c;
+	t_point		pos_grid;
+	t_dvector 	direction;
+	t_dvector	ctr;
+	double		length;
+	t_dvector 	delta_edge;
+	t_vector	delta_grid;
 };
 
 void	ray_init(t_ray *self, t_camera const *camera, t_dvector pos, size_t i);
-void	ray_travel(t_ray *self, t_map const *map);
+t_isct	dda(t_ray *ray, t_map const *map);
 
 #endif // CBD_RC_H

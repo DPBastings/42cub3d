@@ -33,6 +33,7 @@ SRC_FILES	:= main.c\
 			player/player_step.c\
 			player/player_turn.c\
 			rc/camera.c\
+			rc/dda.c\
 			rc/ray.c\
 			rc/rc.c\
 			rc/rc_cast.c\

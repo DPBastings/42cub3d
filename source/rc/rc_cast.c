@@ -23,6 +23,7 @@ void	rc_cast(t_rc *self, t_map const *map)
 	{
 		ray_init(&ray, &self->camera, map->player.pos, i);
 		self->data[i].isct = dda(&ray, map);
+		self->data[i].direction = ray.direction;
 		self->data[i].end = ray.pos;
 		self->data[i].length = ray.length;
 		++i;

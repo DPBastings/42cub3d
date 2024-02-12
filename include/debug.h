@@ -14,6 +14,7 @@
 # define DEBUG_H
 
 # include "cbd.h"
+# include "cbd_rc.h"
 
 # include <stdbool.h>
 # include "MLX42.h"
@@ -22,6 +23,7 @@ void	game_print(t_game const *game);
 void	assets_print(t_assets const *assets, bool loaded);
 void	player_print(t_player const *player);
 void	map_print(t_map const *map);
+void	ray_print(t_ray const *ray);
 
 void	hook_debug(mlx_key_data_t keys, void *param);
 

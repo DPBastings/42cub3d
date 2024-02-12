@@ -41,8 +41,8 @@ t_isct	dda(t_ray *ray, t_map const *map)
 /**
  * @brief	Perform one DDA iteration/step.
  * 			
- * @return	A constant denoting this iteration's movement axis (VERTICAL if the
- * 			algorithm moved along the X axis, HORIZONTAL if it moved along the Y
+ * @return	A constant denoting this iteration's movement axis (ISCT_V if the
+ * 			algorithm moved along the X axis, ISCT_H if it moved along the Y
  * 			axis).
  */
 static inline t_isct	_dda_step(t_ray *ray)
@@ -56,25 +56,23 @@ static inline t_isct	_dda_step_h(t_ray *ray)
 {
 	ray->ctr.x += ray->delta_edge.x;
 	ray->pos_grid.x += ray->delta_grid.x;
-	return (VERTICAL);
+	return (ISCT_V);
 }
 
 static inline t_isct	_dda_step_v(t_ray *ray)
 {
 	ray->ctr.y += ray->delta_edge.y;
 	ray->pos_grid.y += ray->delta_grid.y;
-	return (HORIZONTAL);
+	return (ISCT_H);
 }
 
 static inline t_isct	_dda_end(t_ray *ray, int isct)
 {
-	double	integral;
-
-	ray->pos.x -= ray->direction.x * modf(ray->pos.x, &integral);
-	ray->pos.y -= ray->direction.y * modf(ray->pos.y, &integral);
-	if (isct == VERTICAL)
+	if (isct == ISCT_V)
 		ray->length = ray->ctr.x - ray->delta_edge.x;
 	else
 		ray->length = ray->ctr.y - ray->delta_edge.y;
+	ray->pos.x += ray->length * ray->direction.x;
+	ray->pos.y += ray->length * ray->direction.y;
 	return (isct);
 }
