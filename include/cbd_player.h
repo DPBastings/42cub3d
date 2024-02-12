@@ -17,7 +17,7 @@
 # include "point.h"
 # include "types.h"
 
-# define PLAYER_STEP_SPEED	0.0625
+# define PLAYER_STEP_SPEED	0.03125
 # define PLAYER_TURN_SPEED	0.03125
 # define PLAYER_HITBOX_SIZE	0.8333333
 

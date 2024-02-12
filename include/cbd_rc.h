@@ -100,10 +100,10 @@ struct s_ray
 {
 	t_dpoint	pos;
 	t_point		pos_grid;
-	t_dvector 	direction;
+	t_dvector	direction;
 	t_dvector	ctr;
 	double		length;
-	t_dvector 	delta_edge;
+	t_dvector	delta_edge;
 	t_vector	delta_grid;
 };
 

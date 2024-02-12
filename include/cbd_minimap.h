@@ -58,8 +58,7 @@ static inline t_point	minimap_pos_to_px(t_minimap const *self, t_dpoint pos)
 {
 	return ((t_point){
 		(pos.x - self->viewport.x) * CBD_MINIMAP_PXPM,
-		(pos.y - self->viewport.y) * CBD_MINIMAP_PXPM 
-	});
+		(pos.y - self->viewport.y) * CBD_MINIMAP_PXPM});
 }
 
 static inline t_dpoint	minimap_px_to_pos(t_minimap const *self, t_point px)

@@ -1,6 +1,10 @@
-cache the previous player position for quicker rendering?
+fix double-width minimap walls at x = 0 || y = 0
+fix slow rendering when closely facing a wall
+sometimes one can get stuck in a corner, fix it
+implement mouse view movement
+add doors
 make it so that diagonal movement against a wall is possible
 make it so that the minimap rotates along with the player's view
-fix double-width walls at x = 0 || y = 0
-fix the raycaster
-random fpe's whilst strolling around
+cache the previous player position for quicker rendering?
+make endianness-agnostic pixel placement and reading functions
+implement fps throttle

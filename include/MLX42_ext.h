@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.h                                        :+:      :+:    :+:   */
+/*   MLX42_ext.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_UTILS_H
-# define MLX_UTILS_H
+#ifndef MLX42_EXT_H
+# define MLX42_EXT_H
 
 # include "MLX42.h"
 # include "point.h"
@@ -23,4 +23,4 @@ void		mlx_put_line(mlx_image_t *img, t_point a, t_point b,
 void		mlx_put_pixel_safe(mlx_image_t *img, int32_t x, int32_t y,
 				uint32_t cl);
 
-#endif // MLX_UTILS_H
+#endif // MLX_42_EXT_H

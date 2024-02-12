@@ -39,12 +39,12 @@ void	view_render_scene(t_view *self, struct s_screen_data data)
 
 static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 {
-	t_texture_id	txr = _get_txr(&data.rc->data[i]);
-	int const		column = _get_column(&data.rc->data[i],
-								data.assets->textures[txr]);
-	int				height = _get_height(data.rc->data[i].length);
-	int				y;
-	double			txr_y;
+	t_texture_id const	txr = _get_txr(&data.rc->data[i]);
+	int const			column = _get_column(&data.rc->data[i],
+			data.assets->textures[txr]);
+	int const			height = _get_height(data.rc->data[i].length);
+	int					y;
+	double				txr_y;
 
 	y = 0;
 	txr_y = 0;

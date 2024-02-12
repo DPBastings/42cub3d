@@ -42,5 +42,6 @@ uint32_t	mlx_texture_read(mlx_texture_t const *txr, int32_t x, int32_t y)
 	uint8_t const	px[4] = {
 		txr->pixels[i + 3], txr->pixels[i + 2],
 		txr->pixels[i + 1], txr->pixels[i]};
+
 	return (*((uint32_t *)px));
 }
