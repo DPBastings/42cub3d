@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 15:15:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 16:31:05 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/13 14:35:30 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	minimap_render_fov(t_minimap *self, t_rc const *rc)
 	while (i < CBD_RC_RES)
 	{
 		px = minimap_pos_to_px(self, rc->data[i].end);
-		mlx_put_pixel_safe(self->img, px.x, px.y, 0x00AA00FF);
+		mlx_put_pixel_safe(self->img, px.x, px.y, 0xFF0000FF);
 		++i;
 	}
 }

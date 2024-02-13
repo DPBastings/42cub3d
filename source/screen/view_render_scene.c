@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   view_render_scene.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 18:08:10 by dbasting          #+#    #+#             */
-/*   Updated: 2024/02/06 18:08:11 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   view_render_scene.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/02/13 16:05:42 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 #define BOTTOM	1
 
 static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
-static int			_get_column(t_rc_result const *rc, t_texture const txr);
-static int			_get_height(double ray_length);
+static uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);
+static uint32_t		_get_height(double ray_length);
 static t_texture_id	_get_txr(t_rc_result *rc);
 
 void	view_render_scene(t_view *self, struct s_screen_data data)
@@ -42,22 +42,22 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 	t_texture_id const	txr = _get_txr(&data.rc->data[i]);
 	int const			column = _get_column(&data.rc->data[i],
 			data.assets->textures[txr]);
-	int const			height = _get_height(data.rc->data[i].length);
-	int					y;
-	double				txr_y;
+	uint32_t const		height = _get_height(data.rc->data[i].length);
+	uint32_t			draw_y;
+	double				read_y;
 
-	y = 0;
-	txr_y = 0;
-	while (y < height)
+	draw_y = 0;
+	read_y = 0;
+	while (draw_y < height)
 	{
-		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + y,
-			mlx_texture_read(data.assets->textures[txr].data, column, txr_y));
-		++y;
-		txr_y += data.assets->textures[txr].data->height / (double)height;
+		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
+			mlx_texture_read(data.assets->textures[txr].data, column, read_y));
+		++draw_y;
+		read_y += data.assets->textures[txr].data->height / (double)height;
 	}
 }
 
-static int	_get_column(t_rc_result const *rc, t_texture const txr)
+static uint32_t	_get_column(t_rc_result const *rc, t_texture const txr)
 {
 	double	integral;
 
@@ -66,7 +66,7 @@ static int	_get_column(t_rc_result const *rc, t_texture const txr)
 	return (modf(rc->end.x, &integral) * txr.data->width);
 }
 
-static int	_get_height(double ray_length)
+static uint32_t	_get_height(double ray_length)
 {
 	if (ray_length == 0)
 		return (CBD_VIEW_HEIGHT_DFL);

@@ -3,11 +3,11 @@ general cleanup
 fix double-width minimap walls at x = 0 || y = 0
 fix slow rendering when closely facing a wall --> avoid using mlx_put_pixel_safe
 sometimes one can get (seemingly) stuck in a corner, fix it
+reimplement player hitbox?
 
 implement mouse view movement
 implement dynamic zoom (mouse control via wheel)
 add doors
-make it so that diagonal movement against a wall is possible
 make it so that the minimap rotates along with the player's view
 implement fps throttle
 

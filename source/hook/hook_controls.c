@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/31 18:44:42 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 13:51:51 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/13 16:20:09 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 
 #include "MLX42.h"
 
-static const keys_t				g_keys_view[4] = {
+static const keys_t			g_keys_view[4] = {
 	MLX_KEY_LEFT, MLX_KEY_RIGHT, MLX_KEY_UP, MLX_KEY_DOWN,
 };
-static const t_player_method	g_turnfs[4] = {
+static const t_player_turnf	g_turnfs[4] = {
 	player_turn_left, player_turn_right, player_turn_up, player_turn_down,
 };
-static const keys_t				g_keys_move[N_DIRECTION] = {
+static const keys_t			g_keys_move[N_DIRECTION] = {
 	MLX_KEY_W, MLX_KEY_A, MLX_KEY_S, MLX_KEY_D,
 };
 
-static const t_player_method	g_stepfs[N_DIRECTION] = {
+static const t_player_stepf	g_stepfs[N_DIRECTION] = {
 	player_step_forward, player_step_left,
 	player_step_backward, player_step_right,
 };
@@ -70,10 +70,9 @@ static int	keys_move(t_map *map, mlx_t *mlx)
 	has_moved = 0;
 	while (dir < N_DIRECTION)
 	{
-		if (mlx_is_key_down(mlx, g_keys_move[dir])
-			&& player_collide(&map->player, map, dir)->type == OBJ_EMPTY)
+		if (mlx_is_key_down(mlx, g_keys_move[dir]))
 		{
-			g_stepfs[dir](&map->player);
+			g_stepfs[dir](&map->player, map);
 			has_moved = 1;
 		}
 		++dir;
