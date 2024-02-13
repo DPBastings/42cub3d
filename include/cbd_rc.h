@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:26:32 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 16:39:38 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/13 16:28:25 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ typedef enum e_isct
  * @param direction	Direction vector. Correlates with the player's movement
  * 					angle, albeit that this vector's length will always be 1.
  * @param plane		Camera plane vector.
- * @note	The ratio between the direction vector and the camera plane is
- * 			equivalent to the camera's zoom level. To wit: the greater the
- * 			camera plane's length compared to the direction vector, the
- * 			farther the camera will be zoomed out.
+ * @param zoom		The zoom level.
+ * @note	Zoom level is equivalent to the ratio between the camera's direction
+ * 			vector and the camera plane. To wit: the greater the camera plane's
+ * 			length compared to the direction vector, the farther the camera
+ * 			will be zoomed out.
  */
 struct s_camera
 {
 	t_dvector	direction;
 	t_dvector	plane;
+	double		zoom;
 };
 
 void	camera_init(t_camera *self, t_dvector direction, double zoom);
