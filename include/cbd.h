@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 18:10:37 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 14:24:57 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define FILE_EXT		".cub"
 # define FILE_EXT_LEN	4
 
-# define SCREEN_WIDTH_DFL	1200
-# define SCREEN_HEIGHT_DFL	800
+# define SCREEN_WIDTH_DFL	1920
+# define SCREEN_HEIGHT_DFL	1200
 
 typedef struct s_game		t_game;
 typedef struct s_assets		t_assets;

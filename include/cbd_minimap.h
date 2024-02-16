@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/01 23:45:11 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 17:29:57 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 14:32:31 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@
 # include "MLX42.h"
 
 # define CBD_MINIMAP_PXPM		12
-# define CBD_MINIMAP_W_PX		360
+# define CBD_MINIMAP_W_PX		240
 # define CBD_MINIMAP_H_PX		240
-# define CBD_MINIMAP_CTR_X		180 // 360 / 2
-# define CBD_MINIMAP_CTR_Y		120 // 240 / 2
-# define CBD_MINIMAP_W_M		30 // 360 / 12
-# define CBD_MINIMAP_H_M		20 // 240 / 12
+# define CBD_MINIMAP_CTR_X		120	// CBD_MINIMAP_W_PX / 2
+# define CBD_MINIMAP_CTR_Y		120 // CBD_MINIMAP_H_PX / 2
+# define CBD_MINIMAP_W_M		20	// CBD_MINIMAP_W_PX / CBD_MINIMAP_PXPM
+# define CBD_MINIMAP_H_M		20	// CBD_MINIMAP_H_PX / CBD_MINIMAP_PXPM
 # define CBD_MINIMAP_PLAYER_PX	9
-# define CBD_MINIMAP_ARROW_PX	3
+# define CBD_MINIMAP_EYE_PX		3
 
 # define CBD_MINIMAP_CLR_EMPTY	0xEEEEEEDD
-# define CBD_MINIMAP_CLR_WALL	0x000000DD
+# define CBD_MINIMAP_CLR_WALL	0x0F0F0FDD
 # define CBD_MINIMAP_CLR_BG		0x0F0F0FDD
+# define CBD_MINIMAP_CLR_PLYR	0x888888DD
+# define CBD_MINIMAP_CLR_EYE	0xAAAAFFDD
 
 typedef struct s_minimap	t_minimap;
 

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 18:10:29 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 14:24:49 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # include "MLX42.h"
 
-# define CBD_VIEW_WIDTH_DFL		1200
-# define CBD_VIEW_HEIGHT_DFL	800
+# define CBD_VIEW_WIDTH_DFL		1920 // == SCREEN_WIDTH_DFL
+# define CBD_VIEW_HEIGHT_DFL	1200 // == SCREEN_HEIGHT_DFL
 
 # define CBD_MINIMAP_HOFFSET	16
 # define CBD_MINIMAP_VOFFSET	16

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/13 16:05:42 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 14:23:50 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 
 #include "MLX42_ext.h"
 
-#define CBD_BASE_HEIGHT	400
-
-#define TOP		0
-#define BOTTOM	1
+#define CBD_BASE_HEIGHT	600 // == SCREEN_HEIGHT_DFL / 2
 
 static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
 static uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);

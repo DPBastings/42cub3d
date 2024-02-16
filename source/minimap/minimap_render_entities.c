@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minimap_render_objects.c                           :+:    :+:            */
+/*   minimap_render_entities.c                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 15:15:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/02 17:12:45 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 14:34:00 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	minimap_render_entities(t_minimap *self, t_map const *map)
 static void	render_player(t_minimap *self, t_player const *player)
 {
 	render(self, (t_point){CBD_MINIMAP_CTR_X, CBD_MINIMAP_CTR_Y},
-		0x007799FF, CBD_MINIMAP_PLAYER_PX);
+		CBD_MINIMAP_CLR_PLYR, CBD_MINIMAP_PLAYER_PX);
 	render(self, (t_point){
-		CBD_MINIMAP_CTR_X + 60 * player->delta_m.x,
-		CBD_MINIMAP_CTR_Y + 60 * player->delta_m.y},
-		0x00BBBBFF, CBD_MINIMAP_ARROW_PX);
+		CBD_MINIMAP_CTR_X + 80 * player->delta_m.x,
+		CBD_MINIMAP_CTR_Y + 80 * player->delta_m.y},
+		CBD_MINIMAP_CLR_EYE, CBD_MINIMAP_EYE_PX);
 }
 
 static void	render(t_minimap *self, t_point pt, uint32_t cl, uint32_t size)

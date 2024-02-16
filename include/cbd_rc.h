@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:26:32 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/13 16:28:25 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 14:23:18 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stddef.h>
 # include <math.h>
 
-# define CBD_RC_RES	1200
+# define CBD_RC_RES	1920 // == SCREEN_WIDTH_DFL
 
 typedef struct s_camera		t_camera;
 typedef struct s_ray		t_ray;
@@ -92,7 +92,7 @@ struct s_rc_result
  * @param pos_grid		Position of the ray, rounded down to an integer; the
  * 						grid slot that the ray is currently in.
  * @param direction		Base direction vector.
- * @param ctr		Tracks the total x and y distance traveled so far.
+ * @param ctr			Tracks the total x and y distance traveled so far.
  * @param delta_edge	The number of steps that need to be taken in order to
  * 						reach the next vertical/horizontal grid edge.
  * @param delta_grid	Grid steps vector: add .x or .y to pos_grid to move into

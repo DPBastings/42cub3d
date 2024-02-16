@@ -1,9 +1,6 @@
 NAME 		:= cub3d
 
 SRC_FILES	:= main.c\
-			\
-			debug.c\
-			\
 			assets.c\
 			error.c\
 			game.c\
@@ -46,9 +43,6 @@ SRC_FILES	:= main.c\
 			MLX42_ext/mlx_put_line.c
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
-			\
-			debug.h\
-			\
 			cbd_assets.h\
 			cbd_error.h\
 			cbd_game.h\
