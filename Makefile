@@ -7,9 +7,11 @@ SRC_FILES	:= main.c\
 			object.c\
 			texture.c\
 			hook/hooks_init.c\
-			hook/hook_controls.c\
 			hook/hook_close.c\
+			hook/hook_controls.c\
+			hook/hook_cursor_turn.c\
 			hook/hook_render.c\
+			hook/hook_scroll_zoom.c\
 			map/map.c\
 			map/map_check.c\
 			map/map_method.c\

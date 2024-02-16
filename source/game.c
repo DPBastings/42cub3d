@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 14:22:50 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 16:16:22 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	game_init(t_game *self, char const *path)
 		cbd_terminate(CBD_EGENERIC);
 	game_read(self, fd);
 	close(fd);
-	self->mlx = mlx_init(1800, 1200, TITLE, false);
+	self->mlx = mlx_init(1920, 1200, TITLE, false);
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
