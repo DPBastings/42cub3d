@@ -6,71 +6,77 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 16:52:05 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/13 16:22:21 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 16:12:30 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_player.h"
 #include "cbd_map.h"
 
+static inline void	player_step(t_player *self, t_map const *map, t_dpoint cp,
+	t_dpoint np);
+
 void	player_step_forward(t_player *self, t_map const *map)
 {
-	double const	nx = self->pos.x + self->delta_m.x;
-	double const	ny = self->pos.y + self->delta_m.y;
+	t_dpoint const	cp = (t_dpoint){
+		self->pos.x + (self->delta_m.x * PLAYER_HITBOX),
+		self->pos.y + (self->delta_m.y * PLAYER_HITBOX)
+	};
+	t_dpoint const	np = (t_dpoint){
+		self->pos.x + self->delta_m.x,
+		self->pos.y + self->delta_m.y,
+	};
 
-	if (map_caccessd(map, (t_dpoint){nx, self->pos.y})->type != OBJ_WALL)
-		self->pos.x = nx;
-	if (map_caccessd(map, (t_dpoint){self->pos.x, ny})->type != OBJ_WALL)
-		self->pos.y = ny;
+	player_step(self, map, cp, np);
 }
 
 void	player_step_backward(t_player *self, t_map const *map)
 {
-	double const	nx = self->pos.x - self->delta_m.x;
-	double const	ny = self->pos.y - self->delta_m.y;
+	t_dpoint const	cp = (t_dpoint){
+		self->pos.x - (self->delta_m.x * PLAYER_HITBOX),
+		self->pos.y - (self->delta_m.y * PLAYER_HITBOX)
+	};
+	t_dpoint const	np = (t_dpoint){
+		self->pos.x - self->delta_m.x,
+		self->pos.y - self->delta_m.y,
+	};
 
-	if (map_caccessd(map, (t_dpoint){nx, self->pos.y})->type != OBJ_WALL)
-		self->pos.x = nx;
-	if (map_caccessd(map, (t_dpoint){self->pos.x, ny})->type != OBJ_WALL)
-		self->pos.y = ny;
+	player_step(self, map, cp, np);
 }
 
 void	player_step_left(t_player *self, t_map const *map)
 {
-	double const	nx = self->pos.x + self->delta_m.y;
-	double const	ny = self->pos.y - self->delta_m.x;
+	t_dpoint const	cp = (t_dpoint){
+		self->pos.x + (self->delta_m.y * PLAYER_HITBOX),
+		self->pos.y - (self->delta_m.x * PLAYER_HITBOX)
+	};
+	t_dpoint const	np = (t_dpoint){
+		self->pos.x + self->delta_m.y,
+		self->pos.y - self->delta_m.x,
+	};
 
-	if (map_caccessd(map, (t_dpoint){nx, self->pos.y})->type != OBJ_WALL)
-		self->pos.x = nx;
-	if (map_caccessd(map, (t_dpoint){self->pos.x, ny})->type != OBJ_WALL)
-		self->pos.y = ny;
+	player_step(self, map, cp, np);
 }
 
 void	player_step_right(t_player *self, t_map const *map)
 {
-	double const	nx = self->pos.x - self->delta_m.y;
-	double const	ny = self->pos.y + self->delta_m.x;
+	t_dpoint const	cp = (t_dpoint){
+		self->pos.x - (self->delta_m.y * PLAYER_HITBOX),
+		self->pos.y + (self->delta_m.x * PLAYER_HITBOX)
+	};
+	t_dpoint const	np = (t_dpoint){
+		self->pos.x - self->delta_m.y,
+		self->pos.y + self->delta_m.x,
+	};
 
-	if (map_caccessd(map, (t_dpoint){nx, self->pos.y})->type != OBJ_WALL)
-		self->pos.x = nx;
-	if (map_caccessd(map, (t_dpoint){self->pos.x, ny})->type != OBJ_WALL)
-		self->pos.y = ny;
+	player_step(self, map, cp, np);
 }
 
-/*void	player_step_backward(t_player *self, t_map const *map)
+static inline void	player_step(t_player *self, t_map const *map, t_dpoint cp,
+	t_dpoint np)
 {
-	self->pos.x -= self->delta_m.x;
-	self->pos.y -= self->delta_m.y;
+	if (map_caccessd(map, (t_dpoint){cp.x, self->pos.y})->type != OBJ_WALL)
+		self->pos.x = np.x;
+	if (map_caccessd(map, (t_dpoint){self->pos.x, cp.y})->type != OBJ_WALL)
+		self->pos.y = np.y;
 }
-
-void	player_step_left(t_player *self, t_map const *map)
-{
-	self->pos.x += self->delta_m.y;
-	self->pos.y -= self->delta_m.x;
-}
-
-void	player_step_right(t_player *self, t_map const *map)
-{
-	self->pos.x -= self->delta_m.y;
-	self->pos.y += self->delta_m.x;
-}*/

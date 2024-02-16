@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/29 14:38:50 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/13 16:21:18 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/16 15:25:43 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define PLAYER_STEP_SPEED	0.03125
 # define PLAYER_TURN_SPEED	0.03125
-# define PLAYER_HITBOX_SIZE	0.125
+# define PLAYER_HITBOX		6.0
 
 # define PLAYER_VIEW_ZMAX	200
 
