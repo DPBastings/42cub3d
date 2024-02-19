@@ -15,4 +15,7 @@
 void	hook_scroll_zoom(double xdelta, double ydelta, void *param)
 {
 	t_game *const	game = param;
+	(void) game;
+	(void) xdelta;
+	(void) ydelta;
 }

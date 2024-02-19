@@ -15,4 +15,7 @@
 void	hook_cursor_turn(double xpos, double ypos, void *param)
 {
 	t_game *const	game = param;
+	(void) game;
+	(void) xpos;
+	(void) ypos;
 }
