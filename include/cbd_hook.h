@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 19:03:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 16:31:15 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/19 17:56:56 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ typedef void	(*t_hookf)(void *);
 void	hooks_init(t_game *game);
 
 void	hook_close(void *param);
-void	hook_controls(void *param);
+void	hook_move(void *param);
 void	hook_render(void *param);
+void	hook_view(void *param);
 
 void	hook_cursor_turn(double xpos, double ypos, void *param);
 void	hook_key_esc(mlx_key_data_t keydata, void *param);

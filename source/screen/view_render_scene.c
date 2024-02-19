@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 14:23:50 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/19 17:55:01 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 
 #include "MLX42_ext.h"
 
-#define CBD_BASE_HEIGHT	600 // == SCREEN_HEIGHT_DFL / 2
-
 static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
 static uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);
-static uint32_t		_get_height(double ray_length);
+static uint32_t		_get_height(t_view const *self, double ray_length);
 static t_texture_id	_get_txr(t_rc_result *rc);
 
 void	view_render_scene(t_view *self, struct s_screen_data data)
@@ -39,7 +37,7 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 	t_texture_id const	txr = _get_txr(&data.rc->data[i]);
 	int const			column = _get_column(&data.rc->data[i],
 			data.assets->textures[txr]);
-	uint32_t const		height = _get_height(data.rc->data[i].length);
+	uint32_t const		height = _get_height(self, data.rc->data[i].length);
 	uint32_t			draw_y;
 	double				read_y;
 
@@ -63,11 +61,11 @@ static uint32_t	_get_column(t_rc_result const *rc, t_texture const txr)
 	return (modf(rc->end.x, &integral) * txr.data->width);
 }
 
-static uint32_t	_get_height(double ray_length)
+static uint32_t	_get_height(t_view const *self, double ray_length)
 {
 	if (ray_length == 0)
-		return (CBD_VIEW_HEIGHT_DFL);
-	return (CBD_BASE_HEIGHT / ray_length);
+		return (self->wall_height);
+	return (self->wall_height / ray_length);
 }
 
 static t_texture_id	_get_txr(t_rc_result *rc)

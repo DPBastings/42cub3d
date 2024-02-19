@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 14:24:49 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/19 17:55:38 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@
 
 # include "MLX42.h"
 
-# define CBD_VIEW_WIDTH_DFL		1920 // == SCREEN_WIDTH_DFL
-# define CBD_VIEW_HEIGHT_DFL	1200 // == SCREEN_HEIGHT_DFL
+	// == SCREEN_WIDTH_DFL
+# define CBD_VIEW_WIDTH_DFL		1920
+	// == SCREEN_HEIGHT_DFL
+# define CBD_VIEW_HEIGHT_DFL	1200
+	// == CBD_VIEW_HEIGHT_DFL / 2
+# define CBD_VIEW_HEIGHT_DFL_2	600
+# define CBD_VIEW_Z_MARGIN		200
+	// == CBD_VIEW_HEIGHT_DFL_2 + PLAYER_VIEW_ZMAX
+# define CBD_BOX_HEIGHT			800
+# define CBD_WALL_HEIGHT_DFL	780
 
 # define CBD_MINIMAP_HOFFSET	16
 # define CBD_MINIMAP_VOFFSET	16
@@ -37,6 +45,7 @@ struct s_view
 	mlx_image_t	*ceiling;
 	mlx_image_t	*floor;
 	uint32_t	horizon;
+	uint32_t	wall_height;
 };
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);

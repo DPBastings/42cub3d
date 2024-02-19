@@ -8,10 +8,12 @@ SRC_FILES	:= main.c\
 			texture.c\
 			hook/hooks_init.c\
 			hook/hook_close.c\
-			hook/hook_controls.c\
+			hook/hook_move.c\
+			hook/hook_view.c\
 			hook/hook_cursor_turn.c\
 			hook/hook_render.c\
 			hook/hook_scroll_zoom.c\
+			math/dvector.c\
 			map/map.c\
 			map/map_check.c\
 			map/map_method.c\
@@ -62,13 +64,13 @@ LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook map minimap parse player rc screen MLX42_ext
+SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
 
 CC			:= cc
-CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/ -O0 #-g -fsanitize=address
+CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/ -g -fsanitize=address
 
 LIBFLAGS	:= -lglfw -L/usr/lib -ldl -pthread -lm
 DEPFLAGS	:= -MMD $(@.o=.d) -MP
@@ -81,7 +83,7 @@ all: $(NAME)
 $(NAME): $(addprefix $(OBJ_DIR),$(OBJ_FILES)) $(LIB_FILES)
 	@$(CC) $(CFLAGS) $^ $(LIBFLAGS) -o $@
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c # $(addprefix $(HDR_DIR),$(HDR_FILES))
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(addprefix $(OBJ_DIR),$(OBJ_SUBDIRS))
 	@$(CC) $(CFLAGS) $(DEPFLAGS) -I$(SRC_DIR) $< -c -o $@
 

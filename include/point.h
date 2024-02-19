@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/29 14:33:14 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 12:58:50 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/19 15:21:57 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ struct s_dpoint
 	double	x;
 	double	y;
 };
+
+double		dvc_len(t_dvector dvc);
+t_dvector	dvc_scale(t_dvector dvc, double factor);
 
 static inline t_dvector	dvc_add(t_dvector a, t_dvector b)
 {

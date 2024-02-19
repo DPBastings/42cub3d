@@ -4,7 +4,7 @@ SO ./assets/textures/wall_blue.png
 WE ./assets/textures/wall_yellow.png
 
 F 45,45,65
-C 65,65,75
+C 25,25,55
 
 11111111111111111111       111      1111111111
 10000000001000000101       101     100000000011

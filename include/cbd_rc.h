@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:26:32 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 14:23:18 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/19 18:02:03 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@
 # include <stddef.h>
 # include <math.h>
 
-# define CBD_RC_RES	1920 // == SCREEN_WIDTH_DFL
+# define CBD_RC_RES			1920
+	// == SCREEN_WIDTH_DFL
+# define CBD_RC_WALL_HEIGHT	780
+# define CBD_RC_ZOOM_DFL	1.2
+# define CBD_RC_ZOOM_MIN	0.6
+# define CBD_RC_ZOOM_MAX	1.5
 
 typedef struct s_camera		t_camera;
 typedef struct s_ray		t_ray;
@@ -47,12 +52,13 @@ struct s_camera
 {
 	t_dvector	direction;
 	t_dvector	plane;
-	double		zoom;
 };
 
-void	camera_init(t_camera *self, t_dvector direction, double zoom);
+void	camera_init(t_camera *self, t_dvector direction);
 void	camera_rotate(t_camera *self, double rad);
-void	camera_zoom(t_camera *self, double zoom);
+void	camera_update(t_camera *self, t_dvector direction);
+int		camera_zoom_in(t_camera *self);
+int		camera_zoom_out(t_camera *self);
 
 /**
  * @brief	Raycaster object.

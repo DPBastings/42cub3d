@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   rc.c                                               :+:    :+:            */
+/*   dvector.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/03 17:31:18 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/19 15:57:30 by dbasting      ########   odam.nl         */
+/*   Created: 2024/02/19 15:18:04 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/02/19 15:20:33 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd_rc.h"
-#include "cbd_error.h"
+#include "point.h"
 
-#include <stdlib.h>
+#include <math.h>
 
-void	rc_init(t_rc *self, t_dvector direction)
+t_dvector	dvc_scale(t_dvector dvc, double factor)
 {
-	camera_init(&self->camera, direction);
-	self->data = malloc(CBD_RC_RES * sizeof(t_rc_result));
-	if (self->data == NULL)
-		cbd_terminate(CBD_EGENERIC);
+	return ((t_dvector){dvc.x * factor, dvc.y * factor});
 }
 
-void	rc_deinit(t_rc *self)
+double	dvc_len(t_dvector dvc)
 {
-	free(self->data);
+	return (sqrt(dvc.x * dvc.x + dvc.y * dvc.y));
 }
