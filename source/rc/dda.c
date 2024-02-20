@@ -26,6 +26,7 @@ t_isct	dda(t_ray *ray, t_map const *map)
 {
 	t_isct	isct;
 
+	isct = ISCT_H;
 	if (ray->delta_grid.x == 0)
 		while (map_caccess(map, ray->pos_grid)->type != OBJ_WALL)
 			isct = _dda_step_v(ray);

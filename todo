@@ -3,8 +3,5 @@ fix slow rendering when closely facing a wall
 
 add doors
 add something animated
-make it so that the minimap rotates along with the player's view
 
-implement fps throttle
-cache the previous player position for quicker rendering?
-make endianness-agnostic pixel placement and reading functions
+implement tick throttle
