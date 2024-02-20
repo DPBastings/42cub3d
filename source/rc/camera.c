@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cbd_rc.h"
+#include "cbd_screen.h"
 
 void	camera_init(t_camera *self, t_dvector direction)
 {
@@ -32,7 +33,7 @@ int	camera_zoom_in(t_camera *self)
 
 	if (len > CBD_RC_ZOOM_MIN)
 	{
-		self->plane = dvc_scale(self->plane, 0.95);
+		self->plane = dvc_scale(self->plane, 1.0 / CBD_VIEW_ZOOM_FACTOR);
 		return (0);
 	}
 	return (1);
@@ -44,7 +45,7 @@ int	camera_zoom_out(t_camera *self)
 
 	if (len < CBD_RC_ZOOM_MAX)
 	{
-		self->plane = dvc_scale(self->plane, 1.05);
+		self->plane = dvc_scale(self->plane, CBD_VIEW_ZOOM_FACTOR);
 		return (0);
 	}
 	return (1);

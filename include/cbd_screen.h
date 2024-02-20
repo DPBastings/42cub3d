@@ -24,11 +24,12 @@
 	// == CBD_SCREEN_H_DFL
 # define CBD_VIEW_H_DFL_2	450
 	// == CBD_VIEW_H_DFL / 2
-# define CBD_VIEW_Z_MARGIN	300
-# define CBD_BOX_H_DFL		750
+# define CBD_VIEW_Z_MARGIN	500
+# define CBD_BOX_H_DFL		950
 	// == CBD_VIEW_H_DFL_2 + CBD_VIEW_Z_MARGIN
 
-# define CBD_WALL_H_DFL		780
+# define CBD_WALL_H_DFL			600
+# define CBD_VIEW_ZOOM_FACTOR	1.05
 
 # define CBD_MINIMAP_HOFFSET	16
 # define CBD_MINIMAP_VOFFSET	16
@@ -44,13 +45,21 @@ struct s_screen_data
 	t_map const *const		map;
 };
 
+/**
+ * @brief	Scene view object.
+ * @param scene			Image showing walls.
+ * @param ceiling		Image showing the ceiling backdrop.
+ * @param floor			Image showing the floor backdrop.
+ * @param horizon		Y coordinate of the horizon.
+ * @param wall_height	Base height of a wall.
+ */ 
 struct s_view
 {
 	mlx_image_t	*scene;
 	mlx_image_t	*ceiling;
 	mlx_image_t	*floor;
 	uint32_t	horizon;
-	uint32_t	wall_height;
+	double		wall_height;
 };
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);

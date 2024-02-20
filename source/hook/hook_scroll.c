@@ -30,11 +30,11 @@ void	hook_scroll(double xdelta, double ydelta, void *param)
 static inline void	_zoom_in(t_camera *camera, t_view *view)
 {
 	if (camera_zoom_in(camera) == 0)
-		view->wall_height *= 1.05;
+		view->wall_height *= CBD_VIEW_ZOOM_FACTOR;
 }
 
 static inline void	_zoom_out(t_camera *camera, t_view *view)
 {
 	if (camera_zoom_out(camera) == 0)
-		view->wall_height *= 0.95;
+		view->wall_height /= CBD_VIEW_ZOOM_FACTOR;
 }
