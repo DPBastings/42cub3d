@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   hook_scroll_zoom.c                                 :+:    :+:            */
+/*   hook_scroll.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -16,7 +16,7 @@
 static inline void	_zoom_in(t_camera *camera, t_view *view);
 static inline void	_zoom_out(t_camera *camera, t_view *view);
 
-void	hook_scroll_zoom(double xdelta, double ydelta, void *param)
+void	hook_scroll(double xdelta, double ydelta, void *param)
 {
 	t_game *const	game = param;
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   hook_cursor_turn.c                                 :+:    :+:            */
+/*   hook_cursor.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -11,11 +11,28 @@
 /* ************************************************************************** */
 
 #include "cbd_hook.h"
+#include "cbd_game.h"
+#include "point.h"
 
-void	hook_cursor_turn(double xpos, double ypos, void *param)
+#include <stdio.h>
+
+static inline void	_cursor_turn(double xpos, double ypos, t_game *game);
+
+void	hook_cursor(double xpos, double ypos, void *param)
 {
 	t_game *const	game = param;
-	(void) game;
-	(void) xpos;
-	(void) ypos;
+
+	if (game->status == CBD_GAME_RUNS)
+		_cursor_turn(xpos, ypos, game);
+}
+
+static inline void	_cursor_turn(double xpos, double ypos, t_game *game)
+{
+	t_dvector const	delta = (t_dvector){
+		-(game->mlx->width / 2 - xpos) * 0.006125 * PLAYER_HTURN_SPEED,
+		(game->mlx->height / 2 - ypos) * 0.006125 * PLAYER_VTURN_SPEED,
+	};
+
+	hook_view(delta, game);
+	mlx_set_mouse_pos(game->mlx, game->mlx->width / 2, game->mlx->height / 2);
 }

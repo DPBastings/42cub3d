@@ -41,8 +41,14 @@ typedef enum e_texture_id
 	EAST_WALL,
 	SOUTH_WALL,
 	WEST_WALL,
+	TXR_PAUSE,
+	TXR_CROSSHAIR,
 	N_TEXTURE,
 }	t_texture_id;
+
+# define N_DYNAMIC_TEXTURE	4
+# define N_STATIC_TEXTURE	2
+	// == N_TEXTURE - N_DYNAMIC_TEXTURE
 
 /**
  * @brief	Assets object.

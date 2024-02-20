@@ -18,10 +18,12 @@ void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
 {
 	view_init(&self->view, data.assets, mlx);
 	minimap_init(&self->minimap, data.map, mlx);
+	screen_overlay_init(&self->overlay, data.assets, mlx);
 }
 
 void	screen_deinit(t_screen *self, mlx_t *mlx)
 {
+	screen_overlay_deinit(&self->overlay, mlx);
 	minimap_deinit(&self->minimap, mlx);
 	view_deinit(&self->view, mlx);
 }
@@ -31,6 +33,7 @@ void	screen_draw(t_screen *self, mlx_t *mlx)
 	view_draw(&self->view, (t_point){0, 0}, mlx);
 	minimap_draw(&self->minimap,
 		(t_point){CBD_MINIMAP_HOFFSET, CBD_MINIMAP_VOFFSET}, mlx);
+	screen_overlay_draw(&self->overlay, mlx);
 }
 
 void	screen_render(t_screen *self, struct s_screen_data data)

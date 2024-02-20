@@ -20,9 +20,8 @@
 # include <stddef.h>
 # include <math.h>
 
-# define CBD_RC_RES			1920
+# define CBD_RC_RES			1440
 	// == SCREEN_WIDTH_DFL
-# define CBD_RC_WALL_HEIGHT	780
 # define CBD_RC_ZOOM_DFL	1.2
 # define CBD_RC_ZOOM_MIN	0.6
 # define CBD_RC_ZOOM_MAX	1.5

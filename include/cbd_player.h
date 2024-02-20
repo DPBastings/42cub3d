@@ -18,7 +18,8 @@
 # include "types.h"
 
 # define PLAYER_STEP_SPEED	0.03125
-# define PLAYER_TURN_SPEED	0.03125
+# define PLAYER_HTURN_SPEED	0.03125
+# define PLAYER_VTURN_SPEED	10		// unsigned
 # define PLAYER_HITBOX		6.0
 
 typedef enum e_direction
@@ -55,10 +56,8 @@ void		player_step_forward(t_player *self, t_map const *map);
 void		player_step_backward(t_player *self, t_map const *map);
 void		player_step_left(t_player *self, t_map const *map);
 void		player_step_right(t_player *self, t_map const *map);
-void		player_turn_left(t_player *self);
-void		player_turn_right(t_player *self);
-void		player_turn_up(t_player *self);
-void		player_turn_down(t_player *self);
+void		player_turn_h(t_player *self, double rad);
+void		player_turn_v(t_player *self, double delta);
 
 static inline t_dvector	dvc_from_rad(double rad)
 {

@@ -19,7 +19,13 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-static void	load_textures(t_texture textures[N_TEXTURE]);
+static void	load_static_textures(t_texture textures[N_TEXTURE]);
+static void	load_dynamic_textures(t_texture textures[N_TEXTURE]);
+
+static char const *const	g_txr_paths[N_STATIC_TEXTURE] = {
+	"./assets/textures/pause.png",
+	"./assets/textures/crosshair.png",
+};
 
 void	assets_read(t_assets *assets, t_fd fd)
 {
@@ -35,7 +41,8 @@ void	assets_read(t_assets *assets, t_fd fd)
 		parse_assets(&check, assets, ln);
 		free(ln);
 	}
-	load_textures(assets->textures);
+	load_dynamic_textures(assets->textures);
+	load_static_textures(assets->textures);
 }
 
 void	assets_deinit(t_assets *assets)
@@ -47,11 +54,25 @@ void	assets_deinit(t_assets *assets)
 		texture_deinit(&assets->textures[i++]);
 }
 
-static void	load_textures(t_texture textures[N_TEXTURE])
+static void	load_dynamic_textures(t_texture textures[N_TEXTURE])
 {
 	size_t	i;
 
 	i = 0;
-	while (i < N_TEXTURE)
+	while (i < N_DYNAMIC_TEXTURE)
 		texture_load(&textures[i++]);
+}
+
+static void	load_static_textures(t_texture textures[N_TEXTURE])
+{
+	size_t	i;
+
+	i = 0;
+	while (i < N_STATIC_TEXTURE)
+	{
+		textures[i + N_DYNAMIC_TEXTURE].data = mlx_load_png(g_txr_paths[i]);
+		if (textures[i + N_DYNAMIC_TEXTURE].data == NULL)
+			cbd_terminate(CBD_EGENERIC);
+		++i;
+	}
 }

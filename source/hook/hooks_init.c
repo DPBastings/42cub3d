@@ -19,11 +19,10 @@
 
 void	hooks_init(t_game *game)
 {
-	mlx_key_hook(game->mlx, hook_key_esc, game->mlx);
+	mlx_key_hook(game->mlx, hook_key, game);
 	mlx_close_hook(game->mlx, hook_close, game->mlx);
-	mlx_cursor_hook(game->mlx, hook_cursor_turn, game);
-	mlx_scroll_hook(game->mlx, hook_scroll_zoom, game);
-	mlx_loop_hook(game->mlx, hook_move, game);
-	mlx_loop_hook(game->mlx, hook_view, game);
+	mlx_cursor_hook(game->mlx, hook_cursor, game);
+	mlx_scroll_hook(game->mlx, hook_scroll, game);
+	mlx_loop_hook(game->mlx, hook_controls, game);
 	mlx_loop_hook(game->mlx, hook_render, game);
 }

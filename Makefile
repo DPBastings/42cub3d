@@ -4,15 +4,18 @@ SRC_FILES	:= main.c\
 			assets.c\
 			error.c\
 			game.c\
+			game_status.c\
 			object.c\
 			texture.c\
 			hook/hooks_init.c\
 			hook/hook_close.c\
+			hook/hook_controls.c\
+			hook/hook_cursor.c\
+			hook/hook_key.c\
 			hook/hook_move.c\
-			hook/hook_view.c\
-			hook/hook_cursor_turn.c\
 			hook/hook_render.c\
-			hook/hook_scroll_zoom.c\
+			hook/hook_scroll.c\
+			hook/hook_view.c\
 			math/dvector.c\
 			map/map.c\
 			map/map_check.c\
@@ -39,6 +42,8 @@ SRC_FILES	:= main.c\
 			rc/rc.c\
 			rc/rc_cast.c\
 			screen/screen.c\
+			screen/screen_overlay.c\
+			screen/screen_overlay_method.c\
 			screen/view.c\
 			screen/view_render.c\
 			screen/view_render_scene.c\
@@ -84,6 +89,8 @@ $(NAME): $(addprefix $(OBJ_DIR),$(OBJ_FILES)) $(LIB_FILES)
 	@$(CC) $(CFLAGS) $^ $(LIBFLAGS) -o $@
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@git submodule init
+	@git submodule update
 	@mkdir -p $(addprefix $(OBJ_DIR),$(OBJ_SUBDIRS))
 	@$(CC) $(CFLAGS) $(DEPFLAGS) -I$(SRC_DIR) $< -c -o $@
 

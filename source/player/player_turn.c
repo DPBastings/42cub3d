@@ -15,26 +15,17 @@
 
 #include <math.h>
 
-void	player_turn_left(t_player *self)
+void	player_turn_h(t_player *self, double rad)
 {
-	self->delta_o = dvc_rotate(self->delta_o, -PLAYER_TURN_SPEED);
-	self->delta_m = dvc_rotate(self->delta_m, -PLAYER_TURN_SPEED);
+	self->delta_o = dvc_rotate(self->delta_o, rad);
+	self->delta_m = dvc_rotate(self->delta_m, rad);
 }
 
-void	player_turn_right(t_player *self)
+void	player_turn_v(t_player *self, double delta)
 {
-	self->delta_o = dvc_rotate(self->delta_o, PLAYER_TURN_SPEED);
-	self->delta_m = dvc_rotate(self->delta_m, PLAYER_TURN_SPEED);
-}
-
-void	player_turn_up(t_player *self)
-{
-	if (self->view_z < CBD_VIEW_Z_MARGIN)
-		self->view_z += 10;
-}
-
-void	player_turn_down(t_player *self)
-{
-	if (self->view_z >= -CBD_VIEW_Z_MARGIN)
-		self->view_z -= 10;
+	self->view_z += delta;
+	if (self->view_z > CBD_VIEW_Z_MARGIN)
+		self->view_z = CBD_VIEW_Z_MARGIN;
+	else if (self->view_z < -CBD_VIEW_Z_MARGIN)
+		self->view_z = -CBD_VIEW_Z_MARGIN;
 }

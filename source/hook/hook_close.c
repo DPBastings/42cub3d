@@ -18,9 +18,3 @@ void	hook_close(void *param)
 
 	mlx_close_window(mlx);
 }
-
-void	hook_key_esc(mlx_key_data_t keydata, void *param)
-{
-	if (keydata.key == MLX_KEY_ESCAPE)
-		hook_close(param);
-}

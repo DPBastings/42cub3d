@@ -38,6 +38,7 @@ void	game_init(t_game *self, char const *path)
 	screen_init(&self->screen, (struct s_screen_data){
 		&self->assets, &self->rc, &self->map}, self->mlx);
 	rc_init(&self->rc, self->map.player.delta_o);
+	self->status = CBD_GAME_STOPPED;
 }
 
 void	game_read(t_game *self, t_fd fd)
@@ -49,6 +50,7 @@ void	game_read(t_game *self, t_fd fd)
 void	game_run(t_game *self)
 {
 	screen_draw(&self->screen, self->mlx);
+	game_pause(self);
 	mlx_loop(self->mlx);
 }
 

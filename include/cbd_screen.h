@@ -24,14 +24,18 @@
 	// == CBD_SCREEN_H_DFL
 # define CBD_VIEW_H_DFL_2	450
 	// == CBD_VIEW_H_DFL / 2
-# define CBD_VIEW_Z_MARGIN	200
-# define CBD_BOX_H_DFL		650
+# define CBD_VIEW_Z_MARGIN	300
+# define CBD_BOX_H_DFL		750
 	// == CBD_VIEW_H_DFL_2 + CBD_VIEW_Z_MARGIN
 
 # define CBD_WALL_H_DFL		780
 
 # define CBD_MINIMAP_HOFFSET	16
 # define CBD_MINIMAP_VOFFSET	16
+
+# define CBD_SCREEN_OVERLAY_PAUSE_CLR	0x161616A0
+
+typedef struct s_screen_overlay	t_screen_overlay;
 
 struct s_screen_data
 {
@@ -55,15 +59,37 @@ void	view_render(t_view *self, struct s_screen_data data);
 void	view_render_scene(t_view *self, struct s_screen_data data);
 void	view_deinit(t_view *self, mlx_t *mlx);
 
+typedef enum e_screen_overlay_icon
+{
+	SCREEN_OVERLAY_ICON_PAUSE = 0,
+	SCREEN_OVERLAY_ICON_CROSSHAIR,
+	N_SCREEN_OVERLAY_ICON,
+}	t_screen_overlay_icon;
+
+struct s_screen_overlay
+{
+	mlx_image_t 	*bg;
+	mlx_image_t		*icons[N_SCREEN_OVERLAY_ICON];
+};
+
+void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
+			mlx_t *mlx);
+void	screen_overlay_deinit(t_screen_overlay *self, mlx_t *mlx);
+void	screen_overlay_draw(t_screen_overlay *self, mlx_t *mlx);
+void	screen_overlay_pause(t_screen_overlay *self);
+void	screen_overlay_unpause(t_screen_overlay *self);
+
 /**
  * @brief	Screen object.
  * @param view		Image showing the world view.
  * @param minimap	A minimap of the level.
+ * @param 
  */
 struct s_screen
 {
-	t_view		view;
-	t_minimap	minimap;
+	t_view				view;
+	t_minimap			minimap;
+	t_screen_overlay	overlay;
 };
 
 void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx);

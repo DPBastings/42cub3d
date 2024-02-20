@@ -27,7 +27,7 @@ void	minimap_init(t_minimap *self, t_map const *map, mlx_t *mlx)
 void	minimap_draw(t_minimap *self, t_point pos, mlx_t *mlx)
 {
 	mlx_image_to_window(mlx, self->img, pos.x, pos.y);
-	mlx_set_instance_depth(&self->img->instances[0], 2);
+	mlx_set_instance_depth(&self->img->instances[0], CBD_Z_MINIMAP);
 }
 
 void	minimap_deinit(t_minimap *self, mlx_t *mlx)

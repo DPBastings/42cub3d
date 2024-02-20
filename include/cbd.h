@@ -30,4 +30,13 @@ typedef struct s_object		t_object;
 typedef struct s_rc			t_rc;
 typedef struct s_view		t_view;
 
+typedef enum e_z
+{
+	CBD_Z_VIEW_BG = 0,
+	CBD_Z_VIEW_SCENE,
+	CBD_Z_MINIMAP,
+	CBD_Z_SCREEN_OVERLAY,
+	CBD_Z_SCREEN_OVERLAY_ICON
+}	t_z;
+
 #endif // CBD_H
