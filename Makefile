@@ -70,7 +70,7 @@ OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
 
 CC			:= cc
-CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/ -g -fsanitize=address
+CFLAGS		+= -Wall -Wextra -Werror -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/ -O0
 
 LIBFLAGS	:= -lglfw -L/usr/lib -ldl -pthread -lm
 DEPFLAGS	:= -MMD $(@.o=.d) -MP

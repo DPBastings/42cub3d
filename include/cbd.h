@@ -17,8 +17,8 @@
 # define FILE_EXT		".cub"
 # define FILE_EXT_LEN	4
 
-# define SCREEN_WIDTH_DFL	1920
-# define SCREEN_HEIGHT_DFL	1200
+# define CBD_SCREEN_W_DFL	1440
+# define CBD_SCREEN_H_DFL	900
 
 typedef struct s_game		t_game;
 typedef struct s_assets		t_assets;

@@ -1,5 +1,5 @@
 move all view-related happenings into t_camera, away from t_player
-fix slow rendering when closely facing a wall --> avoid using mlx_put_pixel_safe?
+fix slow rendering when closely facing a wall
 
 implement mouse view movement
 implement dynamic zoom (mouse control via wheel)

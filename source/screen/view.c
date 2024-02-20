@@ -16,13 +16,13 @@
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx)
 {
-	self->horizon = CBD_VIEW_HEIGHT_DFL / 2;
-	self->ceiling = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_BOX_HEIGHT);
+	self->horizon = CBD_VIEW_H_DFL / 2;
+	self->ceiling = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_BOX_H_DFL);
 	mlx_image_fill(self->ceiling, assets->ceiling_rgba);
-	self->floor = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_BOX_HEIGHT);
+	self->floor = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_BOX_H_DFL);
 	mlx_image_fill(self->floor, assets->floor_rgba);
-	self->scene = mlx_new_image(mlx, CBD_VIEW_WIDTH_DFL, CBD_VIEW_HEIGHT_DFL);
-	self->wall_height = CBD_WALL_HEIGHT_DFL;
+	self->scene = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_VIEW_H_DFL);
+	self->wall_height = CBD_WALL_H_DFL;
 }
 
 void	view_deinit(t_view *self, mlx_t *mlx)
@@ -36,7 +36,7 @@ void	view_draw(t_view *self, t_point pt, mlx_t *mlx)
 {
 	mlx_image_to_window(mlx, self->ceiling, pt.x, pt.y - CBD_VIEW_Z_MARGIN);
 	mlx_set_instance_depth(&self->ceiling->instances[0], 0);
-	mlx_image_to_window(mlx, self->floor, pt.x, pt.y + CBD_VIEW_HEIGHT_DFL_2);
+	mlx_image_to_window(mlx, self->floor, pt.x, pt.y + CBD_VIEW_H_DFL_2);
 	mlx_set_instance_depth(&self->floor->instances[0], 0);
 	mlx_image_to_window(mlx, self->scene, pt.x, pt.y);
 	mlx_set_instance_depth(&self->scene->instances[0], 1);

@@ -73,7 +73,7 @@ static t_achkflag	parse_header(char const **str)
 		++i;
 	}
 	cbd_terminate(CBD_EASSINV);
-	return (-1);
+	return (0);
 }
 
 // O, how I long for the switch...
