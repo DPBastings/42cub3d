@@ -81,12 +81,22 @@ LIBFLAGS	:= -lglfw -L/usr/lib -ldl -pthread -lm
 DEPFLAGS	:= -MMD $(@.o=.d) -MP
 DEP_FILES	:= $(patsubst %.o,%.d,$(addprefix $(OBJ_DIR), $(OBJ_FILES)))
 
+GREEN		=	\e[38;5;118m
+YELLOW		=	\e[38;5;226m
+BLUE 		= 	\033[34;01m
+RESET		=	\e[0m
+_SUCCESS	=	[$(GREEN)[+] SUCCESS$(RESET)]
+_INFO		=	[$(YELLOW)[?] INFO$(RESET)]
+_ID			=	[$(BLUE)$(NAME)$(RESET)]
+_ID_MLX		=	[$(BLUE)MLX$(RESET)]
+_ID_LFT		=	[$(BLUE)LIBFT$(RESET)]
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(addprefix $(OBJ_DIR),$(OBJ_FILES)) $(LIB_FILES)
 	@$(CC) $(CFLAGS) $^ $(LIBFLAGS) -o $@
+	@printf "$(_SUCCESS) Project compiled ->$(_ID)\n"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@git submodule init
@@ -97,23 +107,26 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 lib/libft/libft.a:
 	@git submodule init
 	@git submodule update
-	@$(MAKE) --directory=$(dir $@)
+	@$(MAKE) --directory=$(dir $@) --silent
+	@printf "$(_INFO) Archive created ->$(_ID_LFT)\n"
 
 lib/libmlx42_build/libmlx42.a:
 	@git submodule init
 	@git submodule update
-	@cmake -S ./lib/libmlx42/ -B $(dir $@)
-	@cmake --build $(dir $@)
+	@$(MAKE) -C ./lib/libmlx42_build --silent
+	@printf "$(_INFO) Archive created ->$(_ID_MLX)\n"
 	
 clean:
-	$(MAKE) --directory=./lib/libft/ clean
-	cmake --build ./lib/libmlx42_build/ --target clean
+	@$(MAKE) -C ./lib/libft/ clean --silent
+	@$(MAKE) -C ./lib/libmlx42_build/ clean --silent
 	@rm -f $(addprefix $(OBJ_DIR),$(OBJ_FILES))\
 		$(addprefix $(OBJ_DIR),$(patsubst %.o,%.d,$(OBJ_FILES)))
+	@printf "$(_INFO) Object files deleted ->$(_ID)\n"
 
 fclean: clean
-	$(MAKE) --directory=./lib/libft/ fclean
+	@$(MAKE) -C ./lib/libft/ fclean --silent
 	@rm -f $(NAME)
+	@printf "$(_INFO) Executable removed ->$(_ID)\n"
 
 re: fclean all
 
