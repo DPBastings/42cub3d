@@ -6,14 +6,14 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 14:24:57 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/26 15:03:39 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CBD_H
 # define CBD_H
 
-# define TITLE			"Verve 3D"
+# define TITLE			"Verve 3D" // I'm taking suggestions for this.
 # define FILE_EXT		".cub"
 # define FILE_EXT_LEN	4
 

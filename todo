@@ -1,15 +1,16 @@
 === HIGH PRIORITY ===
 add doors
+implement tick throttle (for animation!)
 add something animated
 better file structure for everything pertaining to points and vectors (how I wish I could put everything in inline headers)
 
 === MEDIUM PRIORITY ===
-move all view-related happenings into t_camera, away from t_player
-implement tick throttle -- 24 FPS is more than enough, really
-display a more descriptive error message if the player is not enclosed by walls
+move all view-related happenings (delta_o, view_z) into t_camera, away from t_player
+display a more descriptive error message if the player's start is not enclosed by walls
 
 === LOW PRIORITY ===
 fix slow rendering when closely facing a wall ~ probably can't be done at all
+have the minimap FOV be displayed as a cone
 
 === MAYBE DO THIS TOO, BUT WE'LL PROBABLY BE FINE IF WE LEAVE IT BE ===
 mark maps that have isolated empty space as invalid

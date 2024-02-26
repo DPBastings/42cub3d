@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/19 17:55:38 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/26 14:55:24 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 
 typedef struct s_screen_overlay	t_screen_overlay;
 
+/**
+ * @brief	Bundles several resources used in rendering the screen.
+*/
 struct s_screen_data
 {
 	t_assets const *const	assets;
@@ -52,7 +55,7 @@ struct s_screen_data
  * @param floor			Image showing the floor backdrop.
  * @param horizon		Y coordinate of the horizon.
  * @param wall_height	Base height of a wall.
- */ 
+ */
 struct s_view
 {
 	mlx_image_t	*scene;
@@ -75,10 +78,15 @@ typedef enum e_screen_overlay_icon
 	N_SCREEN_OVERLAY_ICON,
 }	t_screen_overlay_icon;
 
+/**
+ * @brief	Screen overlay object.
+ * @param bg	Image displaying the overlay's background.
+ * @param icons	Images displaying overlain icons.
+*/
 struct s_screen_overlay
 {
-	mlx_image_t 	*bg;
-	mlx_image_t		*icons[N_SCREEN_OVERLAY_ICON];
+	mlx_image_t	*bg;
+	mlx_image_t	*icons[N_SCREEN_OVERLAY_ICON];
 };
 
 void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
@@ -92,7 +100,7 @@ void	screen_overlay_unpause(t_screen_overlay *self);
  * @brief	Screen object.
  * @param view		Image showing the world view.
  * @param minimap	A minimap of the level.
- * @param 
+ * @param overlay	Screen overlay.
  */
 struct s_screen
 {

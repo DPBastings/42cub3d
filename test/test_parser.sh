@@ -15,6 +15,7 @@ test_files=(
 	"test/maps/test07.cub"		# Unenclosed level
 	"test/maps/test08.cub"		# Missing player position
 	"test/maps/test09.cub"		# Double player position
+	"test/maps/test10.cub"		# Player in unenclosed position
 )
 
 cd ..
