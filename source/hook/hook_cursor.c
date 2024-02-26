@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 16:28:13 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 16:36:11 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/26 14:41:03 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cbd_game.h"
 #include "point.h"
 
-#include <stdio.h>
+#define SENSITIVITY	0.06125
 
 static inline void	_cursor_turn(double xpos, double ypos, t_game *game);
 
@@ -29,8 +29,8 @@ void	hook_cursor(double xpos, double ypos, void *param)
 static inline void	_cursor_turn(double xpos, double ypos, t_game *game)
 {
 	t_dvector const	delta = (t_dvector){
-		-(game->mlx->width / 2 - xpos) * 0.006125 * PLAYER_HTURN_SPEED,
-		(game->mlx->height / 2 - ypos) * 0.006125 * PLAYER_VTURN_SPEED,
+		-(game->mlx->width / 2 - xpos) * SENSITIVITY * PLAYER_HTURN_SPEED,
+		(game->mlx->height / 2 - ypos) * SENSITIVITY * PLAYER_VTURN_SPEED,
 	};
 
 	hook_view(delta, game);

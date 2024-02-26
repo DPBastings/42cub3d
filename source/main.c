@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:32:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/05 15:14:19 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/02/26 14:15:28 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		cbd_terminate(CBD_EARGC);
 	game_init(&game, argv[1]);
-	rc_cast(&game.rc, &game.map);
 	game_run(&game);
 	game_deinit(&game);
 	return (CBD_SUCCESS);
