@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 19:03:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/19 17:56:56 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/03/10 19:27:30 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	hook_cursor(double xpos, double ypos, void *param);
 void	hook_key(mlx_key_data_t keydata, void *param);
 void	hook_render(void *param);
 void	hook_scroll(double xdelta, double ydelta, void *param);
+void	hook_fps(void *param);
 
 void	hook_move(t_direction dir, t_game *game);
 void	hook_view(t_dvector delta, t_game *game);

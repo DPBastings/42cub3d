@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 16:16:22 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/03/10 19:58:13 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	game_init(t_game *self, char const *path)
 		&self->assets, &self->rc, &self->map}, self->mlx);
 	rc_init(&self->rc, self->map.player.delta_o);
 	self->status = CBD_GAME_STOPPED;
+	self->fps_counter = NULL;
+	self->frame_timer = 0;
 }
 
 void	game_read(t_game *self, t_fd fd)

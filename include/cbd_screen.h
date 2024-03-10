@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/26 14:55:24 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/03/10 17:12:30 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef enum e_screen_overlay_icon
 struct s_screen_overlay
 {
 	mlx_image_t	*bg;
+	mlx_image_t *fps_counter; 
 	mlx_image_t	*icons[N_SCREEN_OVERLAY_ICON];
 };
 

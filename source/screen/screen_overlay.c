@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   screen_overlay.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 14:26:02 by dbasting          #+#    #+#             */
-/*   Updated: 2024/02/20 14:26:03 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   screen_overlay.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/20 14:26:02 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/03/10 20:02:31 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "cbd_error.h"
 
 #include "MLX42_ext.h"
-
+#include <stdio.h>
 static t_texture_id const	g_txrids[N_SCREEN_OVERLAY_ICON] = {
 	TXR_PAUSE, TXR_CROSSHAIR,
 };

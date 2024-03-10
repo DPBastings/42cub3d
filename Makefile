@@ -16,6 +16,7 @@ SRC_FILES	:= main.c\
 			hook/hook_render.c\
 			hook/hook_scroll.c\
 			hook/hook_view.c\
+			hook/hook_fps.c \
 			math/dvector.c\
 			map/map.c\
 			map/map_check.c\
