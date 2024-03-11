@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:48 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:55 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   texture.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:32:48 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/03/11 16:39:30 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void	texture_load(t_texture *txr)
 {
 	char *const	path = txr->path;
-
+	//printf("Loading: %s\n", path);
 	txr->data = mlx_load_png(path);
 	if (txr->data == NULL)
 		cbd_terminate(CBD_EGENERIC);

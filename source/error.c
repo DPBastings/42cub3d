@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:32:26 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:32:34 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   error.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:32:26 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/03/11 15:04:25 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char const *const	g_cbd_errlist[N_ERRNO] = {
 	"Invalid map layout: unrecognized object.",
 	"Invalid map layout: faulty wall enclosure.",
 	"Invalid map layout: missing start position indicator.",
-	"Invalid map layout: multiple start position indicators.",
+	"Invalid map layout: multiple start position indicators."
 };
 
 void	cbd_strerror(t_errno errno)
