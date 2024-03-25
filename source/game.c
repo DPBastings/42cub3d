@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/10 19:58:13 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/25 17:07:56 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	game_init(t_game *self, char const *path)
 	screen_init(&self->screen, (struct s_screen_data){
 		&self->assets, &self->rc, &self->map}, self->mlx);
 	rc_init(&self->rc, self->map.player.delta_o);
+	init_sprites(self);
 	self->status = CBD_GAME_STOPPED;
 	self->fps_counter = NULL;
 	self->frame_timer = 0;
@@ -51,6 +52,7 @@ void	game_read(t_game *self, t_fd fd)
 
 void	game_run(t_game *self)
 {
+	//sprite_casting(self);
 	screen_draw(&self->screen, self->mlx);
 	game_pause(self);
 	mlx_loop(self->mlx);

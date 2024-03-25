@@ -13,6 +13,7 @@
 #include "cbd.h"
 #include "cbd_error.h"
 #include "cbd_screen.h"
+#include "sprite.h"
 
 void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
 {
@@ -36,8 +37,9 @@ void	screen_draw(t_screen *self, mlx_t *mlx)
 	screen_overlay_draw(&self->overlay, mlx);
 }
 
-void	screen_render(t_screen *self, struct s_screen_data data)
+void	screen_render(t_game *game, t_screen *self, struct s_screen_data data)
 {
 	view_render(&self->view, data);
+	sprite_casting(game);
 	minimap_render(&self->minimap, data.map, data.rc);
 }

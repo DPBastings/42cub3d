@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/10 17:12:30 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/25 17:37:13 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ struct s_screen
 
 void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx);
 void	screen_draw(t_screen *self, mlx_t *mlx);
-void	screen_render(t_screen *self, struct s_screen_data data);
+void	screen_render(t_game *game, t_screen *self, struct s_screen_data data);
 void	screen_deinit(t_screen *self, mlx_t *mlx);
 
 #endif // CBD_SCREEN_H

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/10 19:13:48 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/25 14:46:12 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_game		t_game;
 typedef struct s_assets		t_assets;
+typedef struct s_sprite		t_sprite;
 typedef struct s_screen		t_screen;
 typedef struct s_minimap	t_minimap;
 typedef struct s_map		t_map;

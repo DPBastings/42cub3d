@@ -48,9 +48,10 @@ SRC_FILES	:= main.c\
 			screen/view.c\
 			screen/view_render.c\
 			screen/view_render_scene.c\
-			\
 			MLX42_ext/mlx_utils.c\
-			MLX42_ext/mlx_put_line.c
+			MLX42_ext/mlx_put_line.c\
+			sprites/sprite.c \
+
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
 			cbd_assets.h\
@@ -65,12 +66,13 @@ HDR_FILES	:= cbd.h\
 			cbd_view.h\
 			point.h\
 			types.h\
-			MLX42_ext.h
+			MLX42_ext.h \
+
 LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext
+SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext sprites
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
