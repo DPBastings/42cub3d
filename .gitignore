@@ -6,3 +6,4 @@ lib/libmlx42_build/
 *.a
 *.d
 *.out
+vgcore.*
