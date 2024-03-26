@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 18:53:44 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:29:51 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/26 17:02:16 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	hooks_init(t_game *game)
 	mlx_scroll_hook(game->mlx, hook_scroll, game);
 	mlx_loop_hook(game->mlx, hook_controls, game);
 	mlx_loop_hook(game->mlx, hook_render, game);
-	//mlx_loop_hook(game->mlx, hook_fps, game);
+	mlx_loop_hook(game->mlx, hook_fps, game);
 }

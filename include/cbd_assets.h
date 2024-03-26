@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:47 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/11 16:36:33 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/26 17:00:04 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ typedef enum e_texture_id
 	WEST_WALL,
 	TXR_PAUSE,
 	TXR_CROSSHAIR,
-	FLOOR,
-	CEILLING,
 	N_TEXTURE,
 }	t_texture_id;
 

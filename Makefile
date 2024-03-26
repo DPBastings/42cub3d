@@ -16,6 +16,7 @@ SRC_FILES	:= main.c\
 			hook/hook_render.c\
 			hook/hook_scroll.c\
 			hook/hook_view.c\
+			hook/hook_fps.c \
 			math/dvector.c\
 			map/map.c\
 			map/map_check.c\
@@ -49,8 +50,7 @@ SRC_FILES	:= main.c\
 			screen/view_render_scene.c\
 			MLX42_ext/mlx_utils.c\
 			MLX42_ext/mlx_put_line.c\
-			#sprites/sprite.c \
-			#hook/hook_fps.c \
+			sprite/sprite.c \
 
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
@@ -72,7 +72,7 @@ LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext #sprites
+SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext sprite
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
@@ -116,12 +116,13 @@ lib/libft/libft.a:
 lib/libmlx42_build/libmlx42.a:
 	@git submodule init
 	@git submodule update
-	@$(MAKE) -C ./lib/libmlx42_build --silent
+	@cmake -S ./lib/libmlx42/ -B $(dir $@)
+	@cmake --build $(dir $@)
 	@printf "$(_INFO) Archive created ->$(_ID_MLX)\n"
 	
 clean:
 	@$(MAKE) -C ./lib/libft/ clean --silent
-	@$(MAKE) -C ./lib/libmlx42_build/ clean --silent
+	@cmake --build ./lib/libmlx42_build/ --target clean
 	@rm -f $(addprefix $(OBJ_DIR),$(OBJ_FILES))\
 		$(addprefix $(OBJ_DIR),$(patsubst %.o,%.d,$(OBJ_FILES)))
 	@printf "$(_INFO) Object files deleted ->$(_ID)\n"

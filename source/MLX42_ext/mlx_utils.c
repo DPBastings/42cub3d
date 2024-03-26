@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 23:02:07 by dbasting          #+#    #+#             */
-/*   Updated: 2024/02/02 23:02:08 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx_utils.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/03/26 17:46:14 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ uint32_t	mlx_texture_read(mlx_texture_t const *txr, int32_t x, int32_t y)
 	size_t const	i = (y * txr->width + x) * 4;
 	uint8_t const	px[4] = {
 		txr->pixels[i + 3], txr->pixels[i + 2],
-		txr->pixels[i + 1], txr->pixels[i]};
+		txr->pixels[i + 1], txr->pixels[i]
+		};
 
 	return (*((uint32_t *)px));
 }

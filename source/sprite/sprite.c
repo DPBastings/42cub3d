@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 13:09:07 by tcensier      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:21:27 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/26 18:19:37 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ void	sprite_casting(t_game *self)
 	double sprite_dist = (player.pos.x - rock->x) * (player.pos.x - rock->x) + (player.pos.y - rock->y) * (player.pos.y - rock->y);
 	double sp_x = rock->x - player.pos.x;
 	double sp_y = rock->y - player.pos.y;
+	
 	double invdet = 1.0 / (cam.plane.x * player.delta_o.y - player.delta_o.x * cam.plane.y);
 	
-	double transX = invdet * (player.delta_o.y * rock->x - player.delta_o.x * rock->y);
-	double transY = invdet * (-cam.plane.y * rock->x + cam.plane.x * rock->y);
+	double transX = invdet * (player.delta_o.y *sp_x - player.delta_o.x * sp_y);
+	double transY = invdet * (-cam.plane.y * sp_x+ cam.plane.x * sp_y);
 	
 	int sprite_screen_x = ((int)(CBD_VIEW_W_DFL/2) * (1 + transX / transY));
 	//printf("sprite_screen_x: %i\n", sprite_screen_x);
@@ -69,16 +70,23 @@ void	sprite_casting(t_game *self)
 		int txr_x = (int)(256 * (stripe - (-sprite_width / 2 + sprite_screen_x)) * rock->texture->data->width / sprite_width) / 256;
 		if (transY > 0 && stripe > 0 && stripe < CBD_VIEW_W_DFL && transY < rc.data[stripe].length)
 		{
+			
 			int y = draw_start_y;
 			while (y < draw_end_y)
 			{
 				int d = y * 256 - CBD_SCREEN_H_DFL * 128 + sprite_height * 128;
 				//printf("d: %i\n | rock_h: %d | sprite_h: %d", d, rock->texture->data->height, sprite_height);
 				int txr_y = ((d * rock->texture->data->height) / sprite_height) / 256;
-				//uint32_t cl = mlx_texture_read(rock->texture, txr_x, txr_y);
-				//printf("txr_x: %i | txr_y: %i\n", txr_x, txr_y);
-				//mlx_put_pixel_safe(view.scene, stripe, y, 0xffff00 );
+				uint32_t cl = mlx_texture_read(rock->texture->data, txr_x, txr_y);
+				//printf("txr_x: %i | txr_y: %i\n x: %i | y: %i\n", txr_x, txr_y, stripe, y);
+				//printf("%x |", cl);
+				if (cl != 0xffffff || cl != 0xeeeeeeff)
+					mlx_put_pixel_safe(view.scene, stripe, y, cl );
 				y++;
+				
+				// uint32_t cl = mlx_texture(rock->texture->data, );
+				// mlx_put_pixel_safe(view.scene, , 0, 0);
+				
 			}
 			
 
@@ -116,20 +124,48 @@ void	init_sprites(t_game *self)
 	{
 		free(rock);
 		cbd_terminate(CBD_EGENERIC);
-	}
+	}	// printf("rock_w: %d | rock_h: %d\n", rock->texture->data->width, rock->texture->data->height);
+	// uint32_t y = 0;
+	// while (y < txr->data->height)
+	// {
+	// 	uint32_t x = 0;
+	// 	while (x < txr->data->width)
+	// 	{
+	// 		uint32_t cl = mlx_texture_read(txr->data, x, y);
+	// 		if (cl > 0)
+	// 			printf(" %i |", cl);
+	// 		x++;	
+	// 	}
+	// 	printf("\n");
+	// 	y++;
+	// }
 	
-	//txr->path = ft_strdup("./assets/textures/sprites/rock.png");
+	txr->path = ft_strdup("./assets/sprites/rock.png");
 	if (!txr->path)
 	{
 		free(rock);
 		free(txr);
 		cbd_terminate(CBD_EGENERIC);
 	}
-	//texture_load(txr);
-	rock->x = 2.0;
-	rock->y = 2.0;
+	texture_load(txr);
+	rock->x = 3.0;
+	rock->y = 3.0;
 	rock->texture = txr;
-	//printf("rock_w: %d | rock_h: %d\n", rock->texture->data->width, rock->texture->data->height);
+	// printf("rock_w: %d | rock_h: %d\n", rock->texture->data->width, rock->texture->data->height);
+	// uint32_t y = 0;
+	// while (y < txr->data->height)
+	// {
+	// 	uint32_t x = 0;
+	// 	while (x < txr->data->width)
+	// 	{
+	// 		uint32_t cl = mlx_texture_read(txr->data, x, y);
+	// 		if (cl > 0)
+	// 			printf(" %i |", cl);
+	// 		x++;	
+	// 	}
+	// 	printf("\n");
+	// 	y++;
+	// }
 	self->sprites = rock;
 }
 

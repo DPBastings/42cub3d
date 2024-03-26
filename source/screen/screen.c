@@ -37,10 +37,12 @@ void	screen_draw(t_screen *self, mlx_t *mlx)
 	screen_overlay_draw(&self->overlay, mlx);
 }
 
-void	screen_render(t_game *game, t_screen *self, struct s_screen_data data)
+void	screen_render(t_game *self, struct s_screen_data data)
 {
-	(void)game;
-	view_render(&self->view, data);
-	//sprite_casting(game);
-	minimap_render(&self->minimap, data.map, data.rc);
+	t_screen *screen;
+
+	screen = &self->screen;
+	view_render(&screen->view, data);
+	sprite_casting(self);
+	minimap_render(&screen->minimap, data.map, data.rc);
 }

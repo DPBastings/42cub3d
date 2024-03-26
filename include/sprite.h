@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 12:58:48 by tcensier      #+#    #+#                 */
-/*   Updated: 2024/03/25 17:00:33 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/03/26 17:36:51 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "cbd_game.h"
 # include "cbd_assets.h"
 # include "MLX42_ext.h"
+# include "libft.h"
 
 typedef struct	s_sprite
 {

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/05 16:43:20 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/25 17:30:49 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/03/26 15:55:09 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	view_render(t_view *self, struct s_screen_data data)
 	self->horizon = CBD_VIEW_H_DFL_2 + data.map->player.view_z;
 	render_background(self);
 	view_render_scene(self, data);
-	
 }
 
 static void	render_background(t_view *self)

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/25 17:37:13 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/03/26 17:15:18 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct s_screen_overlay	t_screen_overlay;
 /**
  * @brief	Bundles several resources used in rendering the screen.
 */
-struct s_screen_data
+typedef struct s_screen_data
 {
 	t_assets const *const	assets;
 	t_rc const *const		rc;
 	t_map const *const		map;
-};
+}				t_screen_data;
 
 /**
  * @brief	Scene view object.
@@ -110,9 +110,9 @@ struct s_screen
 	t_screen_overlay	overlay;
 };
 
-void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx);
+void	screen_init(t_screen *screen, struct s_screen_data data, mlx_t *mlx);
 void	screen_draw(t_screen *self, mlx_t *mlx);
-void	screen_render(t_game *game, t_screen *self, struct s_screen_data data);
+void	screen_render(t_game *self, struct s_screen_data data);
 void	screen_deinit(t_screen *self, mlx_t *mlx);
 
 #endif // CBD_SCREEN_H
