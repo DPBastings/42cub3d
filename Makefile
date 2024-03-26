@@ -16,7 +16,6 @@ SRC_FILES	:= main.c\
 			hook/hook_render.c\
 			hook/hook_scroll.c\
 			hook/hook_view.c\
-			hook/hook_fps.c \
 			math/dvector.c\
 			map/map.c\
 			map/map_check.c\
@@ -50,7 +49,8 @@ SRC_FILES	:= main.c\
 			screen/view_render_scene.c\
 			MLX42_ext/mlx_utils.c\
 			MLX42_ext/mlx_put_line.c\
-			sprites/sprite.c \
+			#sprites/sprite.c \
+			#hook/hook_fps.c \
 
 OBJ_FILES	:= $(patsubst %.c,%.o,$(SRC_FILES))
 HDR_FILES	:= cbd.h\
@@ -72,13 +72,13 @@ LIB_FILES	:= lib/libft/libft.a\
 			lib/libmlx42_build/libmlx42.a
 
 SRC_DIR		:= ./source/
-SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext sprites
+SRC_SUBDIRS	:= hook math map minimap parse player rc screen MLX42_ext #sprites
 OBJ_DIR		:= ./object/
 OBJ_SUBDIRS := $(SRC_SUBDIRS)
 HDR_DIR		:= ./include/
 
 CC			:= cc
-CFLAGS		+= -Wall -Wextra  -Ofast -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/
+CFLAGS		+= -Wall -Wextra -Wextra -Ofast -I$(HDR_DIR) -Ilib/libft/include/ -Ilib/libmlx42/include/MLX42/
 
 LIBFLAGS	:= -lglfw -L/usr/lib -ldl -pthread -lm
 DEPFLAGS	:= -MMD $(@.o=.d) -MP

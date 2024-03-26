@@ -39,7 +39,8 @@ void	screen_draw(t_screen *self, mlx_t *mlx)
 
 void	screen_render(t_game *game, t_screen *self, struct s_screen_data data)
 {
+	(void)game;
 	view_render(&self->view, data);
-	sprite_casting(game);
+	//sprite_casting(game);
 	minimap_render(&self->minimap, data.map, data.rc);
 }

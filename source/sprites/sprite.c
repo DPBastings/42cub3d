@@ -6,29 +6,30 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 13:09:07 by tcensier      #+#    #+#                 */
-/*   Updated: 2024/03/25 18:56:07 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/03/26 15:21:27 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sprite.h"
 #include "cbd_error.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-static uint32_t	_get_column(t_rc_result const *rc, t_texture const txr)
-{
-	double	integral;
+// static uint32_t	_get_column(t_rc_result const *rc, t_texture const txr)
+// {
+// 	double	integral;
 
-	if (rc->isct == ISCT_V)
-		return (modf(rc->end.y, &integral) * txr.data->width);
-	return (modf(rc->end.x, &integral) * txr.data->width);
-}
+// 	if (rc->isct == ISCT_V)
+// 		return (modf(rc->end.y, &integral) * txr.data->width);
+// 	return (modf(rc->end.x, &integral) * txr.data->width);
+// }
 
-static uint32_t	_get_height(t_view const *self, double ray_length)
-{
-	if (ray_length == 0)
-		return (self->wall_height);
-	return (self->wall_height / ray_length);
-}
+// static uint32_t	_get_height(t_view const *self, double ray_length)
+// {
+// 	if (ray_length == 0)
+// 		return (self->wall_height);
+// 	return (self->wall_height / ray_length);
+// }
 
 void	sprite_casting(t_game *self)
 {
@@ -76,7 +77,7 @@ void	sprite_casting(t_game *self)
 				int txr_y = ((d * rock->texture->data->height) / sprite_height) / 256;
 				//uint32_t cl = mlx_texture_read(rock->texture, txr_x, txr_y);
 				//printf("txr_x: %i | txr_y: %i\n", txr_x, txr_y);
-				mlx_put_pixel_safe(view.scene, stripe, y, 0xffff00 );
+				//mlx_put_pixel_safe(view.scene, stripe, y, 0xffff00 );
 				y++;
 			}
 			
@@ -102,15 +103,6 @@ void	sprite_casting(t_game *self)
 	 
 }
 
-void	sprite_draw(t_game *self)
-{
-	t_sprite *rock;
-
-	rock = self->sprites;
-	if (mlx_image_to_window(self->mlx, rock->img, 0, 0) == -1)
-		cbd_terminate(CBD_EGENERIC);
-}
-
 void	init_sprites(t_game *self)
 {
 	t_sprite 	*rock;
@@ -126,22 +118,22 @@ void	init_sprites(t_game *self)
 		cbd_terminate(CBD_EGENERIC);
 	}
 	
-	txr->path = ft_strdup("./assets/textures/sprites/rock.png");
+	//txr->path = ft_strdup("./assets/textures/sprites/rock.png");
 	if (!txr->path)
 	{
 		free(rock);
 		free(txr);
 		cbd_terminate(CBD_EGENERIC);
 	}
-	texture_load(txr);
+	//texture_load(txr);
 	rock->x = 2.0;
 	rock->y = 2.0;
 	rock->texture = txr;
-	printf("rock_w: %d | rock_h: %d\n", rock->texture->data->width, rock->texture->data->height);
+	//printf("rock_w: %d | rock_h: %d\n", rock->texture->data->width, rock->texture->data->height);
 	self->sprites = rock;
 }
 
-void	sort_sprites(int *order, double *dist, int n)
-{
-	return ;
-}
+// void	sort_sprites(int *order, double *dist, int n)
+// {
+// 	return ;
+// }
