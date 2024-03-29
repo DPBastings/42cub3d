@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:55:24 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/29 18:40:02 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	view_render_scene(t_view *self, struct s_screen_data data)
 {
 	size_t	x;
 	
-	mlx_image_fill(self->scene, 0x00000000);
+	//mlx_image_fill(self->scene, 0x00000000);
 	x = 0;
 	while (x < CBD_RC_RES)
 		render_wall(self, x++, data);

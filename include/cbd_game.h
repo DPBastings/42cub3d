@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:54 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/25 13:37:53 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/03/29 17:59:54 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ struct s_game
 	t_assets		assets;
 	t_map			map;
 	t_sprite		*sprites;
+	t_texture		*floor;
+	t_texture		*ceilling;
 	t_screen		screen;
 	t_rc			rc;
 	t_game_status	status;

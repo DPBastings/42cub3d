@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 13:09:07 by tcensier      #+#    #+#                 */
-/*   Updated: 2024/03/26 18:19:37 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/27 18:59:30 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,22 @@ void	sprite_casting(t_game *self)
 	
 	double invdet = 1.0 / (cam.plane.x * player.delta_o.y - player.delta_o.x * cam.plane.y);
 	
-	double transX = invdet * (player.delta_o.y *sp_x - player.delta_o.x * sp_y);
-	double transY = invdet * (-cam.plane.y * sp_x+ cam.plane.x * sp_y);
+	double trans_x = invdet * (player.delta_o.y *sp_x - player.delta_o.x * sp_y);
+	double trans_y = invdet * (-cam.plane.y * sp_x+ cam.plane.x * sp_y);
 	
-	int sprite_screen_x = ((int)(CBD_VIEW_W_DFL/2) * (1 + transX / transY));
+	int v_move_screen = (int)(rock->v_move/trans_y);
+
+	int sprite_screen_x = ((int)(CBD_VIEW_W_DFL/2) * (1 + trans_x / trans_y));
 	//printf("sprite_screen_x: %i\n", sprite_screen_x);
-	int sprite_height = abs((int)(CBD_VIEW_H_DFL/ transY));
-	int draw_start_y = -sprite_height / 2 + CBD_VIEW_H_DFL / 2;
+	int sprite_height = abs((int)(CBD_VIEW_H_DFL/ trans_y) / rock->v_shrink);
+	int draw_start_y = (-sprite_height / 2 + CBD_VIEW_H_DFL / 2 + v_move_screen);
 	if (draw_start_y < 0) draw_start_y = 0;
 	int draw_end_y = sprite_height / 2 + CBD_VIEW_H_DFL / 2;
 	if (draw_end_y >= CBD_VIEW_H_DFL) draw_end_y = CBD_VIEW_H_DFL - 1;
 	
-	int sprite_width = sprite_height;
-	int draw_start_x = -sprite_width / 2 + sprite_screen_x;
+	int sprite_width = abs((int)(CBD_VIEW_H_DFL/ trans_y) / rock->h_shrink);
+	int draw_start_x = -sprite_width / 2 + sprite_screen_x
+	;
 	if (draw_start_x < 0) draw_start_x = 0;
 	int draw_end_x = sprite_width / 2 + sprite_screen_x;
 	if (draw_end_y >= CBD_VIEW_W_DFL) draw_end_y = CBD_VIEW_W_DFL - 1;
@@ -68,20 +71,21 @@ void	sprite_casting(t_game *self)
 	while (stripe < draw_end_x)
 	{
 		int txr_x = (int)(256 * (stripe - (-sprite_width / 2 + sprite_screen_x)) * rock->texture->data->width / sprite_width) / 256;
-		if (transY > 0 && stripe > 0 && stripe < CBD_VIEW_W_DFL && transY < rc.data[stripe].length)
+		if (trans_y > 0 && stripe > 0 && stripe < CBD_VIEW_W_DFL && trans_y < rc.data[stripe].length)
 		{
-			
+			double read_y = 0.0;
 			int y = draw_start_y;
 			while (y < draw_end_y)
 			{
-				int d = y * 256 - CBD_SCREEN_H_DFL * 128 + sprite_height * 128;
+				int d = (y - v_move_screen) * 256 - CBD_SCREEN_H_DFL * 128 + sprite_height * 128;
 				//printf("d: %i\n | rock_h: %d | sprite_h: %d", d, rock->texture->data->height, sprite_height);
 				int txr_y = ((d * rock->texture->data->height) / sprite_height) / 256;
 				uint32_t cl = mlx_texture_read(rock->texture->data, txr_x, txr_y);
 				//printf("txr_x: %i | txr_y: %i\n x: %i | y: %i\n", txr_x, txr_y, stripe, y);
 				//printf("%x |", cl);
-				if (cl != 0xffffff || cl != 0xeeeeeeff)
-					mlx_put_pixel_safe(view.scene, stripe, y, cl );
+				
+				mlx_put_pixel_safe(view.scene, stripe, view.horizon - draw_end_y / 2 + y, cl);
+				read_y += rock->texture->data->height / (double)draw_end_x;
 				y++;
 				
 				// uint32_t cl = mlx_texture(rock->texture->data, );
@@ -150,6 +154,9 @@ void	init_sprites(t_game *self)
 	texture_load(txr);
 	rock->x = 3.0;
 	rock->y = 3.0;
+	rock->v_shrink = 2.0;
+	rock->h_shrink = 2.0;
+	rock->v_move = 128.0;
 	rock->texture = txr;
 	// printf("rock_w: %d | rock_h: %d\n", rock->texture->data->width, rock->texture->data->height);
 	// uint32_t y = 0;

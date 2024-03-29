@@ -14,6 +14,7 @@
 #include "cbd_error.h"
 #include "cbd_screen.h"
 #include "sprite.h"
+#include "fl_cei.h"
 
 void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
 {
@@ -42,7 +43,8 @@ void	screen_render(t_game *self, struct s_screen_data data)
 	t_screen *screen;
 
 	screen = &self->screen;
+	//rc_flcei(self);
 	view_render(&screen->view, data);
-	sprite_casting(self);
+	//sprite_casting(self);
 	minimap_render(&screen->minimap, data.map, data.rc);
 }

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/26 17:25:15 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/29 17:16:27 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "cbd_rc.h"
 #include "cbd_screen.h"
 #include "types.h"
+#include "fl_cei.h"
 
 #include "ft_string.h"
 #include <fcntl.h>
@@ -37,6 +38,7 @@ void	game_init(t_game *self, char const *path)
 	hooks_init(self);
 	screen_init(&self->screen, (struct s_screen_data){
 		&self->assets, &self->rc, &self->map}, self->mlx);
+	init_flcei(self);
 	rc_init(&self->rc, self->map.player.delta_o);
 	self->status = CBD_GAME_STOPPED;
 	self->fps_counter = NULL;
@@ -47,7 +49,7 @@ void	game_read(t_game *self, t_fd fd)
 {
 	assets_read(&self->assets, fd);
 	map_read(&self->map, fd);
-	init_sprites(self);
+	//init_sprites(self);
 }
 
 void	game_run(t_game *self)

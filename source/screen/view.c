@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/05 17:36:30 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/19 17:55:46 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/03/29 18:36:16 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx)
 	self->scene = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_VIEW_H_DFL);
 	if (self->scene == NULL)
 		cbd_terminate(CBD_EGENERIC);
-	mlx_image_fill(self->ceiling, assets->ceiling_rgba);
-	mlx_image_fill(self->floor, assets->floor_rgba);
+	//mlx_image_fill(self->ceiling, assets->ceiling_rgba);
+	//mlx_image_fill(self->floor, assets->floor_rgba);
 	self->wall_height = CBD_WALL_H_DFL;
 }
 

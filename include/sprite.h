@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 12:58:48 by tcensier      #+#    #+#                 */
-/*   Updated: 2024/03/26 17:36:51 by tim           ########   odam.nl         */
+/*   Updated: 2024/03/27 18:29:57 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ typedef struct	s_sprite
 {
 	double		x;
 	double		y;
+	double		v_shrink;
+	double		h_shrink;
+	double		v_move;
 	t_texture	*texture;
 	mlx_image_t *img;	
 } 				t_sprite;
