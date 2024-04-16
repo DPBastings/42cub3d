@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/26 17:15:18 by tim           ########   odam.nl         */
+/*   Updated: 2024/04/08 16:22:18 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ struct s_view
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);
 void	view_draw(t_view *self, t_point pt, mlx_t *mlx);
-void	view_render(t_view *self, struct s_screen_data data);
-void	view_render_scene(t_view *self, struct s_screen_data data);
+void	view_render(t_game *game, t_view *self, struct s_screen_data data);
+void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data);
 void	view_deinit(t_view *self, mlx_t *mlx);
 
 typedef enum e_screen_overlay_icon

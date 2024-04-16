@@ -43,8 +43,7 @@ void	screen_render(t_game *self, struct s_screen_data data)
 	t_screen *screen;
 
 	screen = &self->screen;
-	//rc_flcei(self);
-	view_render(&screen->view, data);
+	view_render(self ,&screen->view, data);
 	//sprite_casting(self);
 	minimap_render(&screen->minimap, data.map, data.rc);
 }

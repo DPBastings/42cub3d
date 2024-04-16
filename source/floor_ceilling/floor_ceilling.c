@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/03/29 18:35:08 by tim           ########   odam.nl         */
+/*   Updated: 2024/04/08 17:38:09 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	rc_flcei(t_game *self)
 		double ray_dir_y1 = player.delta_o.y + cam.plane.y;	
 
 		int curr_p = y - CBD_SCREEN_H_DFL / 2;
-		double cam_z_pos = 0.5*CBD_SCREEN_H_DFL;
+		double cam_z_pos = player.view_z;
 
 		//horr distance from cam to floor for current row;
 		double row_distance = cam_z_pos / curr_p;
@@ -57,7 +57,9 @@ void	rc_flcei(t_game *self)
 			floor_y += floor_stepy;
 			
 			uint32_t cl = mlx_texture_read(fl->data, tx, ty);
-			mlx_put_pixel_safe(view.scene, x, y, cl);
+			mlx_put_pixel_safe(view.scene, x, view.horizon - CBD_SCREEN_H_DFL / 2 + y, cl);
+			mlx_put_pixel_safe(view.scene, x, view.horizon - CBD_SCREEN_H_DFL / 2 + (CBD_SCREEN_H_DFL - y - 1), cl);
+			
 		}
 		
 	}

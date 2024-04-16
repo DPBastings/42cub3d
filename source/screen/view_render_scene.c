@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/29 18:40:02 by tim           ########   odam.nl         */
+/*   Updated: 2024/04/08 16:23:03 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 #include "point.h"
 
 #include "MLX42_ext.h"
+#include "fl_cei.h"
 
 static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
 static uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);
 static uint32_t		_get_height(t_view const *self, double ray_length);
 static t_texture_id	_get_txr(t_rc_result *rc);
 
-void	view_render_scene(t_view *self, struct s_screen_data data)
+void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 {
 	size_t	x;
+	mlx_image_fill(self->scene, 0x00000000);
+	rc_flcei(game);
 	
-	//mlx_image_fill(self->scene, 0x00000000);
 	x = 0;
 	while (x < CBD_RC_RES)
 		render_wall(self, x++, data);
