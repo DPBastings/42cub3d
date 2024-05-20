@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/04/08 16:22:18 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/20 13:08:02 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 	// == CBD_SCREEN_H_DFL
 # define CBD_VIEW_H_DFL_2	450
 	// == CBD_VIEW_H_DFL / 2
-# define CBD_VIEW_Z_MARGIN	500
+# define CBD_VIEW_Z_MARGIN	CBD_VIEW_H_DFL_2
 # define CBD_BOX_H_DFL		950
 	// == CBD_VIEW_H_DFL_2 + CBD_VIEW_Z_MARGIN
 

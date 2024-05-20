@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/04/08 17:38:09 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/20 14:48:14 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@ void	rc_flcei(t_game *self)
 	t_texture 	*fl = self->floor;
 	t_texture	*cei = self->ceilling;
 	
-	for (int y = 0; y < CBD_SCREEN_H_DFL; y++)
+	for (int y = 0; y < CBD_SCREEN_H_DFL; ++y)
 	{
-		//leftmost ray
+		bool is_fl = y > CBD_SCREEN_H_DFL / 2 + player.view_z;
+
 		double ray_dir_x0 = player.delta_o.x - cam.plane.x;
 		double ray_dir_y0 = player.delta_o.y - cam.plane.y;
 		//rightmost ray
 		double ray_dir_x1 = player.delta_o.x + cam.plane.x;
 		double ray_dir_y1 = player.delta_o.y + cam.plane.y;	
+		
 
-		int curr_p = y - CBD_SCREEN_H_DFL / 2;
-		double cam_z_pos = player.view_z;
-
+		//printf("h: %d | z: %d\n", view.horizon, player.view_z);
+		int curr_p = is_fl ? ( y - CBD_SCREEN_H_DFL / 2 - player.view_z) : (CBD_SCREEN_H_DFL / 2 - y + player.view_z);
+		int cam_z_pos = CBD_SCREEN_H_DFL * 0.5;
+		printf("if fl: %d | p: %d | cam: %d| hor: %d | vz: %d\n", is_fl, curr_p, cam_z_pos, view.horizon, player.view_z);
 		//horr distance from cam to floor for current row;
-		double row_distance = cam_z_pos / curr_p;
+		double row_distance = (double)(cam_z_pos) / curr_p;
 		
 		//step calc avoid multip in inner loop
 		double floor_stepx = row_distance * (ray_dir_x1 - ray_dir_x0) / CBD_SCREEN_W_DFL;
@@ -57,8 +60,8 @@ void	rc_flcei(t_game *self)
 			floor_y += floor_stepy;
 			
 			uint32_t cl = mlx_texture_read(fl->data, tx, ty);
-			mlx_put_pixel_safe(view.scene, x, view.horizon - CBD_SCREEN_H_DFL / 2 + y, cl);
-			mlx_put_pixel_safe(view.scene, x, view.horizon - CBD_SCREEN_H_DFL / 2 + (CBD_SCREEN_H_DFL - y - 1), cl);
+			//mlx_put_pixel_safe(view.scene, x, y, cl);
+			mlx_put_pixel_safe(view.scene, x, y, cl);
 			
 		}
 		

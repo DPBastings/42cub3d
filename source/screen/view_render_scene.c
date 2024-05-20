@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/04/08 16:23:03 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/20 12:33:36 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_texture_id	_get_txr(t_rc_result *rc);
 void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 {
 	size_t	x;
-	mlx_image_fill(self->scene, 0x00000000);
+	//mlx_image_fill(self->scene, 0x00000000);
 	rc_flcei(game);
 	
 	x = 0;
