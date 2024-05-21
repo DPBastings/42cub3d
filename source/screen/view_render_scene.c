@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/05/20 12:33:36 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/21 15:49:29 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 {
 	size_t	x;
 	//mlx_image_fill(self->scene, 0x00000000);
-	rc_flcei(game);
 	
 	x = 0;
 	while (x < CBD_RC_RES)
 		render_wall(self, x++, data);
+	
 }
 
 static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
@@ -45,10 +45,25 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 
 	draw_y = 0;
 	read_y = 0;
+	size_t y = 0;
+	double fog = 0;
 	while (draw_y < height)
 	{
-		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
-			mlx_texture_read(data.assets->textures[txr].data, column, read_y));
+		y = (self->horizon - height / 2 + draw_y);
+		fog = data.rc->data[i].length / 10 * 5;
+		if (i == 1440 /2 && y == 900/2)
+			printf("fog am: %f\n", data.rc->data[i].length);
+		if (i < 1440 && y < 900)
+		{
+			if (data.rc->data[i].length > 4.0)
+				self->px_buffer[i * 900 + y] = FOG_CL;
+			else
+				self->px_buffer[i * 900 + y] = mlx_texture_read_fog(data.assets->textures[txr].data, column, read_y, fog);
+			
+			
+		}
+		// mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
+		// 	mlx_texture_read(data.assets->textures[txr].data, column, read_y));
 		++draw_y;
 		read_y += data.assets->textures[txr].data->height / (double)height;
 	}

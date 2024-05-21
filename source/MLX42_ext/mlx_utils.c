@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/26 17:46:14 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/21 15:47:24 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,23 @@ uint32_t	mlx_texture_read(mlx_texture_t const *txr, int32_t x, int32_t y)
 	uint8_t const	px[4] = {
 		txr->pixels[i + 3], txr->pixels[i + 2],
 		txr->pixels[i + 1], txr->pixels[i]
+		};
+
+	return (*((uint32_t *)px));
+}
+
+uint32_t	mlx_texture_read_fog(mlx_texture_t const *txr, int32_t x, int32_t y, float fog)
+{
+	size_t const	i = (y * txr->width + x) * 4;
+	double cl_percent;
+	//printf("fog: %f\n", fog);
+	if (fog <= 0)
+		cl_percent = 1.0;
+	else
+		cl_percent = 1 - fog;
+	uint8_t const	px[4] = {
+		txr->pixels[i + 3], txr->pixels[i + 2] * cl_percent + (FOG_CL * fog),
+		txr->pixels[i + 1] * cl_percent + (FOG_CL * fog), txr->pixels[i] * cl_percent + (FOG_CL * fog)
 		};
 
 	return (*((uint32_t *)px));

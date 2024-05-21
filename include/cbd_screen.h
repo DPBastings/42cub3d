@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/05/20 13:08:02 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/21 14:15:48 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ struct s_view
 	mlx_image_t	*scene;
 	mlx_image_t	*ceiling;
 	mlx_image_t	*floor;
+	uint32_t	*px_buffer;
 	uint32_t	horizon;
+	uint32_t	fog_constant;
 	double		wall_height;
 };
 

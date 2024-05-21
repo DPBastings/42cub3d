@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/05 17:36:30 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/29 18:36:16 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/21 12:28:19 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,50 @@
 #include "cbd_error.h"
 #include "cbd_screen.h"
 #include "MLX42_ext.h"
+#include "libft.h"
+
+void free_buff(uint16_t **buff, int i)
+{
+	int j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(buff[j]);
+		j++;	
+	}
+	free((*buff));
+}
+
+void	init_px_buffer(t_view *self)
+{
+	// int	i;
+	
+	// i = 0;
+	// self->px_buffer = malloc((900) * sizeof(uint32_t*));
+	// if (!self->px_buffer)
+	// 	cbd_terminate(CBD_EGENERIC);
+	// while (i < 900)
+	// {
+	// 	(self->px_buffer)[i] = malloc(1440 * sizeof(uint32_t));
+	// 	if (!self->px_buffer[i])
+	// 	{
+	// 		free_buff(self->px_buffer, i);
+	// 		cbd_terminate(CBD_EGENERIC);
+	// 	}
+	// 	ft_memset(self->px_buffer[i], 0, 1440 * sizeof(uint32_t));
+	// 	i++;
+	// }
+	//total w * x + y
+	//px[w * h + col];
+	self->px_buffer = malloc((900 * 1440) * sizeof(uint32_t));
+	if (!self->px_buffer)
+		cbd_terminate(CBD_EGENERIC);
+}
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx)
 {
+	init_px_buffer(self);
 	self->horizon = CBD_VIEW_H_DFL / 2;
 	self->ceiling = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_BOX_H_DFL);
 	if (self->ceiling == NULL)

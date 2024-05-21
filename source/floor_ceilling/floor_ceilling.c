@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/05/20 14:48:14 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/21 15:48:32 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	rc_flcei(t_game *self)
 		//printf("h: %d | z: %d\n", view.horizon, player.view_z);
 		int curr_p = is_fl ? ( y - CBD_SCREEN_H_DFL / 2 - player.view_z) : (CBD_SCREEN_H_DFL / 2 - y + player.view_z);
 		int cam_z_pos = CBD_SCREEN_H_DFL * 0.5;
-		printf("if fl: %d | p: %d | cam: %d| hor: %d | vz: %d\n", is_fl, curr_p, cam_z_pos, view.horizon, player.view_z);
+		//printf("if fl: %d | p: %d | cam: %d| hor: %d | vz: %d\n", is_fl, curr_p, cam_z_pos, view.horizon, player.view_z);
 		//horr distance from cam to floor for current row;
 		double row_distance = (double)(cam_z_pos) / curr_p;
 		
@@ -46,8 +46,8 @@ void	rc_flcei(t_game *self)
 		//coord of leftmost column, will be updated stepb step
 		double floor_x = player.pos.x + row_distance * ray_dir_x0;
 		double floor_y = player.pos.y + row_distance * ray_dir_y0;
-		
-		for (int x = 0; x < CBD_SCREEN_W_DFL; ++x)
+		double fog = row_distance / view.fog_constant * 5;
+		for (int x = 0; x < CBD_SCREEN_W_DFL; x++)
 		{
 			//integer part of floor x and y
 			int cell_x = (int)floor_x;
@@ -59,12 +59,16 @@ void	rc_flcei(t_game *self)
 			floor_x += floor_stepx;
 			floor_y += floor_stepy;
 			
-			uint32_t cl = mlx_texture_read(fl->data, tx, ty);
+			//uint32_t cl = mlx_texture_read_fog(fl->data, tx, ty, fog);
+			if (x < 1440 && y < 900)
+			{
+				if (row_distance < 4.0)
+					view.px_buffer[900 *x + y] = mlx_texture_read_fog(fl->data, tx, ty, fog);
+				else
+					view.px_buffer[900* x +y] = FOG_CL;
+			}
 			//mlx_put_pixel_safe(view.scene, x, y, cl);
-			mlx_put_pixel_safe(view.scene, x, y, cl);
-			
 		}
-		
 	}
 }
 

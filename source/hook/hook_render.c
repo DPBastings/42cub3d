@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 15:35:15 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/04/08 16:13:45 by tim           ########   odam.nl         */
+/*   Updated: 2024/05/21 12:33:41 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	hook_render(void *param)
 {
 	t_game	*game = param;
 
+	rc_flcei(game);
 	rc_cast(&game->rc, &game->map);
-	//rc_flcei(game);
 	screen_render(game, (struct s_screen_data){
 		&game->assets, &game->rc, &game->map
 	});
