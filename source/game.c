@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/05/21 14:23:48 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 19:07:27 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	game_init(t_game *self, char const *path)
 	hooks_init(self);
 	screen_init(&self->screen, (struct s_screen_data){
 		&self->assets, &self->rc, &self->map}, self->mlx);
-	init_flcei(self);
 	rc_init(&self->rc, self->map.player.delta_o);
+	hrc_init(self);
+	init_flcei(self);
 	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 2;
 	self->status = CBD_GAME_STOPPED;
 	self->fps_counter = NULL;

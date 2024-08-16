@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:54 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/29 17:59:54 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 20:21:06 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ struct s_game
 	t_texture		*ceilling;
 	t_screen		screen;
 	t_rc			rc;
+	t_hrc 			*hrc;
 	t_game_status	status;
 	mlx_image_t		*fps_counter;
 	double			frame_timer;

@@ -6,11 +6,83 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/16 18:17:25 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/16 20:42:16 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fl_cei.h"
+
+void	hrc_init(t_game *self)
+{
+	t_hrc	*hrc;
+	hrc = malloc(sizeof(t_hrc));
+    if (!hrc)
+        cbd_terminate(CBD_EGENERIC);
+	hrc->cam = self->rc.camera;
+	hrc->data = malloc(sizeof(t_hrc_data));
+	if (!hrc->data)
+		cbd_terminate(CBD_EGENERIC);
+	self->hrc = hrc;
+}
+
+static void hrc_render(t_game *self, int y)
+{
+	int	x;
+	t_hrc_data *data;
+	uint16_t cl;
+	
+	x = -1;
+	data = self->hrc->data;
+	while (++x < CBD_SCREEN_W_DFL)
+	{
+		data->cell.x = (int)data->floor_cord.x;
+		data->cell.y = (int)data->floor_cord.y;
+		data->texture_cord.x = (int)(self->floor->data->width * (data->floor_cord.x - data->cell.x)) & (self->floor->data->width - 1);
+		data->texture_cord.y = (int)(self->floor->data->height * (data->floor_cord.y - data->cell.y)) & (self->floor->data->height - 1);
+		data->floor_cord.x += data->floor_step.x;
+		data->floor_cord.y += data->floor_step.y;
+		cl = mlx_texture_read(self->floor->data, data->texture_cord.x, data->texture_cord.y);
+		mlx_put_pixel_safe(self->screen.view.scene, x, y, cl);
+	}
+}
+
+static void 	compute_step(t_hrc_data *data, t_player player)
+{
+	data->floor_step.x = data->row_distance * (data->raydir_1.x - data->raydir_0.x) / CBD_SCREEN_W_DFL;
+	data->floor_step.y = data->row_distance * (data->raydir_1.y - data->raydir_0.y) / CBD_SCREEN_W_DFL;
+	data->floor_cord.x = player.pos.x + data->row_distance * data->raydir_0.x;
+	data->floor_cord.y = player.pos.y + data->row_distance * data->raydir_0.y;
+}
+
+static void		compute_ray_direction(t_hrc_data *data, t_player player, t_camera cam, int y)
+{
+	data->is_floor = y > CBD_SCREEN_H_DFL / 2 + player.view_z;
+	data->raydir_0.x = player.delta_o.x - cam.plane.x;
+	data->raydir_0.y = player.delta_o.y - cam.plane.y;
+	data->raydir_1.x = player.delta_o.x + cam.plane.x;
+	data->raydir_1.y = player.delta_o.y + cam.plane.y;
+}
+
+void	hrc_cast(t_game *self)
+{
+	int	y;
+	t_hrc_data *data;
+	
+	data = self->hrc->data;
+	y = -1;
+	while (++y < CBD_SCREEN_H_DFL)
+	{
+		compute_ray_direction(data, self->map.player, self->hrc->cam, y);
+		if (data->is_floor)
+			data->pos_y = y - CBD_SCREEN_H_DFL / 2 - self->map.player.view_z;
+		else
+			data->pos_y = CBD_SCREEN_H_DFL / 2 - y + self->map.player.view_z;
+		data->cam_pos_y = CBD_SCREEN_H_DFL * 0.5;
+		data->row_distance = (double)(data->cam_pos_y) / data->pos_y;
+		compute_step(data, self->map.player);
+		hrc_render(self, y);
+	}
+}
 
 void	rc_flcei(t_game *self)
 {
@@ -71,8 +143,6 @@ void	rc_flcei(t_game *self)
 		}
 	}
 }
-
-
 
 void	init_flcei(t_game *self)
 {

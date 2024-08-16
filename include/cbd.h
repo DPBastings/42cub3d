@@ -6,14 +6,14 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/29 17:14:56 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 20:19:38 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CBD_H
 # define CBD_H
 
-# define TITLE			"Verve 3D" // I'm taking suggestions for this. // How'bout NotSo3D ?
+# define TITLE			"The void" // I'm taking suggestions for this.
 # define FILE_EXT		".cub"
 # define FILE_EXT_LEN	4
 
@@ -29,6 +29,7 @@ typedef struct s_map		t_map;
 typedef struct s_player		t_player;
 typedef struct s_object		t_object;
 typedef struct s_rc			t_rc;
+typedef struct s_hrc		t_hrc;
 typedef struct s_view		t_view;
 
 typedef enum e_z

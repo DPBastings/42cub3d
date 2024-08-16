@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:32:48 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/26 15:33:19 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 19:22:29 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void	texture_load(t_texture *txr)
 {
 	char *const	path = txr->path;
-	//printf("Loading: %s\n", path);
+	
 	txr->data = mlx_load_png(path);
 	if (txr->data == NULL)
 		cbd_terminate(CBD_EGENERIC);
