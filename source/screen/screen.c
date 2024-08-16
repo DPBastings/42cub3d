@@ -44,6 +44,5 @@ void	screen_render(t_game *self, struct s_screen_data data)
 
 	screen = &self->screen;
 	view_render(self ,&screen->view, data);
-	//sprite_casting(self);
 	minimap_render(&screen->minimap, data.map, data.rc);
 }

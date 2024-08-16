@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/05/21 15:48:32 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 18:17:25 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,20 @@ void	rc_flcei(t_game *self)
 			floor_x += floor_stepx;
 			floor_y += floor_stepy;
 			
-			//uint32_t cl = mlx_texture_read_fog(fl->data, tx, ty, fog);
-			if (x < 1440 && y < 900)
-			{
-				if (row_distance < 4.0)
-					view.px_buffer[900 *x + y] = mlx_texture_read_fog(fl->data, tx, ty, fog);
-				else
-					view.px_buffer[900* x +y] = FOG_CL;
-			}
-			//mlx_put_pixel_safe(view.scene, x, y, cl);
+			// if (x < 1440 && y < 900)
+			// {
+			// 	if (row_distance < 4.0)
+			// 		view.px_buffer[900 *x + y] = mlx_texture_read_fog(fl->data, tx, ty, fog);
+			// 	else
+			// 		view.px_buffer[900* x +y] = FOG_CL;
+			// }
+			uint32_t cl = mlx_texture_read(fl->data, tx, ty);
+			mlx_put_pixel_safe(view.scene, x, y, cl);
 		}
 	}
 }
+
+
 
 void	init_flcei(t_game *self)
 {

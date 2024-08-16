@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:32:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/05/21 14:15:29 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 17:15:34 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	printf("beep boop shey\n");
 
 	if (argc != 2)
 		cbd_terminate(CBD_EARGC);

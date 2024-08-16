@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/05/21 15:47:24 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/16 15:20:18 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ uint32_t	mlx_texture_read_fog(mlx_texture_t const *txr, int32_t x, int32_t y, fl
 {
 	size_t const	i = (y * txr->width + x) * 4;
 	double cl_percent;
-	//printf("fog: %f\n", fog);
+
 	if (fog <= 0)
 		cl_percent = 1.0;
 	else
