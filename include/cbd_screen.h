@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/05/21 14:15:48 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/19 17:13:54 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@
 
 # include "MLX42.h"
 
-# define CBD_VIEW_W_DFL		1440
-	// == CBD_SCREEN_W_DFL
-# define CBD_VIEW_H_DFL		900
-	// == CBD_SCREEN_H_DFL
-# define CBD_VIEW_H_DFL_2	450
-	// == CBD_VIEW_H_DFL / 2
-# define CBD_VIEW_Z_MARGIN	CBD_VIEW_H_DFL_2
-# define CBD_BOX_H_DFL		950
-	// == CBD_VIEW_H_DFL_2 + CBD_VIEW_Z_MARGIN
-
-# define CBD_WALL_H_DFL			600
+# define CBD_WALL_H_DFL			960
 # define CBD_VIEW_ZOOM_FACTOR	1.05
 
 # define CBD_MINIMAP_HOFFSET	16
@@ -64,6 +54,7 @@ struct s_view
 	uint32_t	*px_buffer;
 	uint32_t	horizon;
 	uint32_t	fog_constant;
+	double		max_distance;
 	double		wall_height;
 };
 

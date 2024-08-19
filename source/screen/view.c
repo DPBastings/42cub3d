@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/05 17:36:30 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/16 17:18:56 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/19 17:16:49 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void free_buff(uint16_t **buff, int i)
 
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx)
 {
-	self->horizon = CBD_VIEW_H_DFL / 2;
-	self->ceiling = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_BOX_H_DFL);
+	self->horizon = CBD_HALF_HEIGHT;
+	self->ceiling = mlx_new_image(mlx, CBD_SCREEN_W_DFL, CBD_BOX_H_DFL);
 	if (self->ceiling == NULL)
 		cbd_terminate(CBD_EGENERIC);
-	self->floor = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_BOX_H_DFL);
+	self->floor = mlx_new_image(mlx, CBD_SCREEN_W_DFL, CBD_BOX_H_DFL);
 	if (self->floor == NULL)
 		cbd_terminate(CBD_EGENERIC);
-	self->scene = mlx_new_image(mlx, CBD_VIEW_W_DFL, CBD_VIEW_H_DFL);
+	//getback
+	self->scene = mlx_new_image(mlx, CBD_SCREEN_W_DFL, CBD_SCREEN_H_DFL);
 	if (self->scene == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	mlx_image_fill(self->ceiling, assets->ceiling_rgba);
@@ -56,7 +57,7 @@ void	view_deinit(t_view *self, mlx_t *mlx)
 void	view_draw(t_view *self, t_point pt, mlx_t *mlx)
 {
 	int const	ceiling_y = pt.y - CBD_VIEW_Z_MARGIN;
-	int const	floor_y = pt.y + CBD_VIEW_H_DFL_2;
+	int const	floor_y = pt.y + CBD_HALF_HEIGHT;
 
 	if (mlx_image_to_window(mlx, self->ceiling, pt.x, ceiling_y) == -1)
 		cbd_terminate(CBD_EGENERIC);

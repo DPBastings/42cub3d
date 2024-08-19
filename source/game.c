@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/16 19:07:27 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/19 17:23:41 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	game_init(t_game *self, char const *path)
 		cbd_terminate(CBD_EGENERIC);
 	game_read(self, fd);
 	close(fd);
-	self->mlx = mlx_init(CBD_SCREEN_W_DFL, CBD_SCREEN_H_DFL, TITLE, false);
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	self->mlx = mlx_init(CBD_SCREEN_W_DFL, CBD_SCREEN_H_DFL, TITLE, true);
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
@@ -40,8 +41,8 @@ void	game_init(t_game *self, char const *path)
 		&self->assets, &self->rc, &self->map}, self->mlx);
 	rc_init(&self->rc, self->map.player.delta_o);
 	hrc_init(self);
-	init_flcei(self);
-	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 2;
+	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 4;
+	self->screen.view.max_distance = sqrt((self->map.x_size * self->map.x_size) + (self->map.y_size * self->map.y_size));
 	self->status = CBD_GAME_STOPPED;
 	self->fps_counter = NULL;
 	self->frame_timer = 0;

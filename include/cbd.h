@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/16 20:19:38 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/19 17:29:18 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,16 @@
 # define FILE_EXT		".cub"
 # define FILE_EXT_LEN	4
 
-# define CBD_SCREEN_W_DFL	1440
-# define CBD_SCREEN_H_DFL	900
+# define CBD_SCREEN_W_DFL	960
+# define CBD_SCREEN_H_DFL	540
+# define CBD_HALF_HEIGHT 	270
+# define CBD_RC_RES			CBD_SCREEN_W_DFL
+# define CBD_VIEW_Z_MARGIN	250
+# define CBD_BOX_H_DFL		470
+# define FOG_R	135
+# define FOG_G	20
+# define FOG_B	223
+//#8714DF
 
 typedef struct s_game		t_game;
 typedef struct s_assets		t_assets;

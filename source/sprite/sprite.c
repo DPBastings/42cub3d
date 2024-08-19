@@ -6,7 +6,7 @@
 /*   By: tcensier <tcensier@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/25 13:09:07 by tcensier      #+#    #+#                 */
-/*   Updated: 2024/03/27 18:59:30 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/19 17:17:53 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,26 @@ void	sprite_casting(t_game *self)
 	
 	int v_move_screen = (int)(rock->v_move/trans_y);
 
-	int sprite_screen_x = ((int)(CBD_VIEW_W_DFL/2) * (1 + trans_x / trans_y));
+	int sprite_screen_x = ((int)(CBD_HALF_HEIGHT) * (1 + trans_x / trans_y));
 	//printf("sprite_screen_x: %i\n", sprite_screen_x);
-	int sprite_height = abs((int)(CBD_VIEW_H_DFL/ trans_y) / rock->v_shrink);
-	int draw_start_y = (-sprite_height / 2 + CBD_VIEW_H_DFL / 2 + v_move_screen);
+	int sprite_height = abs((int)(CBD_SCREEN_H_DFL/ trans_y) / rock->v_shrink);
+	int draw_start_y = (-sprite_height / 2 + CBD_SCREEN_H_DFL / 2 + v_move_screen);
 	if (draw_start_y < 0) draw_start_y = 0;
-	int draw_end_y = sprite_height / 2 + CBD_VIEW_H_DFL / 2;
-	if (draw_end_y >= CBD_VIEW_H_DFL) draw_end_y = CBD_VIEW_H_DFL - 1;
+	int draw_end_y = sprite_height / 2 + CBD_SCREEN_H_DFL / 2;
+	if (draw_end_y >= CBD_SCREEN_H_DFL) draw_end_y = CBD_SCREEN_H_DFL - 1;
 	
-	int sprite_width = abs((int)(CBD_VIEW_H_DFL/ trans_y) / rock->h_shrink);
+	int sprite_width = abs((int)(CBD_SCREEN_H_DFL/ trans_y) / rock->h_shrink);
 	int draw_start_x = -sprite_width / 2 + sprite_screen_x
 	;
 	if (draw_start_x < 0) draw_start_x = 0;
 	int draw_end_x = sprite_width / 2 + sprite_screen_x;
-	if (draw_end_y >= CBD_VIEW_W_DFL) draw_end_y = CBD_VIEW_W_DFL - 1;
+	if (draw_end_y >= CBD_SCREEN_W_DFL) draw_end_y = CBD_SCREEN_W_DFL - 1;
 
 	int stripe = draw_start_x;
 	while (stripe < draw_end_x)
 	{
 		int txr_x = (int)(256 * (stripe - (-sprite_width / 2 + sprite_screen_x)) * rock->texture->data->width / sprite_width) / 256;
-		if (trans_y > 0 && stripe > 0 && stripe < CBD_VIEW_W_DFL && trans_y < rc.data[stripe].length)
+		if (trans_y > 0 && stripe > 0 && stripe < CBD_SCREEN_W_DFL && trans_y < rc.data[stripe].length)
 		{
 			double read_y = 0.0;
 			int y = draw_start_y;

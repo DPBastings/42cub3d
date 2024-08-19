@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/16 20:47:57 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/19 17:31:50 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "cbd_screen.h"
 #include "cbd_rc.h"
 #include "point.h"
-
 #include "MLX42_ext.h"
 #include "fl_cei.h"
 
@@ -26,13 +25,12 @@ static t_texture_id	_get_txr(t_rc_result *rc);
 void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 {
 	size_t	x;
-	mlx_image_fill(self->scene, 0x00000000);
+	
 	x = 0;
-
-	hrc_cast(game);
+	mlx_image_fill(self->scene, 0x00000000);
+	//hrc_cast(game);
 	while (x < CBD_RC_RES)
 		render_wall(self, x++, data);
-	
 }
 
 static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
@@ -46,12 +44,12 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 
 	draw_y = 0;
 	read_y = 0;
-	size_t y = 0;
 	double fog = 0;
+	fog = data.rc->data[i].length * self->fog_constant / self->max_distance;
 	while (draw_y < height)
 	{
 		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
-			mlx_texture_read_fog(data.assets->textures[txr].data, column, read_y, fog));
+			mlx_texture_read(data.assets->textures[txr].data, column, read_y));
 		++draw_y;
 		read_y += data.assets->textures[txr].data->height / (double)height;
 	}
