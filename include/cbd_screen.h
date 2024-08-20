@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 17:13:54 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 14:59:38 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include "MLX42.h"
 
-# define CBD_WALL_H_DFL			960
+# define CBD_WALL_H_DFL			CBD_SCREEN_H_DFL
 # define CBD_VIEW_ZOOM_FACTOR	1.05
 
 # define CBD_MINIMAP_HOFFSET	16
@@ -63,6 +63,7 @@ void	view_draw(t_view *self, t_point pt, mlx_t *mlx);
 void	view_render(t_game *game, t_view *self, struct s_screen_data data);
 void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data);
 void	view_deinit(t_view *self, mlx_t *mlx);
+void 	fps_counter_render(t_game *game);
 
 typedef enum e_screen_overlay_icon
 {
@@ -79,7 +80,6 @@ typedef enum e_screen_overlay_icon
 struct s_screen_overlay
 {
 	mlx_image_t	*bg;
-	mlx_image_t *fps_counter; 
 	mlx_image_t	*icons[N_SCREEN_OVERLAY_ICON];
 };
 

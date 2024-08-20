@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 16:17:23 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 16:13:15 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ uint32_t	mlx_texture_read(mlx_texture_t const *txr, int32_t x, int32_t y)
 
 static int	fog_table(float fog)
 {
-	if (fog > 0 && fog < 0.20)
-		return (1);
-	if (fog > 0.20 && fog < 0.40)
+	if (fog > 0 && fog < 0.40)
 		return (2);
 	if (fog > 0.40 && fog < 0.60)
 		return (3);

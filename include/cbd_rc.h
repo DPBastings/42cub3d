@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:26:32 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 14:10:43 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 13:13:14 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stddef.h>
 # include <math.h>
 
-# define CBD_RC_RES			CBD_SCREEN_W_DFL
 	// == SCREEN_WIDTH_DFL
 # define CBD_RC_ZOOM_DFL	1.2
 # define CBD_RC_ZOOM_MIN	0.6

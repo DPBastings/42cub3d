@@ -1,7 +1,7 @@
 NO ./assets/bonus_textures/mid.png
-EA ./assets/bonus_textures/mid.png
+EA ./assets/bonus_textures/mid_dark.png
 SO ./assets/bonus_textures/mid.png
-WE ./assets/bonus_textures/mid.png
+WE ./assets/bonus_textures/mid_dark.png
 
 F 45,45,65
 C 25,25,55

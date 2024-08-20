@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 17:31:50 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 16:11:07 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 	
 	x = 0;
 	mlx_image_fill(self->scene, 0x00000000);
-	//hrc_cast(game);
+	hrc_cast(game);
 	while (x < CBD_RC_RES)
 		render_wall(self, x++, data);
 }
@@ -49,7 +49,11 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 	while (draw_y < height)
 	{
 		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
-			mlx_texture_read(data.assets->textures[txr].data, column, read_y));
+			mlx_texture_read_fog(data.assets->textures[txr].data, column, read_y, fog));
+
+		// mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
+		// 	mlx_texture_read(data.assets->textures[txr].data, column, read_y));
+
 		++draw_y;
 		read_y += data.assets->textures[txr].data->height / (double)height;
 	}

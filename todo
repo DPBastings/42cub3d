@@ -22,25 +22,6 @@ Shader ??
 Norminette!
 
 
-malloc(3 * 4 * sizeof)
-
-
-x = 3
-y = 2
-grid[x][y] =
-
-a b c
-d e f
-
-while (condition is not true)
-	keep doing the stuff
-
-
-0: a
-1: D
-
-while (x < 3)
-	while (y < 2)
-		printf(grid[x][y]);
-		y++;
-	x++;
+- Performance improvement on resolution tweaks
+- FPS counter fix and perf improvements
+- Wall Height set to CBD_HEIGHT which makes it stop moving A LOT OF SENS

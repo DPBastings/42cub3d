@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/05 17:36:30 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 17:16:49 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 13:28:18 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "cbd_screen.h"
 #include "MLX42_ext.h"
 #include "libft.h"
+#include <stdlib.h>
 
 void free_buff(uint16_t **buff, int i)
 {

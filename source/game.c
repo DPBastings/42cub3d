@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 17:23:41 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 13:49:41 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	game_init(t_game *self, char const *path)
 	game_read(self, fd);
 	close(fd);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	mlx_set_setting(MLX_MAXIMIZED, 1);
 	self->mlx = mlx_init(CBD_SCREEN_W_DFL, CBD_SCREEN_H_DFL, TITLE, true);
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
@@ -44,7 +45,7 @@ void	game_init(t_game *self, char const *path)
 	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 4;
 	self->screen.view.max_distance = sqrt((self->map.x_size * self->map.x_size) + (self->map.y_size * self->map.y_size));
 	self->status = CBD_GAME_STOPPED;
-	self->fps_counter = NULL;
+	self->fps_counter = mlx_new_image(self->mlx, CBD_SCREEN_W_DFL/10, CBD_SCREEN_H_DFL/10);
 	self->frame_timer = 0;
 }
 

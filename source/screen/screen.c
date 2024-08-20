@@ -45,4 +45,5 @@ void	screen_render(t_game *self, struct s_screen_data data)
 	screen = &self->screen;
 	view_render(self ,&screen->view, data);
 	minimap_render(&screen->minimap, data.map, data.rc);
+	fps_counter_render(self);
 }

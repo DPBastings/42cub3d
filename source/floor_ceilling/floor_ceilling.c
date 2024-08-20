@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/19 17:32:48 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/20 16:11:50 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	hrc_cast(t_game *self)
 {
 	int			y;
 	t_hrc_data	*data;
-
+	
 	data = self->hrc->data;
 	y = -1;
 	while (++y < CBD_SCREEN_H_DFL)
@@ -71,12 +71,17 @@ static void 	hrc_render(t_game *self, t_hrc *hrc, t_hrc_data *data, int y)
 		data->texture_coord.y = (int)(hrc->floor->data->height * (data->floor_coord.y - data->cell.y)) & (hrc->floor->data->height - 1);
 		data->floor_coord.x += data->floor_step.x;
 		data->floor_coord.y += data->floor_step.y;
-		// if (data->is_floor)
-		// 	cl = mlx_texture_read_fog(hrc->floor->data, data->texture_coord.x, data->texture_coord.y, fog);
-		// else
-		// 	cl = mlx_texture_read_fog(hrc->ceilling->data, data->texture_coord.x, data->texture_coord.y, fog);
-		cl = mlx_texture_read(hrc->ceilling->data, data->texture_coord.x, data->texture_coord.y);
-		mlx_put_pixel_safe(self->screen.view.scene, x, y, cl);
+		//cl = mlx_texture_read(hrc->ceilling->data, data->texture_coord.x, data->texture_coord.y);
+		if (data->is_floor)
+		{
+			cl = mlx_texture_read_fog(hrc->floor->data, data->texture_coord.x, data->texture_coord.y, fog);
+			mlx_put_pixel_safe(self->screen.view.scene, x, y, cl);
+		}
+		else
+		{
+			cl = mlx_texture_read_fog(hrc->ceilling->data, data->texture_coord.x, data->texture_coord.y, fog);
+			mlx_put_pixel_safe(self->screen.view.scene, x, y, cl);
+		}
 	}
 }
 
@@ -110,14 +115,16 @@ static void		init_textures(t_hrc *self)
 		free(floor);
 		cbd_terminate(CBD_EGENERIC);
 	}
-	floor->path = ft_strdup("./assets/textures/wall_green.png");
+	//floor->path = ft_strdup("./assets/textures/wall_green.png");
+	floor->path = ft_strdup("./assets/bonus_textures/gray.png");
 	if (!floor->path)
 	{
 		free(floor);
 		free(ceilling);
 		cbd_terminate(CBD_EGENERIC);
 	}
-	ceilling->path = ft_strdup("./assets/textures/wall_green.png");
+	// ceilling->path = ft_strdup("./assets/textures/wall_green.png");
+	ceilling->path = ft_strdup("./assets/bonus_textures/dark.png");
 	if (!ceilling->path)
 	{
 		free(floor->path);
