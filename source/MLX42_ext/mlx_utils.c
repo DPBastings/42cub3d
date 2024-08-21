@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/20 16:13:15 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/21 14:06:42 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,9 @@ uint32_t	mlx_texture_read(mlx_texture_t const *txr, int32_t x, int32_t y)
 	return (*((uint32_t *)px));
 }
 
-static int	fog_table(float fog)
+static int	fog_table(float fog, int range)
 {
-	if (fog > 0 && fog < 0.40)
-		return (2);
-	if (fog > 0.40 && fog < 0.60)
-		return (3);
-	if (fog > 0.60 && fog < 0.80)
-		return (4);
-	if (fog > 0.80 && fog < 1.0)
-		return (5);
+	return ((int)(fog * range) + 2);
 }
 
 uint32_t	mlx_texture_read_fog(mlx_texture_t const *txr, int32_t x, int32_t y, float fog)
@@ -75,7 +68,7 @@ uint32_t	mlx_texture_read_fog(mlx_texture_t const *txr, int32_t x, int32_t y, fl
 	}
 	else
 	{
-		cl_percent = fog_table(fog);
+		cl_percent = fog_table(fog, 16);
 		px[0] = txr->pixels[i + 3];
 		px[1] = (uint8_t)(txr->pixels[i + 2] / cl_percent + (FOG_B * fog));
 		px[2] = (uint8_t)(txr->pixels[i + 1] / cl_percent + (FOG_G * fog));

@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/20 16:11:50 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/21 19:38:38 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	hrc_cast(t_game *self)
 		data->is_floor = y > CBD_HALF_HEIGHT + self->map.player.view_z;
 		compute_ray_direction(data, self->map.player, self->rc.camera, y);
 		if (data->is_floor)
-			data->pos_y = y - CBD_HALF_HEIGHT- self->map.player.view_z;
+			data->pos_y = y - CBD_HALF_HEIGHT - self->map.player.view_z;
 		else
 			data->pos_y = CBD_HALF_HEIGHT - y + self->map.player.view_z;
 		data->row_distance = (double)CBD_HALF_HEIGHT / data->pos_y;
@@ -138,3 +138,5 @@ static void		init_textures(t_hrc *self)
 	self->floor = floor;
 	self->ceilling = ceilling;
 }
+
+
