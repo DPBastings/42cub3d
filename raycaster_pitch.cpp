@@ -230,7 +230,7 @@ int main(int /*argc*/, char */*argv*/[])
 
 
         if(is_floor) {
-          // floor
+          // floor+ data.rc->data->length
           color = texture[floorTexture][texWidth * ty + tx];
           color = (color >> 1) & 8355711; // make a bit darker
           buffer[y][x] = color;

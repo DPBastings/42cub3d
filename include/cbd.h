@@ -6,14 +6,14 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/20 15:19:52 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/22 22:11:44 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CBD_H
 # define CBD_H
 
-# define TITLE			"The void" // I'm taking suggestions for this.
+# define TITLE			"Void" // I'm taking suggestions for this.
 # define FILE_EXT		".cub"
 # define FILE_EXT_LEN	4
 
