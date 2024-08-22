@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/21 14:06:42 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/22 14:55:19 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ void	mlx_image_fill(mlx_image_t *img, uint32_t cl)
 	uint32_t	x;
 	uint32_t	y;
 
-	x = 0;
-	while (x < img->width)
+	x = -1;
+	while (++x < img->width)
 	{
-		y = 0;
-		while (y < img->height)
-		{
+		y = -1;
+		while (++y < img->height)
 			mlx_put_pixel(img, x, y, cl);
-			++y;
-		}
-		++x;
 	}
 }
 
@@ -47,6 +43,13 @@ uint32_t	mlx_texture_read(mlx_texture_t const *txr, int32_t x, int32_t y)
 
 	return (*((uint32_t *)px));
 }
+
+/**
+*@brief Look-up table for fog amount, improving performances
+*@param fog fog amount between 0 and 1.0
+*@param range The amount of subdivision to map to the fog amount: 
+*@returns fog * range + 2 -> mapping the table to [2, range + 1]
+*/
 
 static int	fog_table(float fog, int range)
 {

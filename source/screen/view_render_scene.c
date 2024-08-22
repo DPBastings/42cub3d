@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/21 20:05:04 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/22 15:09:07 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "point.h"
 #include "MLX42_ext.h"
 #include "fl_cei.h"
+#include <stdio.h>
 
 static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
 static uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);
@@ -26,11 +27,11 @@ void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 {
 	size_t	x;
 	
-	x = 0;
+	x = -1;
 	mlx_image_fill(self->scene, 0x00000000);
 	hrc_cast(game);
-	while (x < CBD_RC_RES)
-		render_wall(self, x++, data);
+	while (++x < CBD_RC_RES)
+		render_wall(self, x, data);
 }
 
 static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
@@ -39,51 +40,33 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 	int const			column = _get_column(&data.rc->data[i],
 			data.assets->textures[txr]);
 	int					line_height = _get_height(self, data.rc->data[i].length);
-	uint32_t			draw_y = 0;
+	int					y = 0;
 	double				read_y = 0;
 
-	int draw_start = -line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z + (data.rc->data->length);
+	int draw_start = -line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z + data.rc->data->length;
 	if (draw_start < 0) draw_start = 0;
-	int draw_end = line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z + (data.rc->data->length);
-	if (draw_end >= CBD_SCREEN_H_DFL) draw_end = CBD_SCREEN_H_DFL - 1;
-	
+	int draw_end = line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z + data.rc->data->length;
+	if (draw_end > CBD_SCREEN_H_DFL) draw_end = CBD_SCREEN_H_DFL;
+
+
+	// printf("Dstart: %i | Dend: %i | lineHeight: %i\n-LineHeight: %i | -LH/2: %i | -LH/2 + hh",
+	//  draw_start, draw_end, line_height, -line_height, -line_height/2, -line_height/2+CBD_HALF_HEIGHT);
+
+	y = draw_start;
 	double step = 1.0 * data.assets->textures[txr].data->height / line_height;
-	double texture_pos = (draw_start - data.map->player.view_z - (data.rc->data->length) - CBD_HALF_HEIGHT + line_height / 2) * step;
-	while (draw_y < line_height)
+	double texture_pos = (draw_start - data.map->player.view_z + data.rc->data->length - CBD_HALF_HEIGHT + line_height / 2) * step;
+	double fog = 0;
+	fog = data.rc->data[i].length * self->fog_constant / self->max_distance;
+	
+	while (y < draw_end)
 	{
 		int texture_y = (int)texture_pos & (data.assets->textures[txr].data->height - 1);
-		mlx_put_pixel_safe(self->scene, i, self->horizon - line_height / 2 + draw_y,
-			mlx_texture_read(data.assets->textures[txr].data, column, texture_y));
+		mlx_put_pixel_safe(self->scene, i, y,
+			mlx_texture_read_fog(data.assets->textures[txr].data, column, texture_y, fog));
 		texture_pos += step;
-		draw_y++;
+		y++;
 	}
 }
-
-// static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
-// {
-// 	t_texture_id const	txr = _get_txr(&data.rc->data[i]);
-// 	int const			column = _get_column(&data.rc->data[i],
-// 			data.assets->textures[txr]);
-// 	uint32_t			height = _get_height(self, data.rc->data[i].length);
-// 	uint32_t			draw_y;
-// 	double				read_y;
-
-// 	draw_y = 0;
-// 	read_y = 0;
-// 	double fog = 0;
-// 	fog = data.rc->data[i].length * self->fog_constant / self->max_distance;
-// 	while (draw_y < height)
-// 	{
-// 		// mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
-// 		// 	mlx_texture_read_fog(data.assets->textures[txr].data, column, read_y, fog));
-
-// 		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
-// 			mlx_texture_read(data.assets->textures[txr].data, column, read_y));
-// 		read_y += data.assets->textures[txr].data->height / (double)height;
-// 		draw_y++;
-// 	}
-// }
-
 
 static uint32_t	_get_column(t_rc_result const *rc, t_texture const txr)
 {
