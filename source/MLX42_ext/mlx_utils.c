@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:02:07 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/22 14:55:19 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/22 17:51:51 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	mlx_image_fill(mlx_image_t *img, uint32_t cl)
 
 void	mlx_put_pixel_safe(mlx_image_t *img, int32_t x, int32_t y, uint32_t cl)
 {
-	if (x > 0 && y > 0 && (uint32_t)x < img->width && (uint32_t)y < img->height)
+	if (x >= 0 && y >= 0 && (uint32_t)x < img->width && (uint32_t)y < img->height)
 		mlx_put_pixel(img, x, y, cl);
 }
 

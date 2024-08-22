@@ -6,11 +6,12 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/21 19:38:38 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/22 17:55:35 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fl_cei.h"
+#include <stdio.h>
 
 static void		compute_ray_direction(t_hrc_data *data, t_player player, t_camera cam, int y);
 static void 	compute_step(t_hrc_data *data, t_player player);
@@ -71,7 +72,6 @@ static void 	hrc_render(t_game *self, t_hrc *hrc, t_hrc_data *data, int y)
 		data->texture_coord.y = (int)(hrc->floor->data->height * (data->floor_coord.y - data->cell.y)) & (hrc->floor->data->height - 1);
 		data->floor_coord.x += data->floor_step.x;
 		data->floor_coord.y += data->floor_step.y;
-		//cl = mlx_texture_read(hrc->ceilling->data, data->texture_coord.x, data->texture_coord.y);
 		if (data->is_floor)
 		{
 			cl = mlx_texture_read_fog(hrc->floor->data, data->texture_coord.x, data->texture_coord.y, fog);

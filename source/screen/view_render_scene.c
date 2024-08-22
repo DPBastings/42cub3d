@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/22 15:09:07 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/22 17:56:42 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
 	if (draw_start < 0) draw_start = 0;
 	int draw_end = line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z + data.rc->data->length;
 	if (draw_end > CBD_SCREEN_H_DFL) draw_end = CBD_SCREEN_H_DFL;
-
-
-	// printf("Dstart: %i | Dend: %i | lineHeight: %i\n-LineHeight: %i | -LH/2: %i | -LH/2 + hh",
-	//  draw_start, draw_end, line_height, -line_height, -line_height/2, -line_height/2+CBD_HALF_HEIGHT);
 
 	y = draw_start;
 	double step = 1.0 * data.assets->textures[txr].data->height / line_height;
