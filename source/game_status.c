@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game_status.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 12:11:12 by dbasting          #+#    #+#             */
-/*   Updated: 2024/02/20 12:11:13 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   game_status.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/20 12:11:12 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/08/28 18:24:21 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ static inline void	_release_mouse(mlx_t *mlx)
 {
 	mlx_set_cursor_mode(mlx, MLX_MOUSE_NORMAL);
 }
-

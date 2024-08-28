@@ -6,13 +6,12 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 15:18:04 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/11 16:01:55 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/28 14:38:07 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "point.h"
 #include <math.h>
-
 
 /// @brief compute vector according to scaling factor
 /// @param dvc 
@@ -24,7 +23,8 @@ t_dvector	dvc_scale(t_dvector dvc, double factor)
 }
 
 /// @brief computes hypothenuse distance of vec dvc, attemptend with
-/// fast inverse sqrt, but method is deprecated since 1999 (Diff cpu architechture)
+/// fast inverse sqrt, but method is deprecated since 1999 
+///(Diff cpu architechture)
 /// @param dvc 
 /// @return 
 double	dvc_len(t_dvector dvc)

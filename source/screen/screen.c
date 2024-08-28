@@ -13,8 +13,7 @@
 #include "cbd.h"
 #include "cbd_error.h"
 #include "cbd_screen.h"
-#include "sprite.h"
-#include "fl_cei.h"
+#include "hrc.h"
 
 void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
 {
@@ -40,10 +39,10 @@ void	screen_draw(t_screen *self, mlx_t *mlx)
 
 void	screen_render(t_game *self, struct s_screen_data data)
 {
-	t_screen *screen;
+	t_screen	*screen;
 
 	screen = &self->screen;
-	view_render(self ,&screen->view, data);
+	view_render(self, &screen->view, data);
 	minimap_render(&screen->minimap, data.map, data.rc);
 	fps_counter_render(self);
 }

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:54 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/19 13:01:59 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/28 19:10:46 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "cbd_map.h"
 # include "cbd_screen.h"
 # include "cbd_rc.h"
-# include "sprite.h"
 
 # include "MLX42.h"
 
@@ -43,12 +42,11 @@ struct s_game
 {
 	t_assets		assets;
 	t_map			map;
-	t_sprite		*sprites;
 	t_texture		*floor;
 	t_texture		*ceilling;
 	t_screen		screen;
 	t_rc			rc;
-	t_hrc 			*hrc;
+	t_hrc			*hrc;
 	t_game_status	status;
 	mlx_image_t		*fps_counter;
 	double			frame_timer;

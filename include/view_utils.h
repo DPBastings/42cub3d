@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.h                                            :+:    :+:            */
+/*   view_utils.h                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/28 23:08:19 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 19:10:20 by tim           ########   odam.nl         */
+/*   Created: 2024/08/28 15:19:59 by tim           #+#    #+#                 */
+/*   Updated: 2024/08/28 17:46:59 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "cbd_assets.h"
+#include "cbd_screen.h"
+#include "cbd_rc.h"
 
-# include <stddef.h>
-
-typedef struct s_string
-{
-	char const	*data;
-	size_t		len;
-}	t_string;
-
-#endif // UTILS_H
+int				_get_height(t_view const *self, double ray_length);
+uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);
+t_texture_id	_get_txr(t_rc_result *rc);

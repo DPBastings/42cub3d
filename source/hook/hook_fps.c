@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/10 19:24:59 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/20 15:12:31 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/28 14:34:27 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static char	*get_fps_string(double delta_time)
 /// @brief Simple FPS counter re-drawing every half a second.
 void	fps_counter_render(t_game *game)
 {
-	double 	fps;
-	char 	*str;
-	
+	double	fps;
+	char	*str;
+
 	game->frame_timer += game->mlx->delta_time;
 	if (game->frame_timer >= .5)
 	{
@@ -44,8 +44,10 @@ void	fps_counter_render(t_game *game)
 		str = get_fps_string(game->mlx->delta_time);
 		if (!str)
 			return ;
-		game->fps_counter = mlx_put_string(game->mlx, str, CBD_SCREEN_W_DFL - 75, 0);
-		mlx_set_instance_depth(&game->fps_counter->instances[0], CBD_Z_SCREEN_OVERLAY_ICON);
+		game->fps_counter = mlx_put_string(game->mlx, str,
+				CBD_SCREEN_W_DFL - 75, 0);
+		mlx_set_instance_depth(&game->fps_counter->instances[0],
+			CBD_Z_SCREEN_OVERLAY_ICON);
 		free(str);
 		game->frame_timer = 0;
 	}

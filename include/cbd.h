@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/22 22:11:44 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/28 19:07:23 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 
 typedef struct s_game		t_game;
 typedef struct s_assets		t_assets;
-typedef struct s_sprite		t_sprite;
 typedef struct s_screen		t_screen;
 typedef struct s_minimap	t_minimap;
 typedef struct s_map		t_map;
@@ -38,6 +37,7 @@ typedef struct s_player		t_player;
 typedef struct s_object		t_object;
 typedef struct s_rc			t_rc;
 typedef struct s_hrc		t_hrc;
+typedef struct s_hrc_data	t_hrc_data;
 typedef struct s_view		t_view;
 
 typedef enum e_z

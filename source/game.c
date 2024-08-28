@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/20 13:49:41 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/28 19:02:04 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "cbd_rc.h"
 #include "cbd_screen.h"
 #include "types.h"
-#include "fl_cei.h"
+#include "hrc.h"
 
 #include "ft_string.h"
 #include <fcntl.h>
@@ -43,9 +43,11 @@ void	game_init(t_game *self, char const *path)
 	rc_init(&self->rc, self->map.player.delta_o);
 	hrc_init(self);
 	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 4;
-	self->screen.view.max_distance = sqrt((self->map.x_size * self->map.x_size) + (self->map.y_size * self->map.y_size));
+	self->screen.view.max_distance = sqrt((self->map.x_size * self->map.x_size)
+			+ (self->map.y_size * self->map.y_size));
 	self->status = CBD_GAME_STOPPED;
-	self->fps_counter = mlx_new_image(self->mlx, CBD_SCREEN_W_DFL/10, CBD_SCREEN_H_DFL/10);
+	self->fps_counter = mlx_new_image(self->mlx,
+			CBD_SCREEN_W_DFL / 10, CBD_SCREEN_H_DFL / 10);
 	self->frame_timer = 0;
 }
 
@@ -53,7 +55,6 @@ void	game_read(t_game *self, t_fd fd)
 {
 	assets_read(&self->assets, fd);
 	map_read(&self->map, fd);
-	//init_sprites(self);
 }
 
 void	game_run(t_game *self)

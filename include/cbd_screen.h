@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/21 18:52:11 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/28 19:13:23 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_screen_data
 	t_assets const *const	assets;
 	t_rc const *const		rc;
 	t_map const *const		map;
+	t_view					*view;
 }				t_screen_data;
 
 /**
@@ -61,9 +62,10 @@ struct s_view
 void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);
 void	view_draw(t_view *self, t_point pt, mlx_t *mlx);
 void	view_render(t_game *game, t_view *self, struct s_screen_data data);
-void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data);
+void	view_render_scene(t_game *game,
+			t_view *self, struct s_screen_data data);
 void	view_deinit(t_view *self, mlx_t *mlx);
-void 	fps_counter_render(t_game *game);
+void	fps_counter_render(t_game *game);
 
 typedef enum e_screen_overlay_icon
 {

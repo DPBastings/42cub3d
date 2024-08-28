@@ -6,16 +6,15 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/20 14:26:02 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/10 20:02:31 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/28 14:57:28 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_assets.h"
 #include "cbd_screen.h"
 #include "cbd_error.h"
-
 #include "MLX42_ext.h"
-#include <stdio.h>
+
 static t_texture_id const	g_txrids[N_SCREEN_OVERLAY_ICON] = {
 	TXR_PAUSE, TXR_CROSSHAIR,
 };
@@ -32,13 +31,14 @@ void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
 	while (i < N_SCREEN_OVERLAY_ICON)
 	{
 		self->icons[i] = mlx_texture_to_image(
-			mlx,
-			assets->textures[g_txrids[i]].data);
+				mlx,
+				assets->textures[g_txrids[i]].data);
 		if (self->icons[i] == NULL)
 			cbd_terminate(CBD_EGENERIC);
 		++i;
 	}
 }
+
 void	screen_overlay_deinit(t_screen_overlay *self, mlx_t *mlx)
 {
 	t_screen_overlay_icon	i;
@@ -66,8 +66,7 @@ void	screen_overlay_draw(t_screen_overlay *self, mlx_t *mlx)
 		if (mlx_image_to_window(mlx, self->icons[i], pt.x, pt.y) == -1)
 			cbd_terminate(CBD_EGENERIC);
 		mlx_set_instance_depth(&self->icons[i]->instances[0],
-				CBD_Z_SCREEN_OVERLAY_ICON);
+			CBD_Z_SCREEN_OVERLAY_ICON);
 		++i;
 	}
-	
 }
