@@ -24,6 +24,7 @@
 # include <stdlib.h>
 
 void			hrc_init(t_game *self);
+void			hrc_deinit(t_hrc *hrc);
 void			hrc_cast(t_game *self);
 void			compute_ray_direction(t_hrc_data *data,
 					t_player player, t_camera cam);

@@ -6,17 +6,14 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:32:48 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 18:26:18 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 13:39:59 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_assets.h"
 #include "cbd_error.h"
-
 #include <stdlib.h>
 #include "MLX42.h"
-
-#include <stdio.h>
 
 void	texture_load(t_texture *txr)
 {

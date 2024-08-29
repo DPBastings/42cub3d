@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:32:26 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/03/11 15:04:25 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 14:22:56 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	cbd_strerror(t_errno errno)
 void	cbd_terminate(t_errno errno)
 {
 	cbd_strerror(errno);
-	exit(EXIT_FAILURE);
+//	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/10 19:24:59 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/28 14:34:27 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 13:55:18 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 static char	*get_fps_string(double delta_time)
 {
-	double	fps;
 	char	*str;
 	char	*fps_counter;
 
@@ -33,7 +32,6 @@ static char	*get_fps_string(double delta_time)
 /// @brief Simple FPS counter re-drawing every half a second.
 void	fps_counter_render(t_game *game)
 {
-	double	fps;
 	char	*str;
 
 	game->frame_timer += game->mlx->delta_time;

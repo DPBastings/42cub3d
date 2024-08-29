@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 19:02:04 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 13:57:13 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	game_init(t_game *self, char const *path)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
 	screen_init(&self->screen, (struct s_screen_data){
-		&self->assets, &self->rc, &self->map}, self->mlx);
+		&self->assets, &self->rc, &self->map, &self->screen.view}, self->mlx);
 	rc_init(&self->rc, self->map.player.delta_o);
 	hrc_init(self);
 	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 4;
@@ -67,6 +67,7 @@ void	game_run(t_game *self)
 void	game_deinit(t_game *self)
 {
 	rc_deinit(&self->rc);
+	hrc_deinit(self->hrc);
 	mlx_close_window(self->mlx);
 	screen_deinit(&self->screen, self->mlx);
 	mlx_terminate(self->mlx);
