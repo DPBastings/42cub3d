@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/01 23:45:11 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/20 13:11:42 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 16:40:33 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ struct s_minimap
 	t_dpoint	viewport_max;
 };
 
-void	minimap_init(t_minimap *self, t_map const *map, mlx_t *mlx);
+void	minimap_init(t_game *game, t_minimap *self,
+			t_map const *map, mlx_t *mlx);
 void	minimap_draw(t_minimap *self, t_point pos, mlx_t *mlx);
 void	minimap_render(t_minimap *self, t_map const *map, t_rc const *rc);
 void	minimap_render_objects(t_minimap *self, t_map const *map);

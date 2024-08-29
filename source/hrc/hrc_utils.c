@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/08/28 18:59:51 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/29 14:15:38 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 15:50:34 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ void	compute_ray_direction(t_hrc_data *data,
 	data->raydir_1.y = player.delta_o.y + cam.plane.y;
 }
 
-t_texture	*texture_init(char *path)
+t_texture	*texture_init(t_game *self, char *path)
 {
 	t_texture	*txr;
 
 	if (!path)
-		cbd_terminate(CBD_EGENERIC);
+		return (cbd_mlx_terminate(self, CBD_EGENERIC), NULL);
 	txr = malloc(sizeof(t_texture));
 	if (!txr)
-		cbd_terminate(CBD_EGENERIC);
+		cbd_mlx_terminate(self, CBD_EGENERIC);
 	txr->path = ft_strdup(path);
 	if (!txr->path)
-		return (free(txr), cbd_terminate(CBD_EGENERIC), NULL);
-	texture_load(txr);
+		return (free(txr), cbd_mlx_terminate(self, CBD_EGENERIC), NULL);
+	texture_load(self, txr);
 	return (txr);
 }

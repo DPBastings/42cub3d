@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/20 14:26:02 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 14:57:28 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 16:38:55 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ static t_texture_id const	g_txrids[N_SCREEN_OVERLAY_ICON] = {
 	TXR_PAUSE, TXR_CROSSHAIR,
 };
 
-void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
+void	screen_overlay_init(t_game *game,
+			t_screen_overlay *self, t_assets const *assets,
 			mlx_t *mlx)
 {
 	t_screen_overlay_icon	i;
 
 	self->bg = mlx_new_image(mlx, CBD_SCREEN_W_DFL, CBD_SCREEN_H_DFL);
 	if (self->bg == NULL)
-		cbd_terminate(CBD_EGENERIC);
+		cbd_mlx_terminate(game, CBD_EGENERIC);
 	i = 0;
 	while (i < N_SCREEN_OVERLAY_ICON)
 	{
@@ -34,7 +35,7 @@ void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
 				mlx,
 				assets->textures[g_txrids[i]].data);
 		if (self->icons[i] == NULL)
-			cbd_terminate(CBD_EGENERIC);
+			cbd_mlx_terminate(game, CBD_EGENERIC);
 		++i;
 	}
 }
@@ -43,10 +44,17 @@ void	screen_overlay_deinit(t_screen_overlay *self, mlx_t *mlx)
 {
 	t_screen_overlay_icon	i;
 
+	if (!self || !mlx)
+		return ;
 	i = 0;
 	while (i < N_SCREEN_OVERLAY_ICON)
-		mlx_delete_image(mlx, self->icons[i++]);
-	mlx_delete_image(mlx, self->bg);
+	{
+		if (self->icons[i])
+			mlx_delete_image(mlx, self->icons[i]);
+		i++;
+	}
+	if (self->bg)
+		mlx_delete_image(mlx, self->bg);
 }
 
 void	screen_overlay_draw(t_screen_overlay *self, mlx_t *mlx)

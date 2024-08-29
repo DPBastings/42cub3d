@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/29 13:57:13 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 16:38:09 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "cbd_screen.h"
 #include "types.h"
 #include "hrc.h"
-
 #include "ft_string.h"
 #include <fcntl.h>
 #include <unistd.h>
@@ -38,9 +37,9 @@ void	game_init(t_game *self, char const *path)
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
-	screen_init(&self->screen, (struct s_screen_data){
+	screen_init(self, &self->screen, (struct s_screen_data){
 		&self->assets, &self->rc, &self->map, &self->screen.view}, self->mlx);
-	rc_init(&self->rc, self->map.player.delta_o);
+	rc_init(self, &self->rc, self->map.player.delta_o);
 	hrc_init(self);
 	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 4;
 	self->screen.view.max_distance = sqrt((self->map.x_size * self->map.x_size)
@@ -48,6 +47,8 @@ void	game_init(t_game *self, char const *path)
 	self->status = CBD_GAME_STOPPED;
 	self->fps_counter = mlx_new_image(self->mlx,
 			CBD_SCREEN_W_DFL / 10, CBD_SCREEN_H_DFL / 10);
+	if (!self->fps_counter)
+		cbd_mlx_terminate(self, CBD_EGENERIC);
 	self->frame_timer = 0;
 }
 
@@ -68,9 +69,11 @@ void	game_deinit(t_game *self)
 {
 	rc_deinit(&self->rc);
 	hrc_deinit(self->hrc);
-	mlx_close_window(self->mlx);
+	if (self->mlx)
+		mlx_close_window(self->mlx);
 	screen_deinit(&self->screen, self->mlx);
-	mlx_terminate(self->mlx);
+	if (self->mlx)
+		mlx_terminate(self->mlx);
 	map_deinit(&self->map);
 	assets_deinit(&self->assets);
 }

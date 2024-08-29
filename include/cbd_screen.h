@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 19:13:23 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 16:41:17 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ struct s_view
 	double		wall_height;
 };
 
-void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);
+void	view_init(t_game *game, t_view *self,
+			t_assets const *assets, mlx_t *mlx);
 void	view_draw(t_view *self, t_point pt, mlx_t *mlx);
 void	view_render(t_game *game, t_view *self, struct s_screen_data data);
 void	view_render_scene(t_game *game,
@@ -85,8 +86,8 @@ struct s_screen_overlay
 	mlx_image_t	*icons[N_SCREEN_OVERLAY_ICON];
 };
 
-void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
-			mlx_t *mlx);
+void	screen_overlay_init(t_game *game, t_screen_overlay *self,
+			t_assets const *assets, mlx_t *mlx);
 void	screen_overlay_deinit(t_screen_overlay *self, mlx_t *mlx);
 void	screen_overlay_draw(t_screen_overlay *self, mlx_t *mlx);
 void	screen_overlay_pause(t_screen_overlay *self);
@@ -105,7 +106,8 @@ struct s_screen
 	t_screen_overlay	overlay;
 };
 
-void	screen_init(t_screen *screen, struct s_screen_data data, mlx_t *mlx);
+void	screen_init(t_game *self, t_screen *screen,
+			struct s_screen_data data, mlx_t *mlx);
 void	screen_draw(t_screen *self, mlx_t *mlx);
 void	screen_render(t_game *self, struct s_screen_data data);
 void	screen_deinit(t_screen *self, mlx_t *mlx);

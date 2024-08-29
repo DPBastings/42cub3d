@@ -30,7 +30,7 @@ void			compute_ray_direction(t_hrc_data *data,
 					t_player player, t_camera cam);
 void			compute_step(t_hrc_data *data, t_player player);
 void			update_txr_coord(t_hrc *hrc, t_hrc_data *data);
-t_texture		*texture_init(char *path);
+t_texture		*texture_init(t_game *self, char *path);
 
 /** 
  * @brief horizontal raycaster data for floor and ceilling.

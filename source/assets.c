@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:03 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 18:19:29 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/29 16:11:38 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	load_dynamic_textures(t_texture textures[N_TEXTURE])
 
 	i = 0;
 	while (i < N_DYNAMIC_TEXTURE)
-		texture_load(&textures[i++]);
+		texture_load(NULL, &textures[i++]);
 }
 
 static void	load_static_textures(t_texture textures[N_TEXTURE])
@@ -72,7 +72,7 @@ static void	load_static_textures(t_texture textures[N_TEXTURE])
 	{
 		textures[i + N_DYNAMIC_TEXTURE].data = mlx_load_png(g_txr_paths[i]);
 		if (textures[i + N_DYNAMIC_TEXTURE].data == NULL)
-			cbd_terminate(CBD_EGENERIC);
+			cbd_mlx_terminate(NULL, CBD_EGENERIC);
 		++i;
 	}
 }

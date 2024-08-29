@@ -15,11 +15,12 @@
 #include "cbd_screen.h"
 #include "hrc.h"
 
-void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
+void	screen_init(t_game *self, t_screen *screen,
+			struct s_screen_data data, mlx_t *mlx)
 {
-	view_init(&self->view, data.assets, mlx);
-	minimap_init(&self->minimap, data.map, mlx);
-	screen_overlay_init(&self->overlay, data.assets, mlx);
+	view_init(self, &screen->view, data.assets, mlx);
+	minimap_init(self, &screen->minimap, data.map, mlx);
+	screen_overlay_init(self, &screen->overlay, data.assets, mlx);
 }
 
 void	screen_deinit(t_screen *self, mlx_t *mlx)

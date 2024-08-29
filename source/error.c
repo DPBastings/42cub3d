@@ -6,12 +6,13 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:32:26 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/29 14:22:56 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 15:01:00 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cbd.h"
+#include "cbd_game.h"
 #include "cbd_error.h"
-
 #include "ft_stdio.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,5 +41,12 @@ void	cbd_strerror(t_errno errno)
 void	cbd_terminate(t_errno errno)
 {
 	cbd_strerror(errno);
-//	exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
+}
+
+void	cbd_mlx_terminate(t_game *self, t_errno errno)
+{
+	game_deinit(self);
+	cbd_strerror(errno);
+	exit(EXIT_FAILURE);
 }

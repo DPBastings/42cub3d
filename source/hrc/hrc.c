@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/29 14:09:54 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/29 16:39:52 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,39 @@ void	hrc_init(t_game *self)
 
 	hrc = malloc(sizeof(t_hrc));
 	if (!hrc)
-		cbd_terminate(CBD_EGENERIC);
+		cbd_mlx_terminate(self, CBD_EGENERIC);
 	hrc->data = malloc(sizeof(t_hrc_data));
 	if (!hrc->data)
-		return (free(hrc), cbd_terminate(CBD_EGENERIC));
-	hrc->floor = texture_init("./assets/textures/wall_green.png");
-	hrc->ceilling = texture_init("./assets/textures/wall.png");
+		return (free(hrc), cbd_mlx_terminate(self, CBD_EGENERIC));
+	hrc->floor = texture_init(self, "./assets/textures/wall_green.png");
+	hrc->ceilling = texture_init(self, "./assets/textures/wall.png");
 	self->hrc = hrc;
 }
 
 void	hrc_deinit(t_hrc *hrc)
 {
+	if (!hrc)
+		return ;
 	if (hrc->data)
+	{
 		free(hrc->data);
-	if (hrc->ceilling){
+		hrc->data = NULL;
+	}
+	if (hrc->ceilling)
+	{
 		texture_deinit(hrc->ceilling);
 		free(hrc->ceilling);
+		hrc->ceilling = NULL;
 	}
-	if (hrc->floor){
+	if (hrc->floor)
+	{
 		texture_deinit(hrc->floor);
 		free(hrc->floor);
+		hrc->floor = NULL;
 	}
 	if (hrc)
 		free(hrc);
+	hrc = NULL;
 }
 
 void	hrc_cast(t_game *self)
