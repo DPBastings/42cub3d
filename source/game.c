@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/30 14:28:32 by tcensier      ########   odam.nl         */
+/*   Updated: 2024/08/30 14:43:13 by dbasting      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	game_init(t_game *self, char const *path)
 
 void	game_read(t_game *self, t_fd fd)
 {
-	self->bonus = true;
+	self->bonus = false;
 	assets_read(&self->assets, fd);
 	map_read(&self->map, fd);
 }
