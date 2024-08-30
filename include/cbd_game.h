@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:54 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 19:10:46 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/30 14:02:41 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct s_game
 	t_game_status	status;
 	mlx_image_t		*fps_counter;
 	double			frame_timer;
+	bool			bonus;
 	mlx_t			*mlx;
 }; // struct s_game
 

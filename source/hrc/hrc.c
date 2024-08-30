@@ -6,7 +6,7 @@
 /*   By: tim <tim@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/29 16:55:25 by tim           #+#    #+#                 */
-/*   Updated: 2024/08/29 16:39:52 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/30 14:24:08 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	hrc_init(t_game *self)
 	hrc->data = malloc(sizeof(t_hrc_data));
 	if (!hrc->data)
 		return (free(hrc), cbd_mlx_terminate(self, CBD_EGENERIC));
-	hrc->floor = texture_init(self, "./assets/textures/wall_green.png");
-	hrc->ceilling = texture_init(self, "./assets/textures/wall.png");
+	hrc->floor = texture_init(self, "./assets/bonus_textures/dark.png");
+	hrc->ceilling = texture_init(self, "./assets/bonus_textures/gray.png");
 	self->hrc = hrc;
 }
 
@@ -92,11 +92,11 @@ static void	hrc_render(t_game *self, t_hrc *hrc, t_hrc_data *data, int y)
 		update_txr_coord(hrc, data);
 		if (data->is_floor)
 			cl = mlx_texture_read_fog(hrc->floor->data, data->texture_coord.x,
-					data->texture_coord.y, 0);
+					data->texture_coord.y, fog);
 		else
 			cl = mlx_texture_read_fog(hrc->ceilling->data,
 					data->texture_coord.x,
-					data->texture_coord.y, 0);
+					data->texture_coord.y, fog);
 		mlx_put_pixel_safe(self->screen.view.scene, x, y, cl);
 	}
 }

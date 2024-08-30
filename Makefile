@@ -121,7 +121,9 @@ lib/libmlx42_build/libmlx42.a:
 	@cmake -S ./lib/libmlx42/ -B $(dir $@)
 	@cmake --build $(dir $@)
 	@printf "$(_INFO) Archive created ->$(_ID_MLX)\n"
-	
+
+bonus: all
+
 clean:
 	@$(MAKE) -C ./lib/libft/ clean --silent
 	@cmake --build ./lib/libmlx42_build/ --target clean

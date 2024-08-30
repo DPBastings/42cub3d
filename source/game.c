@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:08 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/29 16:38:09 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/30 14:28:32 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	game_init(t_game *self, char const *path)
 	game_read(self, fd);
 	close(fd);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	mlx_set_setting(MLX_MAXIMIZED, 1);
 	self->mlx = mlx_init(CBD_SCREEN_W_DFL, CBD_SCREEN_H_DFL, TITLE, true);
 	if (self->mlx == NULL)
 		cbd_terminate(CBD_EGENERIC);
 	hooks_init(self);
 	screen_init(self, &self->screen, (struct s_screen_data){
-		&self->assets, &self->rc, &self->map, &self->screen.view}, self->mlx);
+		&self->assets, &self->rc, &self->map, &self->screen.view,
+		&self->bonus}, self->mlx);
 	rc_init(self, &self->rc, self->map.player.delta_o);
 	hrc_init(self);
 	self->screen.view.fog_constant = (self->map.x_size + self->map.y_size) / 4;
@@ -54,6 +54,7 @@ void	game_init(t_game *self, char const *path)
 
 void	game_read(t_game *self, t_fd fd)
 {
+	self->bonus = true;
 	assets_read(&self->assets, fd);
 	map_read(&self->map, fd);
 }

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/29 16:41:17 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/30 14:02:27 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_screen_data
 	t_rc const *const		rc;
 	t_map const *const		map;
 	t_view					*view;
+	bool					*bonus;
 }				t_screen_data;
 
 /**

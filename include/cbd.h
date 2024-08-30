@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:58 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/08/28 19:07:23 by tim           ########   odam.nl         */
+/*   Updated: 2024/08/30 14:30:31 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define CBD_HALF_HEIGHT 	270
 # define CBD_VIEW_Z_MARGIN	250
 # define CBD_BOX_H_DFL		520
-# define FOG_R	135
-# define FOG_G	20
-# define FOG_B	223
+# define FOG_R	138
+# define FOG_G	54
+# define FOG_B	85
 //#8714DF
 
 typedef struct s_game		t_game;
