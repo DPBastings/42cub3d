@@ -6,77 +6,71 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/06 18:08:10 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/19 17:55:01 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/30 14:13:39 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cbd_assets.h"
-#include "cbd_screen.h"
-#include "cbd_rc.h"
 #include "point.h"
-
 #include "MLX42_ext.h"
+#include "hrc.h"
+#include "view_utils.h"
 
-static void			render_wall(t_view *self, size_t i, struct s_screen_data d);
-static uint32_t		_get_column(t_rc_result const *rc, t_texture const txr);
-static uint32_t		_get_height(t_view const *self, double ray_length);
-static t_texture_id	_get_txr(t_rc_result *rc);
+static void	init_render_wall(t_view *self, struct s_screen_data data, size_t x);
 
-void	view_render_scene(t_view *self, struct s_screen_data data)
+void	view_render_scene(t_game *game, t_view *self, struct s_screen_data data)
 {
-	size_t	i;
+	size_t			x;
 
-	mlx_image_fill(self->scene, 0x00000000);
-	i = 0;
-	while (i < CBD_RC_RES)
-		render_wall(self, i++, data);
+	x = -1;
+	mlx_image_fill(data.view->scene, 0x00000000);
+	if (game->bonus)
+		hrc_cast(game);
+	while (++x < CBD_RC_RES)
+		init_render_wall(self, data, x);
 }
 
-static void	render_wall(t_view *self, size_t i, struct s_screen_data data)
+static double	compute_fog(struct s_screen_data data, size_t i)
 {
-	t_texture_id const	txr = _get_txr(&data.rc->data[i]);
-	int const			column = _get_column(&data.rc->data[i],
+	if (*data.bonus)
+		return (data.rc->data[i].length * data.view->fog_constant
+			/ data.view->max_distance);
+	return (0);
+}
+
+static void	render_wall(t_texture_id txr, int line_height,
+					struct s_screen_data data, size_t i)
+{
+	const int		column = _get_column(&data.rc->data[i],
 			data.assets->textures[txr]);
-	uint32_t const		height = _get_height(self, data.rc->data[i].length);
-	uint32_t			draw_y;
-	double				read_y;
+	const double	step
+		= 1.0 * data.assets->textures[txr].data->height / line_height;
+	int				draw_start;
+	int				draw_end;
+	double			texture_pos;
 
-	draw_y = 0;
-	read_y = 0;
-	while (draw_y < height)
+	draw_start = -line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z;
+	if (draw_start < 0)
+		draw_start = 0;
+	draw_end = line_height / 2 + CBD_HALF_HEIGHT + data.map->player.view_z;
+	if (draw_end > CBD_SCREEN_H_DFL)
+		draw_end = CBD_SCREEN_H_DFL;
+	texture_pos = (draw_start - data.map->player.view_z
+			- CBD_HALF_HEIGHT + line_height / 2) * step;
+	while (draw_start < draw_end)
 	{
-		mlx_put_pixel_safe(self->scene, i, self->horizon - height / 2 + draw_y,
-			mlx_texture_read(data.assets->textures[txr].data, column, read_y));
-		++draw_y;
-		read_y += data.assets->textures[txr].data->height / (double)height;
+		mlx_put_pixel_safe(data.view->scene, i, draw_start,
+			mlx_texture_read_fog(data.assets->textures[txr].data,
+				column, texture_pos, compute_fog(data, i)));
+		texture_pos += step;
+		draw_start++;
 	}
 }
 
-static uint32_t	_get_column(t_rc_result const *rc, t_texture const txr)
+static void	init_render_wall(t_view *self, struct s_screen_data data, size_t x)
 {
-	double	integral;
+	const int			line_height
+		= _get_height(self, data.rc->data[x].length);
+	const t_texture_id	txr = _get_txr(&data.rc->data[x]);
 
-	if (rc->isct == ISCT_V)
-		return (modf(rc->end.y, &integral) * txr.data->width);
-	return (modf(rc->end.x, &integral) * txr.data->width);
-}
-
-static uint32_t	_get_height(t_view const *self, double ray_length)
-{
-	if (ray_length == 0)
-		return (self->wall_height);
-	return (self->wall_height / ray_length);
-}
-
-static t_texture_id	_get_txr(t_rc_result *rc)
-{
-	if (rc->isct == ISCT_V)
-	{
-		if (rc->direction.x < 0)
-			return (EAST_WALL);
-		return (WEST_WALL);
-	}
-	if (rc->direction.y < 0)
-		return (SOUTH_WALL);
-	return (NORTH_WALL);
+	render_wall(txr, line_height, data, x);
 }

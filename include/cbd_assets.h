@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cbd_assets.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 14:35:47 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/27 14:35:47 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cbd_assets.h                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/27 14:35:47 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/08/29 16:11:48 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ union u_texture
 	char			*path;
 };
 
-void	texture_load(t_texture *txr);
+void	texture_load(t_game *self, t_texture *txr);
 void	texture_deinit(t_texture *txr);
 
 typedef enum e_texture_id

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   object.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 11:05:00 by dbasting          #+#    #+#             */
-/*   Updated: 2024/01/30 11:05:01 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   object.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/30 11:05:00 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/08/29 16:02:57 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void	object_init(t_object *self, t_object_type type)
 
 void	object_deinit(t_object *self)
 {
-	free(self->data);
+	if (!self)
+		return ;
+	if (self->data)
+		free(self->data);
 }

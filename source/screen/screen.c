@@ -13,12 +13,14 @@
 #include "cbd.h"
 #include "cbd_error.h"
 #include "cbd_screen.h"
+#include "hrc.h"
 
-void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx)
+void	screen_init(t_game *self, t_screen *screen,
+			struct s_screen_data data, mlx_t *mlx)
 {
-	view_init(&self->view, data.assets, mlx);
-	minimap_init(&self->minimap, data.map, mlx);
-	screen_overlay_init(&self->overlay, data.assets, mlx);
+	view_init(self, &screen->view, data.assets, mlx);
+	minimap_init(self, &screen->minimap, data.map, mlx);
+	screen_overlay_init(self, &screen->overlay, data.assets, mlx);
 }
 
 void	screen_deinit(t_screen *self, mlx_t *mlx)
@@ -36,8 +38,12 @@ void	screen_draw(t_screen *self, mlx_t *mlx)
 	screen_overlay_draw(&self->overlay, mlx);
 }
 
-void	screen_render(t_screen *self, struct s_screen_data data)
+void	screen_render(t_game *self, struct s_screen_data data)
 {
-	view_render(&self->view, data);
-	minimap_render(&self->minimap, data.map, data.rc);
+	t_screen	*screen;
+
+	screen = &self->screen;
+	view_render(self, &screen->view, data);
+	minimap_render(&screen->minimap, data.map, data.rc);
+	fps_counter_render(self);
 }

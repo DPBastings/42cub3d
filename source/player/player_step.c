@@ -6,15 +6,16 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 16:52:05 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/16 16:12:30 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/28 14:53:42 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cbd_player.h"
 #include "cbd_map.h"
+#include <stdio.h>
 
 static inline void	player_step(t_player *self, t_map const *map, t_dpoint cp,
-	t_dpoint np);
+						t_dpoint np);
 
 void	player_step_forward(t_player *self, t_map const *map)
 {

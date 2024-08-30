@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   hook_controls.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbasting <dbasting@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 12:49:45 by dbasting          #+#    #+#             */
-/*   Updated: 2024/02/20 12:49:46 by dbasting         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   hook_controls.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/20 12:49:45 by dbasting      #+#    #+#                 */
+/*   Updated: 2024/08/28 19:14:41 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ static inline void	_controls_view(t_game *game)
 	}
 	hook_view(view_delta, game);
 }
-

@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 16:43:04 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 18:13:51 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/29 14:52:39 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static t_achkflag	parse_header(char const **str)
 // O, how I long for the switch...
 static void	parse_value(t_achkflag i, t_assets *assets, char const **str)
 {
+	if (!str)
+		cbd_terminate(CBD_EGENERIC);
 	parse_skip_ws(str);
 	if (i == CEILING_RGB)
 		assets->ceiling_rgba = parse_rgb(str);

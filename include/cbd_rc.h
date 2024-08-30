@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/02 23:26:32 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/19 18:02:03 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/29 15:39:20 by tim           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stddef.h>
 # include <math.h>
 
-# define CBD_RC_RES			1440
 	// == SCREEN_WIDTH_DFL
 # define CBD_RC_ZOOM_DFL	1.2
 # define CBD_RC_ZOOM_MIN	0.6
@@ -70,7 +69,7 @@ struct s_rc
 	t_rc_result	*data;
 };
 
-void	rc_init(t_rc *self, t_dvector direction);
+void	rc_init(t_game *game, t_rc *self, t_dvector direction);
 void	rc_deinit(t_rc *self);
 void	rc_cast(t_rc *self, t_map const *map);
 

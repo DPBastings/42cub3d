@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/30 15:38:40 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/02/26 14:55:24 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/30 14:02:27 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@
 
 # include "MLX42.h"
 
-# define CBD_VIEW_W_DFL		1440
-	// == CBD_SCREEN_W_DFL
-# define CBD_VIEW_H_DFL		900
-	// == CBD_SCREEN_H_DFL
-# define CBD_VIEW_H_DFL_2	450
-	// == CBD_VIEW_H_DFL / 2
-# define CBD_VIEW_Z_MARGIN	500
-# define CBD_BOX_H_DFL		950
-	// == CBD_VIEW_H_DFL_2 + CBD_VIEW_Z_MARGIN
-
-# define CBD_WALL_H_DFL			600
+# define CBD_WALL_H_DFL			CBD_SCREEN_H_DFL
 # define CBD_VIEW_ZOOM_FACTOR	1.05
 
 # define CBD_MINIMAP_HOFFSET	16
@@ -41,12 +31,14 @@ typedef struct s_screen_overlay	t_screen_overlay;
 /**
  * @brief	Bundles several resources used in rendering the screen.
 */
-struct s_screen_data
+typedef struct s_screen_data
 {
 	t_assets const *const	assets;
 	t_rc const *const		rc;
 	t_map const *const		map;
-};
+	t_view					*view;
+	bool					*bonus;
+}				t_screen_data;
 
 /**
  * @brief	Scene view object.
@@ -61,15 +53,21 @@ struct s_view
 	mlx_image_t	*scene;
 	mlx_image_t	*ceiling;
 	mlx_image_t	*floor;
+	uint32_t	*px_buffer;
 	uint32_t	horizon;
+	uint32_t	fog_constant;
+	double		max_distance;
 	double		wall_height;
 };
 
-void	view_init(t_view *self, t_assets const *assets, mlx_t *mlx);
+void	view_init(t_game *game, t_view *self,
+			t_assets const *assets, mlx_t *mlx);
 void	view_draw(t_view *self, t_point pt, mlx_t *mlx);
-void	view_render(t_view *self, struct s_screen_data data);
-void	view_render_scene(t_view *self, struct s_screen_data data);
+void	view_render(t_game *game, t_view *self, struct s_screen_data data);
+void	view_render_scene(t_game *game,
+			t_view *self, struct s_screen_data data);
 void	view_deinit(t_view *self, mlx_t *mlx);
+void	fps_counter_render(t_game *game);
 
 typedef enum e_screen_overlay_icon
 {
@@ -89,8 +87,8 @@ struct s_screen_overlay
 	mlx_image_t	*icons[N_SCREEN_OVERLAY_ICON];
 };
 
-void	screen_overlay_init(t_screen_overlay *self, t_assets const *assets,
-			mlx_t *mlx);
+void	screen_overlay_init(t_game *game, t_screen_overlay *self,
+			t_assets const *assets, mlx_t *mlx);
 void	screen_overlay_deinit(t_screen_overlay *self, mlx_t *mlx);
 void	screen_overlay_draw(t_screen_overlay *self, mlx_t *mlx);
 void	screen_overlay_pause(t_screen_overlay *self);
@@ -109,9 +107,10 @@ struct s_screen
 	t_screen_overlay	overlay;
 };
 
-void	screen_init(t_screen *self, struct s_screen_data data, mlx_t *mlx);
+void	screen_init(t_game *self, t_screen *screen,
+			struct s_screen_data data, mlx_t *mlx);
 void	screen_draw(t_screen *self, mlx_t *mlx);
-void	screen_render(t_screen *self, struct s_screen_data data);
+void	screen_render(t_game *self, struct s_screen_data data);
 void	screen_deinit(t_screen *self, mlx_t *mlx);
 
 #endif // CBD_SCREEN_H

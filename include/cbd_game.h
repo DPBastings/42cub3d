@@ -6,7 +6,7 @@
 /*   By: dbasting <dbasting@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/27 14:35:54 by dbasting      #+#    #+#                 */
-/*   Updated: 2024/01/29 14:57:50 by dbasting      ########   odam.nl         */
+/*   Updated: 2024/08/30 14:02:41 by tcensier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,15 @@ struct s_game
 {
 	t_assets		assets;
 	t_map			map;
+	t_texture		*floor;
+	t_texture		*ceilling;
 	t_screen		screen;
 	t_rc			rc;
+	t_hrc			*hrc;
 	t_game_status	status;
+	mlx_image_t		*fps_counter;
+	double			frame_timer;
+	bool			bonus;
 	mlx_t			*mlx;
 }; // struct s_game
 

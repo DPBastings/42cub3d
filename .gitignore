@@ -6,3 +6,9 @@ lib/libmlx42_build/
 *.a
 *.d
 *.out
+vgcore.*
+valgrind*
+raycaster_pitch.cpp
+raycaster_textured.cpp
+Untitled-1.cpp
+todo
