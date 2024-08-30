@@ -16,6 +16,8 @@ test_files=(
 	"test/maps/test08.cub"		# Missing player position
 	"test/maps/test09.cub"		# Double player position
 	"test/maps/test10.cub"		# Player in unenclosed position
+	"test/maps/test11.cub"		# Nonexistent asset
+	"test/maps/test12.cub"		# Empty file
 )
 
 cd ..
@@ -24,5 +26,5 @@ echo -e "${style_header0}Testers for cub3d: level parser${style_reset}"
 
 for file in ${test_files[@]}; do
 	echo -e "${style_header1}     Test: $file ${style_reset}"
-	./cub3d $file
+	./cub3D $file
 done

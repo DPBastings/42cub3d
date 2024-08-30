@@ -1,0 +1,15 @@
+NO ./assets/textures/wall.png
+EA ./assets/textures/wall.png
+SO ./assets/textures/wall.png
+WE ./assets/textures/wall.png
+
+Q ./assets/texturs/wall.png
+
+F 345,45,65
+C 65,65,75
+
+11111
+10001
+10101
+1N101
+11111
